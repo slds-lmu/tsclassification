@@ -17,6 +17,7 @@ data_to_path = function(data, data_path = NULL) {
     data_path = data
   }
   # Write the data.frame to a file
+  # FIXME: How do we encode target column.
   if (is.data.frame(data)) {
     if (is.null(data_path))
       data_path = tempfile(pattern = "data_train", fileext = ".arff")
@@ -56,3 +57,11 @@ par_vals_to_string = function(par.vals) {
   return(pv)
 }
 
+# Return all possible classifiers.
+get_tsc_classifier_names = function() {
+  c("WeightedEnsemble","FixedIntervalForest","J48","NaiveBayes",
+    "SMO","SMO","BayesNet","MultilayerPerceptron","OptimisedRotationForest",
+    "Logistic","NN_CID","LearnShapelets","FastShapelets","ST_Ensemble",
+    "DTW_1NN","DTW_1NN","DD_DTW","DTD_C","TSF","ACF_Ensemble","PS_Ensemble",
+    "TSBF","BagOfPatterns","BOSSEnsemble","SAXVSM","LPS")
+}

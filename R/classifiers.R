@@ -5,9 +5,6 @@
 #'   - train()
 #'   - predict()
 #' @export
-#' @example
-#' tsc = TSClassifier$new()
-#' tsc$train
 TSClassifier = R6::R6Class("TSClassifier",
   public = list(
     data = NULL,

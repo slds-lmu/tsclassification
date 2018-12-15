@@ -21,3 +21,12 @@ test_that("TSC can be tested from file path", {
   tsc$train()
   tsc$predict(test_data)
 })
+
+test_that("Test different impls", {
+  train_data = "inst/arff/GunPoint_TRAIN.arff"
+  test_data = "inst/arff/GunPoint_TEST.arff"
+  classifName = "weka.classifiers.meta.OptimisedRotationForest"
+  tsc = TSClassifier$new(train_data, classifName)
+  tsc$train()
+  tsc$predict(test_data)
+})
