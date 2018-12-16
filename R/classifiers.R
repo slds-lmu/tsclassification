@@ -33,10 +33,8 @@ TSClassifier = R6::R6Class("TSClassifier",
 
 #' Train a time-series classifier
 #'
-#' Retrieve a Java instance of SpellCorrector, with the training file
-#' specified. Language model is trained before the instance is returned.
-#' The spell corrector is adapted from Peter Norvig's demonstration.
-#'
+#' Set the "java.options" option to use a higher memory
+#' if required (e.g. `"-Xmx2048m"`).
 #' @param classifier Character describing the classifier.
 #' @param filepath Path to the dataset.
 #' @param par.vals (Optional) Hyperparameters for the models. Currently not used.
@@ -46,7 +44,6 @@ TSClassifier = R6::R6Class("TSClassifier",
 train_tsc = function(classifier, data, par.vals, model.path) {
   data = data_to_path(data)
   # Initialize Java
-  .jinit()
   .jaddClassPath(path = "inst/java/TimeSeriesClassification.jar")
   trainAndPredict = .jnew("myimpl.TrainAndPredict")
   # Set up the call to the .jar
@@ -71,10 +68,9 @@ predict_tsc = function(model_path, newdata) {
   # Save newdata in case
   newdata = data_to_path(newdata)
   # Init Java
-  .jinit()
   .jaddClassPath(path = "inst/java/TimeSeriesClassification.jar")
   trainAndPredict = .jnew("myimpl.TrainAndPredict")
-  args_predict = c(model_path, test_data)
+  args_predict = c(model_path, newdata)
   # Predict
   J(trainAndPredict, "predict", args_predict)
 }
