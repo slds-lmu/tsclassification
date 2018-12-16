@@ -4,12 +4,16 @@
 \alias{data_to_path}
 \title{Dump a data.frame to a .arff file.}
 \usage{
-data_to_path(data, data_path = NULL)
+data_to_path(data, target = "target", data_path = NULL)
 }
 \arguments{
-\item{data}{[`data.frame` | `character`] Either a `data.frame` containing
+\item{data}{[`data.frame` | `character`] \cr
+Either a `data.frame` containing
 the data, or the file path. In the latter case, nothing happens and the
 file path is only checked for consistency.}
+
+\item{target}{[`character`] \cr
+Target variable.}
 
 \item{data_path}{[`character`] Path to save data to. If null, a
 temporary file is created.}

@@ -10,9 +10,9 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 Depends:
-    rJava
+    rJava,
+    checkmate
 Imports:
-    checkmate,
     R6,
     farff
 Suggests: 

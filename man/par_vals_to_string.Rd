@@ -13,6 +13,6 @@ par_vals_to_string(par.vals)
 [`character`]
 }
 \description{
-Transforms `list(a = "5")` to a string "a = 5".
+Transforms e.g. `list(a = "5")` to a string "a = 5".
 Multiple elements are concatenated using a ','.
 }
