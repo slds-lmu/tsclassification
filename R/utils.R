@@ -67,13 +67,37 @@ par_vals_to_string = function(par.vals) {
 }
 
 
-#' Return a vector of possible classifier names
+#' Return a vector of available classifiers
 #'
 #' @return [`character`]
-get_tsc_classifier_names = function() {
-  c("WeightedEnsemble","FixedIntervalForest","J48","NaiveBayes",
-    "SMO","SMO","BayesNet","MultilayerPerceptron","OptimisedRotationForest",
-    "Logistic","NN_CID","LearnShapelets","FastShapelets","ST_Ensemble",
-    "DTW_1NN","DTW_1NN","DD_DTW","DTD_C","TSF","ACF_Ensemble","PS_Ensemble",
-    "TSBF","BagOfPatterns","BOSSEnsemble","SAXVSM","LPS")
+#' @export
+list_classifiers = function() {
+    c(
+      "timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN",
+      "timeseriesweka.classifiers.ensembles.elastic_ensemble.DTW1NN",
+      "timeseriesweka.classifiers.ensembles.elastic_ensemble.ED1NN",
+      "timeseriesweka.classifiers.ensembles.elastic_ensemble.MSM1NN",
+      # "timeseriesweka.classifiers.FastShapelets", # broken
+      "timeseriesweka.classifiers.LearnShapelets",
+      "timeseriesweka.classifiers.NN_CID",
+      "timeseriesweka.classifiers.TSBF",
+      "timeseriesweka.classifiers.TSF",
+      "timeseriesweka.classifiers.DTD_C",
+      "timeseriesweka.classifiers.BOSS",
+      "timeseriesweka.classifiers.RISE",
+      "timeseriesweka.classifiers.LPS", # slow
+      "timeseriesweka.classifiers.SAXVSM",
+      "timeseriesweka.classifiers.ShapeletTransformClassifier",
+      "timeseriesweka.classifiers.DD_DTW",
+      "timeseriesweka.classifiers.BagOfPatterns",
+      "weka.classifiers.bayes.BayesNet",
+      "weka.classifiers.bayes.NaiveBayes",
+      "weka.classifiers.functions.Logistic",
+      "weka.classifiers.functions.MultilayerPerceptron",
+      "weka.classifiers.functions.SMO",
+      "weka.classifiers.meta.RotationForest",
+      # "vector_classifiers.CAWPE", # broken
+      "weka.classifiers.trees.J48",
+      "weka.classifiers.trees.RandomForest"
+    )
 }

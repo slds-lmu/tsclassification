@@ -45,10 +45,10 @@ train_tsc = function(classifier, data, par.vals, model.path) {
   data = data_to_path(data)
   # Initialize Java
   .jaddClassPath(path = "inst/java/TimeSeriesClassification.jar")
-  trainAndPredict = .jnew("myimpl.TrainAndPredict")
+  trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   # Set up the call to the .jar
   par.vals = par_vals_to_string(par.vals)
-  args_train = c(data, model.path, classifier, par.vals)
+  args_train = c(data, model.path, classifier, "0", par.vals)
   J(trainAndPredict, "train", args_train)
   invisible(NULL)
 }
@@ -69,7 +69,7 @@ predict_tsc = function(model_path, newdata) {
   newdata = data_to_path(newdata)
   # Init Java
   .jaddClassPath(path = "inst/java/TimeSeriesClassification.jar")
-  trainAndPredict = .jnew("myimpl.TrainAndPredict")
+  trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   args_predict = c(model_path, newdata)
   # Predict
   J(trainAndPredict, "predict", args_predict)
