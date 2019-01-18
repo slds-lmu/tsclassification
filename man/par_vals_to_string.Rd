@@ -16,3 +16,4 @@ par_vals_to_string(par.vals)
 Transforms e.g. `list(a = "5")` to a string "a = 5".
 Multiple elements are concatenated using a ','.
 }
+

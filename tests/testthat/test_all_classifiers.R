@@ -13,14 +13,14 @@ test_that("Test a basic set of classifiers", {
       # "timeseriesweka.classifiers.FastShapelets", # broken
       "timeseriesweka.classifiers.LearnShapelets",
       "timeseriesweka.classifiers.NN_CID",
-      "timeseriesweka.classifiers.TSBF",
+      "timeseriesweka.classifiers.TSBF", # slow or broken
       "timeseriesweka.classifiers.TSF",
       "timeseriesweka.classifiers.DTD_C",
       "timeseriesweka.classifiers.BOSS",
       "timeseriesweka.classifiers.RISE",
       "timeseriesweka.classifiers.LPS", # slow
       "timeseriesweka.classifiers.SAXVSM",
-      "timeseriesweka.classifiers.ShapeletTransformClassifier", # slow
+      # "timeseriesweka.classifiers.ShapeletTransformClassifier", # broken
       "timeseriesweka.classifiers.DD_DTW",
       "timeseriesweka.classifiers.BagOfPatterns",
       "weka.classifiers.bayes.BayesNet",
@@ -44,9 +44,6 @@ test_that("Test a basic set of classifiers", {
   }
 
   untested =  c(
-    "timeseriesweka.classifiers.LearnShapelets",
-    "timeseriesweka.classifiers.NN_CID",
-    "timeseriesweka.classifiers.TSBF",
     "timeseriesweka.classifiers.TSF",
     "timeseriesweka.classifiers.DTD_C"
   )

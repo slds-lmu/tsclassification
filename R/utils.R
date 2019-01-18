@@ -67,7 +67,7 @@ par_vals_to_string = function(par.vals) {
 }
 
 
-#' Return a vector of available classifiers
+#' Return available classifiers
 #'
 #' @return [`character`]
 #' @export
@@ -87,7 +87,7 @@ list_classifiers = function() {
       "timeseriesweka.classifiers.RISE",
       "timeseriesweka.classifiers.LPS", # slow
       "timeseriesweka.classifiers.SAXVSM",
-      "timeseriesweka.classifiers.ShapeletTransformClassifier",
+      "timeseriesweka.classifiers.ShapeletTransformClassifier", # very slow
       "timeseriesweka.classifiers.DD_DTW",
       "timeseriesweka.classifiers.BagOfPatterns",
       "weka.classifiers.bayes.BayesNet",

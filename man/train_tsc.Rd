@@ -19,7 +19,7 @@ train_tsc(classifier, data, par.vals, model.path)
 a Java instance of TrainAndPredict
 }
 \description{
-Retrieve a Java instance of SpellCorrector, with the training file
-specified. Language model is trained before the instance is returned.
-The spell corrector is adapted from Peter Norvig's demonstration.
+Set the "java.options" option to use a higher memory
+if required (e.g. `"-Xmx2048m"`).
 }
+

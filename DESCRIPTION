@@ -4,8 +4,8 @@ Title: Interface to various time series classifiers
 Version: 0.1.0
 Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: Interface to various classifiers from Bagnall et al.'s 
-  time-series classification bake-off.
+Description: Interface to various classifiers from Bagnall et al.'s
+    time-series classification bake-off.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
@@ -15,6 +15,6 @@ Depends:
 Imports:
     R6,
     farff
-Suggests: 
+Suggests:
     testthat
-RoxygenNote: 6.1.1
+RoxygenNote: 5.0.1

@@ -18,3 +18,4 @@ A vector of predictions
 \description{
 Predicts newdata using the model obtained
 }
+
