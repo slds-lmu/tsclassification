@@ -1,9 +1,6 @@
 context("test-all-classifiers")
 
 test_that("Test a basic set of classifiers", {
-  train_data = file.path(system.file("arff", package="tsclassification"), "GunPoint_TRAIN")
-  test_data  = file.path(system.file("arff", package="tsclassification"), "GunPoint_TEST")
-
   if (FALSE) {
     classifiers = c(
       "timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN",
@@ -13,7 +10,7 @@ test_that("Test a basic set of classifiers", {
       # "timeseriesweka.classifiers.FastShapelets", # broken
       "timeseriesweka.classifiers.LearnShapelets",
       "timeseriesweka.classifiers.NN_CID",
-      "timeseriesweka.classifiers.TSBF", # slow or broken
+      # "timeseriesweka.classifiers.TSBF", # slow or broken
       "timeseriesweka.classifiers.TSF",
       "timeseriesweka.classifiers.DTD_C",
       "timeseriesweka.classifiers.BOSS",
@@ -42,11 +39,6 @@ test_that("Test a basic set of classifiers", {
       "weka.classifiers.trees.RandomForest"
     )
   }
-
-  untested =  c(
-    "timeseriesweka.classifiers.TSF",
-    "timeseriesweka.classifiers.DTD_C"
-  )
 
   for (classifierName in classifiers) {
     print(classifierName)

@@ -12,10 +12,10 @@ test_that("writing / deleting arff works ", {
 })
 
 test_that("Training on data.frame's works ", {
-  df = data.frame(matrix(rnorm(100), nrow = 10))
-  df$target = sample(c(1, 0), 10, replace = TRUE)
-  train_data = df
+  train_data = data.frame(matrix(rnorm(100), nrow = 10))
+  train_data$target = sample(c(1, 0), 10, replace = TRUE)
   classifName = "weka.classifiers.meta.RotationForest"
-  tsc = TSClassifier$new(train_data, classifName)
-  expect_silent(tsc$train())
+  tsc = TSClassifier$new(classifName)
+  expect_silent(tsc$train(train_data))
+  expect_numeric(tsc$predict(train_data))
 })

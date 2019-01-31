@@ -8,11 +8,23 @@
 \usage{
 TSClassifier
 }
+\arguments{
+\item{classifier}{[`character(1)`] \cr
+Classifier to use, see `?tsc_classifiers` for a list of available classifiers.}
+
+\item{model_path}{[`character(1)`] \cr
+Path to store the resulting model to. Default `NULL` creates a temporary file.}
+}
 \description{
 Allows training and predicting on time-series classification data.
+Internally writes the data to an `.arff` file and reads them from
+the command line in the Java Virtual Machine.
+In some cases, the memory of the JVM is not sufficient.
+In this case, the memory for the JVM can be set to 2 GB by setting
+`options(java.options = "-Xmx2048m")` before loading the package.
 Members:
-  - train()
-  - predict()
+  - train(data, par_vals): Delegates to [train_tsc]
+  - predict(newdata):      Delegates to [predict_tsc]
+  - cleanup():             Remove saved model files.
 }
 \keyword{datasets}
-

@@ -4,10 +4,10 @@
 \alias{par_vals_to_string}
 \title{Flatten a list of parameter values to a single string}
 \usage{
-par_vals_to_string(par.vals)
+par_vals_to_string(par_vals)
 }
 \arguments{
-\item{par.vals}{[`list`] Parameter values.}
+\item{par_vals}{[`list`] Parameter values.}
 }
 \value{
 [`character`]
@@ -16,4 +16,3 @@ par_vals_to_string(par.vals)
 Transforms e.g. `list(a = "5")` to a string "a = 5".
 Multiple elements are concatenated using a ','.
 }
-

@@ -8,9 +8,8 @@ data_to_path(data, target = "target", data_path = NULL)
 }
 \arguments{
 \item{data}{[`data.frame` | `character`] \cr
-Either a `data.frame` containing
-the data, or the file path. In the latter case, nothing happens and the
-file path is only checked for consistency.}
+Either a `data.frame` containing the data, or the file path.
+In the latter case, nothing happens and the file path is only checked for consistency.}
 
 \item{target}{[`character`] \cr
 Target variable.}
@@ -25,4 +24,3 @@ The file path
 Saves a data.frame to an arff, so it can be used for the time-series
 classifier.
 }
-

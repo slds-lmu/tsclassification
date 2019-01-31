@@ -3,9 +3,8 @@
 #' Saves a data.frame to an arff, so it can be used for the time-series
 #' classifier.
 #' @param data [`data.frame` | `character`] \cr
-#'   Either a `data.frame` containing
-#'   the data, or the file path. In the latter case, nothing happens and the
-#'   file path is only checked for consistency.
+#'   Either a `data.frame` containing the data, or the file path.
+#'   In the latter case, nothing happens and the file path is only checked for consistency.
 #' @param target [`character`] \cr
 #'   Target variable.
 #' @param data_path [`character`] Path to save data to. If null, a
@@ -17,7 +16,7 @@ data_to_path = function(data, target = "target", data_path = NULL) {
   # containing the data.
   assert(check_string(data), check_data_frame(data), combine = "or")
   if(is.character(data)) {
-    data_path = data
+    data_path = assert_file_exists(data)
   }
   # Write the data.frame to a file.
   if (is.data.frame(data)) {
@@ -39,7 +38,7 @@ data_to_path = function(data, target = "target", data_path = NULL) {
   return(data_path)
 }
 
-#' Delete a .arff file.
+#' Delete a file.
 #'
 #' @param data_path [`character`] Path to save data to. If null, a
 #'   temporary file is created.
@@ -53,14 +52,14 @@ delete_data_from_path = function(data_path) {
 #'
 #' Transforms e.g. `list(a = "5")` to a string "a = 5".
 #' Multiple elements are concatenated using a ','.
-#' @param par.vals [`list`] Parameter values.
+#' @param par_vals [`list`] Parameter values.
 #' @return [`character`]
-par_vals_to_string = function(par.vals) {
-  assert_list(par.vals, null.ok = TRUE)
-  if (length(par.vals) == 0) {
+par_vals_to_string = function(par_vals) {
+  assert_list(par_vals, null.ok = TRUE)
+  if (length(par_vals) == 0) {
     pv = ""
   } else {
-    pv = unlist(par.vals)
+    pv = unlist(par_vals)
     paste0(names(pv), "=", pv, collapse = ",")
   }
   return(pv)
@@ -69,9 +68,11 @@ par_vals_to_string = function(par.vals) {
 
 #' Return available classifiers
 #'
+#' Run `tsc_classifiers()` to obtain available classifiers.
+#'
 #' @return [`character`]
 #' @export
-list_classifiers = function() {
+tsc_classifiers = function() {
     c(
       "timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN",
       "timeseriesweka.classifiers.ensembles.elastic_ensemble.DTW1NN",
@@ -80,14 +81,14 @@ list_classifiers = function() {
       # "timeseriesweka.classifiers.FastShapelets", # broken
       "timeseriesweka.classifiers.LearnShapelets",
       "timeseriesweka.classifiers.NN_CID",
-      "timeseriesweka.classifiers.TSBF",
+      # "timeseriesweka.classifiers.TSBF", # slow or broken
       "timeseriesweka.classifiers.TSF",
       "timeseriesweka.classifiers.DTD_C",
       "timeseriesweka.classifiers.BOSS",
       "timeseriesweka.classifiers.RISE",
-      "timeseriesweka.classifiers.LPS", # slow
+      "timeseriesweka.classifiers.LPS", # slow or broken
       "timeseriesweka.classifiers.SAXVSM",
-      "timeseriesweka.classifiers.ShapeletTransformClassifier", # very slow
+      # "timeseriesweka.classifiers.ShapeletTransformClassifier", # broken
       "timeseriesweka.classifiers.DD_DTW",
       "timeseriesweka.classifiers.BagOfPatterns",
       "weka.classifiers.bayes.BayesNet",

@@ -3,6 +3,6 @@
 export(TSClassifier)
 export(data_to_path)
 export(delete_data_from_path)
-export(list_classifiers)
 export(predict_tsc)
 export(train_tsc)
+export(tsc_classifiers)

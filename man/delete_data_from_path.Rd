@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{delete_data_from_path}
 \alias{delete_data_from_path}
-\title{Delete a .arff file.}
+\title{Delete a file.}
 \usage{
 delete_data_from_path(data_path)
 }
@@ -11,6 +11,5 @@ delete_data_from_path(data_path)
 temporary file is created.}
 }
 \description{
-Delete a .arff file.
+Delete a file.
 }
-
