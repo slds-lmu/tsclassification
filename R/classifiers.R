@@ -1,4 +1,4 @@
-#' Time Seriess Classifier
+##' Time Seriess Classifier
 #'
 #' Allows training and predicting on time-series classification data.
 #' Internally writes the data to an `.arff` file and reads them from
@@ -71,7 +71,7 @@ TSClassifier = R6::R6Class("TSClassifier",
 train_tsc = function(data, classifier, par_vals, model_path, cleanup_data = FALSE) {
   data = data_to_path(data)
   # Initialize Java
-  .jaddClassPath(path = "inst/java/TimeSeriesClassification.jar")
+  #.jaddClassPath(path = "inst/java/TimeSeriesClassification.jar") we can not add classpath this way
   trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   # Set up the call to the .jar
   par_vals = par_vals_to_string(par_vals)
@@ -100,7 +100,7 @@ predict_tsc = function(newdata, model_path, cleanup_data = FALSE) {
   # Save newdata in case
   newdata = data_to_path(newdata)
   # Init Java
-  .jaddClassPath(path = "inst/java/TimeSeriesClassification.jar")
+  #.jaddClassPath(path = "inst/java/TimeSeriesClassification.jar")
   trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   args_predict = c(model_path, newdata)
   # Predict
