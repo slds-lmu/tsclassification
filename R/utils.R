@@ -15,7 +15,7 @@ data_to_path = function(data, target = "target", data_path = NULL) {
   # Data is either a path that poins to the data or a data.frame
   # containing the data.
   assert(check_string(data), check_data_frame(data), combine = "or")
-  if(is.character(data)) {
+  if (is.character(data)) {
     data_path = assert_file_exists(data)
   }
   # Write the data.frame to a file.
