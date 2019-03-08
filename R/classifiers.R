@@ -24,7 +24,7 @@ TSClassifier = R6::R6Class("TSClassifier",
     initialize = function(classifier, model_path = NULL) {
       # assert_choice("classifier", tsc_classifiers())
       self$classifier = classifier
-      if(is.null(model_path))
+      if (is.null(model_path))
         model_path = tempfile(pattern = "tsc_model", fileext = ".txt")
       self$model_path = assert_path_for_output(model_path)
     },
@@ -33,7 +33,7 @@ TSClassifier = R6::R6Class("TSClassifier",
       self$trained = TRUE
     },
     predict = function(newdata) {
-      if(!self$trained)
+      if (!self$trained)
         stop("Classifier has not been trained, please call 'train()'")
       predict_tsc(newdata, self$model_path)
     },
@@ -45,7 +45,7 @@ TSClassifier = R6::R6Class("TSClassifier",
       cat("Status:", ifelse(self$trained, "Trained", "Untrained"), "\n")
     },
     clean = function() {
-      if(file.exists(self$model_path)) file.remove(self$model_path)
+      if (file.exists(self$model_path)) file.remove(self$model_path)
     }
   )
 )
