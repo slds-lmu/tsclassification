@@ -1,4 +1,4 @@
-[![Travis build status](https://travis-ci.org/compstat-lmu/TSClassification?branch=master)](https://travis-ci.org/compstat-lmu/TSClassification)
+[![Travis build status](https://travis-ci.org/compstat-lmu/TSClassification.svg?branch=master)](https://travis-ci.org/compstat-lmu/TSClassification)
 [![Coverage status](https://codecov.io/gh/compstat-lmu/TSClassification/branch/master/graph/badge.svg)](https://codecov.io/github/compstat-lmu/TSClassification?branch=master)
 
 # TSClassification
@@ -22,7 +22,7 @@ Note that we expect the `target` name to be 'target'.
   tsc = TSClassifier$new("weka.classifiers.meta.RotationForest")
   # Call train and predict function on the different data splits
   tsc$train(data[train_set, ])
-  tsc$predict(data[train_set, ])
+  tsc$predict(data[!train_set, ])
 ```
 
 # Java refactoring
