@@ -1,14 +1,15 @@
 ##' Time Seriess Classifier
 #'
 #' Allows training and predicting on time-series classification data.
-#' Internally writes the data to an `.arff` file and reads them from
+#' Internally writes the data to an `.arff` file and reads it from
 #' the command line in the Java Virtual Machine.
 #' In some cases, the memory of the JVM is not sufficient.
 #' In this case, the memory for the JVM can be set to 2 GB by setting
 #' `options(java.options = "-Xmx2048m")` before loading the package.
+#'
 #' Members:
-#'   - train(data, par_vals): Delegates to [train_tsc]
-#'   - predict(newdata):      Delegates to [predict_tsc]
+#'   - train(data, par_vals): Delegates to [`train_tsc`]
+#'   - predict(newdata):      Delegates to [`predict_tsc`]
 #'   - cleanup():             Remove saved model files.
 #' @param classifier [`character(1)`] \cr
 #'   Classifier to use, see `?tsc_classifiers` for a list of available classifiers.
@@ -41,10 +42,10 @@ TSClassifier = R6::R6Class("TSClassifier",
       cat("TimeSeries Classifier Object\n")
       cat("Classifier:", self$classifier, "\n")
       cat("Methods: .$train(data), .$predict(newdata)\n")
-      cat("Models are saved to ", self$model_path, "\n")
+      cat("Models saved to: ", self$model_path, "\n")
       cat("Status:", ifelse(self$trained, "Trained", "Untrained"), "\n")
     },
-    clean = function() {
+    cleanup = function() {
       if (file.exists(self$model_path)) file.remove(self$model_path)
     }
   )
@@ -83,12 +84,11 @@ train_tsc = function(data, classifier, par_vals, model_path, cleanup_data = FALS
 
 #' Predict using a TrainAndPredict Object.
 #'
-#' Predicts newdata using the model obtained
+#' Predicts `newdata` using the model obtained during training.
 #'
 #' @param newdata [`data.frame` | `character`] \cr
 #'   Either a `data.frame` containing
-#'   the data, or the file path. In the latter case, nothing happens and the
-#'   file path is only checked for consistency.
+#'   the data, or a file path to data used for prediction.
 #' @param model_path [`character(1)`] \cr
 #'   Path where the prediction model should be obtained from.
 #' @param cleanup_data [`logical(1)`] \cr

@@ -4,13 +4,12 @@
 \alias{predict_tsc}
 \title{Predict using a TrainAndPredict Object.}
 \usage{
-predict_tsc(newdata, model_path)
+predict_tsc(newdata, model_path, cleanup_data = FALSE)
 }
 \arguments{
 \item{newdata}{[`data.frame` | `character`] \cr
 Either a `data.frame` containing
-the data, or the file path. In the latter case, nothing happens and the
-file path is only checked for consistency.}
+the data, or a file path to data used for prediction.}
 
 \item{model_path}{[`character(1)`] \cr
 Path where the prediction model should be obtained from.}
@@ -22,5 +21,5 @@ Should newdata be deleted from disk after training?}
 A vector of predictions
 }
 \description{
-Predicts newdata using the model obtained
+Predicts `newdata` using the model obtained during training.
 }

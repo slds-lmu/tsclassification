@@ -43,7 +43,6 @@ data_to_path = function(data, target = "target", data_path = NULL) {
 #' @param data_path [`character`] Path to save data to. If null, a
 #'   temporary file is created.
 #' @return NULL
-#' @export
 delete_data_from_path = function(data_path) {
   file.remove(data_path)
 }

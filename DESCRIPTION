@@ -1,20 +1,42 @@
 Package: tsclassification
 Type: Package
-Title: Interface to various time series classifiers
+Title: Interface to various time series classifiers from the "The Great Time Series Classification Bake Off".
 Version: 0.1.0
-Author: Who wrote it
+Author: Authors@R:
+    c(person(given = "",
+             family = "",
+             role = c("aut"),
+             email = ""
+             ),
+      person(given = "Xudong",
+             family = "Sun",
+             role = "aut",
+             email = ""
+            ),
+      person(given = "Florian",
+             family = "Pfisterer",
+             role = "aut",
+             email = ""
+            )
+      )
+Description:
+    A package that exposes many state-of-the-art classifiers for time-series classification.
+    A large number of time-series classifiers have been implemented in
+    Java bei Bagnall et al. (2018) for a benchmark study dubbed "The Great Time Series Classification Bake Off".
+    This package interfaces an adapted version of implementations provided by Bagnall et al., in order
+    to make algorithms available to a wider audience.
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: Interface to various classifiers from Bagnall et al.'s
-    time-series classification bake-off.
-License: What license is it under?
+License: GPLv3
 Encoding: UTF-8
 LazyData: true
 Depends:
     rJava,
     checkmate
 Imports:
-    R6,
-    farff
+    R6
 Suggests:
+    farff,
     testthat
 RoxygenNote: 6.1.1
+
+
