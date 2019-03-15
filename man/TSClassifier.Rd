@@ -24,6 +24,11 @@ In this case, the memory for the JVM can be set to 2 GB by setting
 `options(java.options = "-Xmx2048m")` before loading the package.
 }
 \details{
+Expects the data to either be a `data.frame` or a `character` path to a
+data set in the '.arff' format. In case a 'data.frame' is provided, the
+data is saved to '.$model_path' and then read into the JVM from there.
+The target variable's name is assumed to be 'target'.
+
 Members:
   - train(data, par_vals): Delegates to [`train_tsc`]
   - predict(newdata):      Delegates to [`predict_tsc`]
