@@ -1,5 +1,4 @@
 context("test-classifier")
-
 test_that("TSC can be built from file path", {
   train_data = file.path(system.file("arff", package="tsclassification"), "GunPoint_TRAIN.arff")
   classifName = "weka.classifiers.meta.RotationForest"
@@ -26,3 +25,4 @@ test_that("TSC can be tested from file path", {
   p = tsc$predict(test_data)
   expect_numeric(p)
 })
+

@@ -11,6 +11,7 @@ test_classifier = function(classifName) {
 
   p = tsc$predict(test_data)
   expect_numeric(p)
+  expect_true(length(p) == 150)
   expect_output(print(tsc), "Trained", fixed = TRUE)
   invisible(TRUE)
 }

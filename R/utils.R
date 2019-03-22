@@ -54,12 +54,12 @@ delete_data_from_path = function(data_path) {
 #' @param par_vals [`list`] Parameter values.
 #' @return [`character`]
 par_vals_to_string = function(par_vals) {
-  assert_list(par_vals, null.ok = TRUE)
+  assert_list(par_vals, null.ok = TRUE, names = "named")
   if (length(par_vals) == 0) {
     pv = ""
   } else {
     pv = unlist(par_vals)
-    paste0(names(pv), "=", pv, collapse = ",")
+    pv = paste0(names(pv), "=", pv, collapse = ",")
   }
   return(pv)
 }
@@ -68,6 +68,37 @@ par_vals_to_string = function(par_vals) {
 #' Return available classifiers
 #'
 #' Run `tsc_classifiers()` to obtain available classifiers.
+#'
+#' The following classifiers are available:
+#' Ensemble Classifiers
+#' \itemize{
+#'   \item timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN \cr
+#'     Elastic Ensemble of Nearest Neighbour Algorithms \cr
+#'
+#'   \item Second item
+#' }
+#'
+#' Time-Series Classifiers
+#' \itemize{
+#'   \item timeseriesweka.classifiers.LearnShapelets \cr
+#'     Learned Shapelets (Grabocka et al., 2014) \cr
+#'     Hyper-Parameters: \cr
+#'     \itemize {
+#'       \item <paramter name>: <type> <range or values> <extra stuff>
+#'       ...
+#'     }
+#'
+#'   \item timeseriesweka.classifiers.NN_CID \cr
+#'      ...
+#'
+#' }
+#'
+#' Weka-based Classifiers
+#' \itemize{
+#'   \item "weka.classifiers.functions.Logistic" \cr
+#'
+#'   \item Second item
+#' }
 #'
 #' @return [`character`]
 #' @export
@@ -100,4 +131,20 @@ tsc_classifiers = function() {
       "weka.classifiers.trees.J48",
       "weka.classifiers.trees.RandomForest"
     )
+}
+
+#' Check whether classifier name is valid. (Case-insensitive)
+#' In case only a substring is given, returns the full name
+#' of the classifier.
+#'
+#' @param classifier [`character`] \cr
+#'   Classifier from tsc_classifiers() or short identifier (substring).
+#' @return [`character`]
+check_classifier = function(classifier) {
+  avail = tsc_classifiers()
+  # Allow for substrings
+  clf = avail[grepl(tolower(classifier), tolower(avail), fixed = TRUE)]
+  if (length(clf) == 0) stop(sprintf("Classifier %s not available!", classifier))
+  if (length(clf) >  2) stop(sprintf("Classifier %s is ambigous! Please supply an unambigous identifier!", classifier))
+  return(clf)
 }

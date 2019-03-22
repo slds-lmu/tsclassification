@@ -12,3 +12,35 @@ tsc_classifiers()
 \description{
 Run `tsc_classifiers()` to obtain available classifiers.
 }
+\details{
+The following classifiers are available:
+Ensemble Classifiers
+\itemize{
+  \item timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN \cr
+    Elastic Ensemble of Nearest Neighbour Algorithms \cr
+
+\item Second item
+}
+
+Time-Series Classifiers
+\itemize{
+  \item timeseriesweka.classifiers.LearnShapelets \cr
+    Learned Shapelets (Grabocka et al., 2014) \cr
+    Hyper-Parameters: \cr
+    \itemize {
+      \item <paramter name>: <type> <range or values> <extra stuff>
+      ...
+    }
+
+\item timeseriesweka.classifiers.NN_CID \cr
+     ...
+
+}
+
+Weka-based Classifiers
+\itemize{
+  \item "weka.classifiers.functions.Logistic" \cr
+
+\item Second item
+}
+}

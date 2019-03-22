@@ -30,7 +30,7 @@ TSClassifier = R6::R6Class("TSClassifier",
     trained = FALSE,
     initialize = function(classifier, model_path = NULL) {
       # assert_choice("classifier", tsc_classifiers())
-      self$classifier = classifier
+      self$classifier = check_classifier(classifier)
       if (is.null(model_path))
         model_path = tempfile(pattern = "tsc_model", fileext = ".txt")
       self$model_path = assert_path_for_output(model_path)
@@ -78,7 +78,6 @@ TSClassifier = R6::R6Class("TSClassifier",
 train_tsc = function(data, classifier, par_vals, model_path, cleanup_data = FALSE) {
   data = data_to_path(data)
   # Initialize Java
-  #.jaddClassPath(path = "inst/java/TimeSeriesClassification.jar") we can not add classpath this way
   trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   # Set up the call to the .jar
   par_vals = par_vals_to_string(par_vals)
@@ -105,8 +104,6 @@ predict_tsc = function(newdata, model_path, cleanup_data = FALSE) {
   assert_true(file.exists(model_path))
   # Save newdata in case
   newdata = data_to_path(newdata)
-  # Init Java
-  #.jaddClassPath(path = "inst/java/TimeSeriesClassification.jar")
   trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   args_predict = c(model_path, newdata)
   # Predict
