@@ -108,13 +108,13 @@ tsc_classifiers = function() {
       "timeseriesweka.classifiers.ensembles.elastic_ensemble.DTW1NN",
       "timeseriesweka.classifiers.ensembles.elastic_ensemble.ED1NN",
       "timeseriesweka.classifiers.ensembles.elastic_ensemble.MSM1NN",
-      # "timeseriesweka.classifiers.FastShapelets", # broken
-      "timeseriesweka.classifiers.LearnShapelets",
+      "timeseriesweka.classifiers.FastShapelets",
+      "timeseriesweka.classifiers.BOSS"
+      #"timeseriesweka.classifiers.LearnShapelets",
       "timeseriesweka.classifiers.NN_CID",
-      # "timeseriesweka.classifiers.TSBF", # slow or broken
-      "timeseriesweka.classifiers.TSF",
-      "timeseriesweka.classifiers.DTD_C",
-      "timeseriesweka.classifiers.BOSS",
+      "timeseriesweka.classifiers.TSBF", # slow or broken
+      #"timeseriesweka.classifiers.TSF",
+      #"timeseriesweka.classifiers.DTD_C",
       "timeseriesweka.classifiers.RISE",
       "timeseriesweka.classifiers.LPS", # slow or broken
       "timeseriesweka.classifiers.SAXVSM",
