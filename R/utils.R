@@ -69,13 +69,50 @@ par_vals_to_string = function(par_vals) {
 #'
 #' Run `tsc_classifiers()` to obtain available classifiers.
 #'
-#' The following classifiers are available:
+#' The following classifiers are available: \cr
 #' Ensemble Classifiers
 #' \itemize{
 #'   \item timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN \cr
 #'     Elastic Ensemble of Nearest Neighbour Algorithms \cr
 #'
-#'   \item Second item
+#'   \item timeseriesweka.classifiers.FlatCote \cr
+#'    Collective of Transformation Ensembles (Bagnall et al.,2015) \cr
+#'    Hyper_Parameters: None \cr
+#'
+#'   \item timeseriesweka.classifiers.ElasticEnsemble \cr
+#'    Combination of nearest neighbour (NN) classifiers that use elastic distance measures
+#'    Hyper_Parameters: None \cr
+#' }
+#'
+#' Dictionary based Classifiers
+#' \itemize{
+#'   \item timeseriesweka.classifiers.BOSS \cr
+#'   Bag of SFA Symbols
+#'   Hyper_Parameters: \cr
+#'   \itemize{
+#'     \item setMaxEnsembleSize: integer
+#'   }
+#' }
+#'
+# 'Shapelet based Classifiers
+#' \itemize{
+#'   \item timeseriesweka.classifiers.ShapeletTransformClassifier \cr
+#'   shapelet transformation that separates the shapelet dis- covery from the classifier by finding the top k shapelets on a single run \cr
+#'   Hyper_Parameters: \cr
+#'   \itemize{
+#'     \item setTransformType: <String> <"univariate","uni","shapeletd","shapeleti">
+#'     \item setNumberOfShapelets : long
+#'   }
+#' }
+#'
+#' Interval based Classifiers
+#' \itemize{
+#'   \item timeseriesweka.classifiers.TSF \cr
+#'   Time Series Forest (Deng et al.,2013) \cr
+#'   Hyper_Parameters: \cr
+#'   \itemize{
+#'     \item setNumTrees: Integer
+#'   }
 #' }
 #'
 #' Time-Series Classifiers
