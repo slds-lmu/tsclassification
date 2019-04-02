@@ -14,9 +14,9 @@
 #' The target variable's name is assumed to be 'target'.
 #'
 #' Members:
-#'   - train(data, par_vals): Delegates to [`train_tsc`]
-#'   - predict(newdata):      Delegates to [`predict_tsc`]
-#'   - cleanup():             Remove saved model files.
+#'   - train(data, par_vals):   Delegates to [`train_tsc`]
+#'   - predict(newdata):        Delegates to [`predict_tsc`]
+#'   - cleanup():               Remove saved model files.
 #' @param classifier [`character(1)`] \cr
 #'   Classifier to use, see `?tsc_classifiers` for a list of available classifiers.
 #' @param model_path [`character(1)`] \cr
@@ -29,7 +29,6 @@ TSClassifier = R6::R6Class("TSClassifier",
     model_path = NULL,
     trained = FALSE,
     initialize = function(classifier, model_path = NULL) {
-      # assert_choice("classifier", tsc_classifiers())
       self$classifier = check_classifier(classifier)
       if (is.null(model_path))
         model_path = tempfile(pattern = "tsc_model", fileext = ".txt")
@@ -80,6 +79,7 @@ train_tsc = function(data, classifier, par_vals, model_path, cleanup_data = FALS
   # Initialize Java
   trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   # Set up the call to the .jar
+  browser()
   par_vals = par_vals_to_string(par_vals)
   args_train = c(data, model_path, classifier, "0", par_vals)
   J(trainAndPredict, "train", args_train)

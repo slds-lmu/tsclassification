@@ -25,4 +25,3 @@ test_that("TSC can be tested from file path", {
   p = tsc$predict(test_data)
   expect_numeric(p)
 })
-

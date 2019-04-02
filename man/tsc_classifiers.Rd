@@ -13,34 +13,79 @@ tsc_classifiers()
 Run `tsc_classifiers()` to obtain available classifiers.
 }
 \details{
-The following classifiers are available:
-Ensemble Classifiers
+The following classifiers are available: \cr
+**Ensemble Classifiers**
 \itemize{
-  \item timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN \cr
+  \item `timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN` \cr
     Elastic Ensemble of Nearest Neighbour Algorithms \cr
+    Hyperparameters: *None*
 
-\item Second item
+\item `timeseriesweka.classifiers.FlatCote` \cr
+   Collective of Transformation Ensembles (Bagnall et al.,2015) \cr
+   Hyperparameters: *None*
+
+\item `timeseriesweka.classifiers.ElasticEnsemble` \cr
+   Combination of nearest neighbour (NN) classifiers that use elastic distance measures \cr
+   Hyperparameters: *None*
 }
 
-Time-Series Classifiers
+**Dictionary based Classifiers**
+\itemize{
+  \item `timeseriesweka.classifiers.BOSS` \cr
+  Bag of SFA Symbols
+  Hyperparameters:
+  \itemize{
+    \item `setMaxEnsembleSize`: integer(1)
+  }
+}
+
+**Shapelet based Classifiers**
+\itemize{
+  \item `timeseriesweka.classifiers.ShapeletTransformClassifier` \cr
+  Shapelet transformation that separates the shapelet discovery from the classifier by
+  finding the top k shapelets in a single run \cr
+  Hyperparameters:
+  \itemize{
+    \item `setTransformType`: character(1) \cr
+      values: univariate,uni,shapeletd,shapeleti
+    \item `setNumberOfShapelets`: integer(1)
+  }
+}
+
+**Interval based Classifiers**
+\itemize{
+  \item `timeseriesweka.classifiers.TSF` \cr
+  Time Series Forest (Deng et al.,2013) \cr
+  Hyperparameters:
+  \itemize{
+    \item `setNumTrees`: integer(1)
+  }
+}
+
+**Time-Series Classifiers**
 \itemize{
   \item timeseriesweka.classifiers.LearnShapelets \cr
     Learned Shapelets (Grabocka et al., 2014) \cr
-    Hyper-Parameters: \cr
-    \itemize {
-      \item <paramter name>: <type> <range or values> <extra stuff>
-      ...
-    }
-
-\item timeseriesweka.classifiers.NN_CID \cr
-     ...
+    Hyperparameters:
+  \item timeseriesweka.classifiers.NN_CID \cr
 
 }
 
-Weka-based Classifiers
+**Weka-based Classifiers**
+Several WEKA classifiers have been implemented in the Time-Series Classification
+Bake-off. The use of those classifiers is discouraged from within TSClassification,
+but nonetheless implemented for completeness.
+We advise to use the official implementations from package [RWeka] for greater
+flexibility and improved support for setting hyperparameters. \cr
 \itemize{
-  \item "weka.classifiers.functions.Logistic" \cr
-
-\item Second item
+  \item weka.classifiers.functions.Logistic
+  \item weka.classifiers.bayes.BayesNet
+  \item weka.classifiers.bayes.NaiveBayes
+  \item weka.classifiers.functions.Logistic
+  \item weka.classifiers.functions.MultilayerPerceptron
+  \item weka.classifiers.functions.SMO
+  \item weka.classifiers.meta.RotationForest
+  \item weka.classifiers.trees.J48
+  \item weka.classifiers.trees.RandomForest
 }
 }

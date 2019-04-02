@@ -70,71 +70,79 @@ par_vals_to_string = function(par_vals) {
 #' Run `tsc_classifiers()` to obtain available classifiers.
 #'
 #' The following classifiers are available: \cr
-#' Ensemble Classifiers
+#' **Ensemble Classifiers**
 #' \itemize{
-#'   \item timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN \cr
+#'   \item `timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN` \cr
 #'     Elastic Ensemble of Nearest Neighbour Algorithms \cr
+#'     Hyperparameters: *None*
 #'
-#'   \item timeseriesweka.classifiers.FlatCote \cr
+#'   \item `timeseriesweka.classifiers.FlatCote` \cr
 #'    Collective of Transformation Ensembles (Bagnall et al.,2015) \cr
-#'    Hyper_Parameters: None \cr
+#'    Hyperparameters: *None*
 #'
-#'   \item timeseriesweka.classifiers.ElasticEnsemble \cr
-#'    Combination of nearest neighbour (NN) classifiers that use elastic distance measures
-#'    Hyper_Parameters: None \cr
+#'   \item `timeseriesweka.classifiers.ElasticEnsemble` \cr
+#'    Combination of nearest neighbour (NN) classifiers that use elastic distance measures \cr
+#'    Hyperparameters: *None*
 #' }
 #'
-#' Dictionary based Classifiers
+#' **Dictionary based Classifiers**
 #' \itemize{
-#'   \item timeseriesweka.classifiers.BOSS \cr
+#'   \item `timeseriesweka.classifiers.BOSS` \cr
 #'   Bag of SFA Symbols
-#'   Hyper_Parameters: \cr
+#'   Hyperparameters:
 #'   \itemize{
-#'     \item setMaxEnsembleSize: integer
+#'     \item `setMaxEnsembleSize`: integer(1)
 #'   }
 #' }
 #'
-# 'Shapelet based Classifiers
+#' **Shapelet based Classifiers**
 #' \itemize{
-#'   \item timeseriesweka.classifiers.ShapeletTransformClassifier \cr
-#'   shapelet transformation that separates the shapelet dis- covery from the classifier by finding the top k shapelets on a single run \cr
-#'   Hyper_Parameters: \cr
+#'   \item `timeseriesweka.classifiers.ShapeletTransformClassifier` \cr
+#'   Shapelet transformation that separates the shapelet discovery from the classifier by
+#'   finding the top k shapelets in a single run \cr
+#'   Hyperparameters:
 #'   \itemize{
-#'     \item setTransformType: <String> <"univariate","uni","shapeletd","shapeleti">
-#'     \item setNumberOfShapelets : long
+#'     \item `setTransformType`: character(1) \cr
+#'       values: univariate,uni,shapeletd,shapeleti
+#'     \item `setNumberOfShapelets`: integer(1)
 #'   }
 #' }
 #'
-#' Interval based Classifiers
+#' **Interval based Classifiers**
 #' \itemize{
-#'   \item timeseriesweka.classifiers.TSF \cr
+#'   \item `timeseriesweka.classifiers.TSF` \cr
 #'   Time Series Forest (Deng et al.,2013) \cr
-#'   Hyper_Parameters: \cr
+#'   Hyperparameters:
 #'   \itemize{
-#'     \item setNumTrees: Integer
+#'     \item `setNumTrees`: integer(1)
 #'   }
 #' }
 #'
-#' Time-Series Classifiers
+#' **Time-Series Classifiers**
 #' \itemize{
 #'   \item timeseriesweka.classifiers.LearnShapelets \cr
 #'     Learned Shapelets (Grabocka et al., 2014) \cr
-#'     Hyper-Parameters: \cr
-#'     \itemize {
-#'       \item <paramter name>: <type> <range or values> <extra stuff>
-#'       ...
-#'     }
-#'
+#'     Hyperparameters:
 #'   \item timeseriesweka.classifiers.NN_CID \cr
-#'      ...
 #'
 #' }
 #'
-#' Weka-based Classifiers
+#' **Weka-based Classifiers**
+#' Several WEKA classifiers have been implemented in the Time-Series Classification
+#' Bake-off. The use of those classifiers is discouraged from within TSClassification,
+#' but nonetheless implemented for completeness.
+#' We advise to use the official implementations from package [RWeka] for greater
+#' flexibility and improved support for setting hyperparameters. \cr
 #' \itemize{
-#'   \item "weka.classifiers.functions.Logistic" \cr
-#'
-#'   \item Second item
+#'   \item weka.classifiers.functions.Logistic
+#'   \item weka.classifiers.bayes.BayesNet
+#'   \item weka.classifiers.bayes.NaiveBayes
+#'   \item weka.classifiers.functions.Logistic
+#'   \item weka.classifiers.functions.MultilayerPerceptron
+#'   \item weka.classifiers.functions.SMO
+#'   \item weka.classifiers.meta.RotationForest
+#'   \item weka.classifiers.trees.J48
+#'   \item weka.classifiers.trees.RandomForest
 #' }
 #'
 #' @return [`character`]
@@ -146,14 +154,14 @@ tsc_classifiers = function() {
       "timeseriesweka.classifiers.ensembles.elastic_ensemble.ED1NN",
       "timeseriesweka.classifiers.ensembles.elastic_ensemble.MSM1NN",
       "timeseriesweka.classifiers.FastShapelets",
-      "timeseriesweka.classifiers.BOSS"
+      "timeseriesweka.classifiers.BOSS",
       #"timeseriesweka.classifiers.LearnShapelets",
       "timeseriesweka.classifiers.NN_CID",
-      "timeseriesweka.classifiers.TSBF", # slow or broken
+      "timeseriesweka.classifiers.TSBF",
       #"timeseriesweka.classifiers.TSF",
       #"timeseriesweka.classifiers.DTD_C",
       "timeseriesweka.classifiers.RISE",
-      "timeseriesweka.classifiers.LPS", # slow or broken
+      "timeseriesweka.classifiers.LPS",
       "timeseriesweka.classifiers.SAXVSM",
       # "timeseriesweka.classifiers.ShapeletTransformClassifier", # broken
       "timeseriesweka.classifiers.DD_DTW",
