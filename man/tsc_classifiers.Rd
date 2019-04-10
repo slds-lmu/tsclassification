@@ -16,20 +16,25 @@ Run `tsc_classifiers()` to obtain available classifiers.
 The following classifiers are available: \cr
 **Ensemble Classifiers**
 \itemize{
-  \item `timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN` \cr
-    Elastic Ensemble of Nearest Neighbour Algorithms \cr
+
+\item `timeseriesweka.classifiers.ElasticEnsemble` \cr
+   Combination of nearest neighbour (NN) classifiers that use elastic distance measures \cr
+   Hyperparameters: *None*
+
+Baselearners of ElasticEnsemble: \cr
+
+`timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN` \cr
+    Elastic Ensemble of Nearest Neighbour Algorithms: \cr
+    Weighted Dynamic Time Warping 1 Neares Neighbour \cr
     Hyperparameters: *None*
 
 \item `timeseriesweka.classifiers.FlatCote` \cr
    Collective of Transformation Ensembles (Bagnall et al.,2015) \cr
    Hyperparameters: *None*
 
-\item `timeseriesweka.classifiers.ElasticEnsemble` \cr
-   Combination of nearest neighbour (NN) classifiers that use elastic distance measures \cr
-   Hyperparameters: *None*
 }
 
-**Dictionary based Classifiers**
+**Dictionary based Classifiers** \cr
 \itemize{
   \item `timeseriesweka.classifiers.BOSS` \cr
   Bag of SFA Symbols
@@ -71,10 +76,11 @@ The following classifiers are available: \cr
 
 }
 
-**Weka-based Classifiers**
+**Weka-based Classifiers** \cr
 Several WEKA classifiers have been implemented in the Time-Series Classification
-Bake-off. The use of those classifiers is discouraged from within TSClassification,
-but nonetheless implemented for completeness.
+Bake-off. \cr
+The use of those classifiers is discouraged from within TSClassification,
+but nonetheless implemented for completeness.\cr
 We advise to use the official implementations from package [RWeka] for greater
 flexibility and improved support for setting hyperparameters. \cr
 \itemize{

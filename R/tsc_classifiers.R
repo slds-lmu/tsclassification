@@ -5,20 +5,26 @@
 #' The following classifiers are available: \cr
 #' **Ensemble Classifiers**
 #' \itemize{
-#'   \item `timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN` \cr
-#'     Elastic Ensemble of Nearest Neighbour Algorithms \cr
+#'
+#'   \item `timeseriesweka.classifiers.ElasticEnsemble` \cr
+#'    Combination of nearest neighbour (NN) classifiers that use elastic distance measures \cr
+#'    Hyperparameters: *None*
+#'
+#'   Baselearners of ElasticEnsemble: \cr
+#'
+#'     `timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN` \cr
+#'     Elastic Ensemble of Nearest Neighbour Algorithms: \cr
+#'     Weighted Dynamic Time Warping 1 Neares Neighbour \cr
 #'     Hyperparameters: *None*
 #'
 #'   \item `timeseriesweka.classifiers.FlatCote` \cr
 #'    Collective of Transformation Ensembles (Bagnall et al.,2015) \cr
 #'    Hyperparameters: *None*
 #'
-#'   \item `timeseriesweka.classifiers.ElasticEnsemble` \cr
-#'    Combination of nearest neighbour (NN) classifiers that use elastic distance measures \cr
-#'    Hyperparameters: *None*
+#'
 #' }
 #'
-#' **Dictionary based Classifiers**
+#' **Dictionary based Classifiers** \cr
 #' \itemize{
 #'   \item `timeseriesweka.classifiers.BOSS` \cr
 #'   Bag of SFA Symbols
@@ -60,10 +66,11 @@
 #'
 #' }
 #'
-#' **Weka-based Classifiers**
+#' **Weka Classifiers** \cr
 #' Several WEKA classifiers have been implemented in the Time-Series Classification
-#' Bake-off. The use of those classifiers is discouraged from within TSClassification,
-#' but nonetheless implemented for completeness.
+#' Bake-off. \cr
+#' The use of those classifiers is discouraged from within TSClassification,
+#' but nonetheless implemented for completeness. \cr
 #' We advise to use the official implementations from package [RWeka] for greater
 #' flexibility and improved support for setting hyperparameters. \cr
 #' \itemize{
@@ -82,7 +89,7 @@
 #' @export
 tsc_classifiers = function() {
     c(
-      # Ensembles
+      # Ensemble Classifiers
       "timeseriesweka.classifiers.ElasticEnsemble",
       "timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN",
       "timeseriesweka.classifiers.ensembles.elastic_ensemble.DTW1NN",
@@ -102,11 +109,11 @@ tsc_classifiers = function() {
       "timeseriesweka.classifiers.RISE",
       "timeseriesweka.classifiers.LPS",
       "timeseriesweka.classifiers.SAXVSM",
-      "timeseriesweka.classifiers.ShapeletTransformClassifier", # broken
+      "timeseriesweka.classifiers.ShapeletTransformClassifier",
       "timeseriesweka.classifiers.DD_DTW",
       "timeseriesweka.classifiers.BagOfPatterns",
 
-      # Weka Classifiers:
+      # Weka Classifiers
       "weka.classifiers.bayes.BayesNet",
       "weka.classifiers.bayes.NaiveBayes",
       "weka.classifiers.functions.Logistic",

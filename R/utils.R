@@ -20,7 +20,6 @@ data_to_path = function(data, target = "target", data_path = NULL) {
   }
   # Write the data.frame to a file.
   if (is.data.frame(data)) {
-    if (is.null(target)) target = "target"
     # Make sure target var is the last column.
     cn = colnames(data)
     assert_choice(target, cn)
@@ -29,7 +28,7 @@ data_to_path = function(data, target = "target", data_path = NULL) {
 
     # Create a filepath.
     if (is.null(data_path))
-      data_path = tempfile(pattern = "data_train", fileext = ".arff")
+      data_path = tempfile(pattern = "tsclassif_data", fileext = ".arff")
     if (file.exists(data_path)) {
       warning(sprintf("File %s already exists, will not be overwritten!", data_path))
     } else {
