@@ -79,7 +79,6 @@ train_tsc = function(data, classifier, par_vals, model_path, cleanup_data = FALS
   # Initialize Java
   trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   # Set up the call to the .jar
-  browser()
   par_vals = par_vals_to_string(par_vals)
   args_train = c(data, model_path, classifier, "0", par_vals)
   J(trainAndPredict, "train", args_train)
