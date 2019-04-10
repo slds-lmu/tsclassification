@@ -4,7 +4,7 @@
 \alias{predict_tsc}
 \title{Predict using a TrainAndPredict Object.}
 \usage{
-predict_tsc(newdata, model_path, cleanup_data = FALSE)
+predict_tsc(newdata, target = NULL, model_path, cleanup_data = FALSE)
 }
 \arguments{
 \item{newdata}{[`data.frame` | `character`] \cr

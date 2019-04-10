@@ -4,13 +4,17 @@
 \alias{train_tsc}
 \title{Train a time-series classifier}
 \usage{
-train_tsc(data, classifier, par_vals, model_path, cleanup_data = FALSE)
+train_tsc(data, target = NULL, classifier, par_vals, model_path,
+  cleanup_data = FALSE)
 }
 \arguments{
 \item{data}{[`character(1)`|`data.frame`] \cr
 Either a path to the dataset or a data.frame that should be saved to disk
 for modeling. In case a `data.frame` is provided, the dataset is saved to disk
 via `data_to_path`.}
+
+\item{target}{[`character(1)`] \cr
+Name of the target variable.}
 
 \item{classifier}{[`character(1)`] \cr
 Character describing the classifier.}
