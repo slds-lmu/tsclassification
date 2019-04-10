@@ -20,6 +20,7 @@ data_to_path = function(data, target = "target", data_path = NULL) {
   }
   # Write the data.frame to a file.
   if (is.data.frame(data)) {
+    if (is.null(target)) target = "target"
     # Make sure target var is the last column.
     cn = colnames(data)
     assert_choice(target, cn)
@@ -153,6 +154,7 @@ tsc_classifiers = function() {
       "timeseriesweka.classifiers.ensembles.elastic_ensemble.DTW1NN",
       "timeseriesweka.classifiers.ensembles.elastic_ensemble.ED1NN",
       "timeseriesweka.classifiers.ensembles.elastic_ensemble.MSM1NN",
+      "timeseriesweka.classifiers.FlatCote",
       "timeseriesweka.classifiers.FastShapelets",
       "timeseriesweka.classifiers.BOSS",
       "timeseriesweka.classifiers.LearnShapelets",
