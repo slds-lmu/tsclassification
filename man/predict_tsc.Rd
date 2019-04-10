@@ -4,7 +4,8 @@
 \alias{predict_tsc}
 \title{Predict using a TrainAndPredict Object.}
 \usage{
-predict_tsc(newdata, target = NULL, model_path, cleanup_data = FALSE)
+predict_tsc(newdata, target = NULL, model_path, data_path = NULL,
+  cleanup_data = FALSE)
 }
 \arguments{
 \item{newdata}{[`data.frame` | `character`] \cr
@@ -18,7 +19,8 @@ Path where the prediction model should be obtained from.}
 Should newdata be deleted from disk after training?}
 }
 \value{
-A vector of predictions
+[`factor`] \cr
+  Vector of predictions.
 }
 \description{
 Predicts `newdata` using the model obtained during training.

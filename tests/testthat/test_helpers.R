@@ -28,8 +28,8 @@ test_that("tsc_classifiers works", {
 
 
 test_that("par_vals_to_string works", {
-  expect_equal(par_vals_to_string(list(a = 5)), "a=5")
-  expect_equal(par_vals_to_string(list(a = 5, b = 7)), "a=5,b=7")
+  expect_equal(par_vals_to_string(list(a = 5)), "a_5")
+  expect_equal(par_vals_to_string(list(a = 5, b = 7)), "a_5,b_7")
   expect_error(par_vals_to_string(c(a = 5)))
   expect_error(par_vals_to_string(list(5)))
   expect_equal(par_vals_to_string(NULL), "")

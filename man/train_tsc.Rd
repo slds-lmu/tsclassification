@@ -4,8 +4,8 @@
 \alias{train_tsc}
 \title{Train a time-series classifier}
 \usage{
-train_tsc(data, target = NULL, classifier, par_vals, model_path,
-  cleanup_data = FALSE)
+train_tsc(data, target = NULL, classifier, par_vals = NULL,
+  model_path = NULL, data_path = NULL, cleanup_data = FALSE)
 }
 \arguments{
 \item{data}{[`character(1)`|`data.frame`] \cr
@@ -17,19 +17,23 @@ via `data_to_path`.}
 Name of the target variable.}
 
 \item{classifier}{[`character(1)`] \cr
-Character describing the classifier.}
+Character describing the classifier. See `?tsc_classifiers`.}
 
 \item{par_vals}{[`list`] \cr
-(Optional) Hyperparameters for the models. Currently not used.}
+(Optional) Hyperparameters for the models. \cr
+See `?tsc_classifiers` for hyperparameters.}
 
 \item{model_path}{[`character(1)`] \cr
-Path where the resulting model should be saved.}
+Path where the resulting model should be saved to.}
+
+\item{data_path}{[`character(1)`] \cr
+Path where train and test data should be saved to. Defaults to a temporary file.}
 
 \item{cleanup_data}{[`logical(1)`] \cr
-Should the data be deleted from disk after training?}
+Should the data be deleted from disk after training / prediction?}
 }
 \value{
-NULL, Writes a Java instance of TrainAndPredict to model_path
+NULL, Writes a Java instance of TrainAndPredict to `model_path`.
 }
 \description{
 Set the "java.options" option to use a higher memory

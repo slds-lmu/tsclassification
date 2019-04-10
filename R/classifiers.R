@@ -4,7 +4,7 @@
 #' Internally writes the data to an `.arff` file and reads it from
 #' the command line in the Java Virtual Machine.
 #' In some cases, the memory of the JVM is not sufficient.
-#' In this case, the memory for the JVM can be set to 2 GB by setting
+#' In this case, the memory for the JVM can be set e.g. to 2 GB by setting
 #' `options(java.options = "-Xmx2048m")` before loading the package.
 #'
 #' @details
@@ -14,7 +14,7 @@
 #' The target variable's name is assumed to be 'target'.
 #'
 #' Members:
-#'   - train(data, par_vals):   Delegates to [`train_tsc`]
+#'   - train(data, target, par_vals, data_path):   Delegates to [`train_tsc`]
 #'   - predict(newdata):        Delegates to [`predict_tsc`]
 #'   - cleanup():               Remove saved model files.
 #' @param classifier [`character(1)`] \cr
@@ -30,6 +30,7 @@ TSClassifier = R6::R6Class("TSClassifier",
     target = NULL,
     par_vals = NULL,
     data_path = NULL,
+    target_levels = NULL,
     trained = FALSE,
 
     initialize = function(classifier, model_path = NULL) {
@@ -41,13 +42,17 @@ TSClassifier = R6::R6Class("TSClassifier",
     train = function(data, target = NULL, par_vals = NULL, data_path = NULL) {
       self$target = target
       self$par_vals = par_vals
+      if (is.data.frame(data)) self$target_levels = levels(factor(data[[target]]))
+
       train_tsc(data, self$target, self$classifier, self$par_vals, self$model_path)
       self$trained = TRUE
     },
     predict = function(newdata) {
       if (!self$trained)
         stop("Classifier has not been trained, please call 'train()'")
-      predict_tsc(newdata, self$target, self$model_path)
+      p = predict_tsc(newdata, self$target, self$model_path)
+      if (!is.null(self$target_levels)) p = factor(p, labels = self$target_levels)
+      return(factor(p))
     },
     print = function() {
       cat("TimeSeries Classifier Object\n")
@@ -73,18 +78,20 @@ TSClassifier = R6::R6Class("TSClassifier",
 #' @param target [`character(1)`] \cr
 #'   Name of the target variable.
 #' @param classifier [`character(1)`] \cr
-#'   Character describing the classifier.
+#'   Character describing the classifier. See `?tsc_classifiers`.
 #' @param par_vals [`list`] \cr
-#'   (Optional) Hyperparameters for the models. Currently not used.
+#'   (Optional) Hyperparameters for the models. \cr
+#'   See `?tsc_classifiers` for hyperparameters.
 #' @param model_path [`character(1)`] \cr
-#'   Path where the resulting model should be saved.
+#'   Path where the resulting model should be saved to.
 #' @param data_path [`character(1)`] \cr
-#'   Path where train and test data should be saved.
+#'   Path where train and test data should be saved to. Defaults to a temporary file.
 #' @param cleanup_data [`logical(1)`] \cr
-#'   Should the data be deleted from disk after training?
-#' @return NULL, Writes a Java instance of TrainAndPredict to model_path
+#'   Should the data be deleted from disk after training / prediction?
+#' @return NULL, Writes a Java instance of TrainAndPredict to `model_path`.
 #' @export
-train_tsc = function(data, target = NULL, classifier, par_vals = NULL, data_path = NULL, cleanup_data = FALSE) {
+train_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_path = NULL,
+  data_path = NULL, cleanup_data = FALSE) {
   data = data_to_path(data, target, data_path)
   # Initialize Java
   trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
@@ -107,7 +114,8 @@ train_tsc = function(data, target = NULL, classifier, par_vals = NULL, data_path
 #'   Path where the prediction model should be obtained from.
 #' @param cleanup_data [`logical(1)`] \cr
 #'   Should newdata be deleted from disk after training?
-#' @return A vector of predictions
+#' @return [`factor`] \cr
+#'   Vector of predictions.
 #' @export
 predict_tsc = function(newdata, target = NULL, model_path, data_path = NULL, cleanup_data = FALSE) {
   assert_true(file.exists(model_path))

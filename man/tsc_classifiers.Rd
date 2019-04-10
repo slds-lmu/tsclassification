@@ -76,11 +76,11 @@ Baselearners of ElasticEnsemble: \cr
 
 }
 
-**Weka-based Classifiers** \cr
+**Weka Classifiers** \cr
 Several WEKA classifiers have been implemented in the Time-Series Classification
 Bake-off. \cr
 The use of those classifiers is discouraged from within TSClassification,
-but nonetheless implemented for completeness.\cr
+but nonetheless implemented for completeness. \cr
 We advise to use the official implementations from package [RWeka] for greater
 flexibility and improved support for setting hyperparameters. \cr
 \itemize{

@@ -20,7 +20,7 @@ Allows training and predicting on time-series classification data.
 Internally writes the data to an `.arff` file and reads it from
 the command line in the Java Virtual Machine.
 In some cases, the memory of the JVM is not sufficient.
-In this case, the memory for the JVM can be set to 2 GB by setting
+In this case, the memory for the JVM can be set e.g. to 2 GB by setting
 `options(java.options = "-Xmx2048m")` before loading the package.
 }
 \details{
@@ -30,7 +30,7 @@ data is saved to '.$model_path' and then read into the JVM from there.
 The target variable's name is assumed to be 'target'.
 
 Members:
-  - train(data, par_vals):   Delegates to [`train_tsc`]
+  - train(data, target, par_vals, data_path):   Delegates to [`train_tsc`]
   - predict(newdata):        Delegates to [`predict_tsc`]
   - cleanup():               Remove saved model files.
 }

@@ -16,6 +16,6 @@ test_that("Training on data.frame's works ", {
   train_data$target = sample(c(1, 0), 10, replace = TRUE)
   classifName = "weka.classifiers.meta.RotationForest"
   tsc = TSClassifier$new(classifName)
-  expect_silent(tsc$train(train_data))
-  expect_numeric(tsc$predict(train_data))
+  expect_silent(tsc$train(train_data, target = "target"))
+  expect_factor(tsc$predict(train_data))
 })
