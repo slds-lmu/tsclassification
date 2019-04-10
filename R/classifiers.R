@@ -27,21 +27,24 @@ TSClassifier = R6::R6Class("TSClassifier",
   public = list(
     classifier = NULL,
     model_path = NULL,
+    target = NULL,
     trained = FALSE,
-    initialize = function(classifier, model_path = NULL) {
+
+    initialize = function(classifier, target = NULL, model_path = NULL) {
       self$classifier = check_classifier(classifier)
       if (is.null(model_path))
         model_path = tempfile(pattern = "tsc_model", fileext = ".txt")
       self$model_path = assert_path_for_output(model_path)
+      self$target = target
     },
     train = function(data, par_vals = NULL) {
-      train_tsc(data, self$classifier, par_vals, self$model_path)
+      train_tsc(data, self$target, self$classifier, par_vals, self$model_path)
       self$trained = TRUE
     },
     predict = function(newdata) {
       if (!self$trained)
         stop("Classifier has not been trained, please call 'train()'")
-      predict_tsc(newdata, self$model_path)
+      predict_tsc(newdata, self$target, self$model_path)
     },
     print = function() {
       cat("TimeSeries Classifier Object\n")
@@ -64,6 +67,8 @@ TSClassifier = R6::R6Class("TSClassifier",
 #'   Either a path to the dataset or a data.frame that should be saved to disk
 #'   for modeling. In case a `data.frame` is provided, the dataset is saved to disk
 #'   via `data_to_path`.
+#' @param target [`character(1)`] \cr
+#'   Name of the target variable.
 #' @param classifier [`character(1)`] \cr
 #'   Character describing the classifier.
 #' @param par_vals [`list`] \cr
@@ -74,12 +79,11 @@ TSClassifier = R6::R6Class("TSClassifier",
 #'   Should the data be deleted from disk after training?
 #' @return NULL, Writes a Java instance of TrainAndPredict to model_path
 #' @export
-train_tsc = function(data, classifier, par_vals, model_path, cleanup_data = FALSE) {
-  data = data_to_path(data)
+train_tsc = function(data, target = NULL, classifier, par_vals, model_path, cleanup_data = FALSE) {
+  data = data_to_path(data, target)
   # Initialize Java
   trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   # Set up the call to the .jar
-  browser()
   par_vals = par_vals_to_string(par_vals)
   args_train = c(data, model_path, classifier, "0", par_vals)
   J(trainAndPredict, "train", args_train)
@@ -100,10 +104,10 @@ train_tsc = function(data, classifier, par_vals, model_path, cleanup_data = FALS
 #'   Should newdata be deleted from disk after training?
 #' @return A vector of predictions
 #' @export
-predict_tsc = function(newdata, model_path, cleanup_data = FALSE) {
+predict_tsc = function(newdata, target = NULL, model_path, cleanup_data = FALSE) {
   assert_true(file.exists(model_path))
   # Save newdata in case
-  newdata = data_to_path(newdata)
+  newdata = data_to_path(newdata, target)
   trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   args_predict = c(model_path, newdata)
   # Predict
