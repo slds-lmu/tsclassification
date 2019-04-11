@@ -11,20 +11,24 @@
 #'   temporary file is created.
 #' @return The file path
 #' @export
-data_to_path = function(data, target = "target", data_path = NULL) {
+data_to_path = function(data, target = "target", data_path = NULL, step = "train") {
   # Data is either a path that poins to the data or a data.frame
   # containing the data.
   assert(check_string(data), check_data_frame(data), combine = "or")
+
   if (is.character(data)) {
     data_path = assert_file_exists(data)
   }
+
   # Write the data.frame to a file.
   if (is.data.frame(data)) {
-    # Make sure target var is the last column.
+    # Make sure target variable is the last column.
     cn = colnames(data)
-    assert_choice(target, cn)
-    data = data[, c(setdiff(cn, target), target)]
-    data[[target]] = as.factor(data[[target]])
+    if (step == "train") {
+      assert_choice(target, cn)
+      data = data[, c(setdiff(cn, target), target)]
+      data[[target]] = as.factor(data[[target]])
+    }
 
     # Create a filepath.
     if (is.null(data_path))

@@ -4,7 +4,8 @@
 \alias{data_to_path}
 \title{Dump a data.frame to a .arff file.}
 \usage{
-data_to_path(data, target = "target", data_path = NULL)
+data_to_path(data, target = "target", data_path = NULL,
+  step = "train")
 }
 \arguments{
 \item{data}{[`data.frame` | `character`] \cr

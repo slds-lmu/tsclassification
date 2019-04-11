@@ -83,6 +83,39 @@ test_that("TSC works with factors", {
   expect_true(tsc$trained)
   p = tsc$predict(dftest)
   expect_factor(p, len = 15L, levels = c("a", "b"))
+
+  # Predict single instances
+  p = tsc$predict(dftest[1,])
+  expect_factor(p, len = 1L, levels = "a")
+
+  # Predict single instances
+  p = tsc$predict(dftest[3,])
+  expect_factor(p, len = 1L, levels = "b")
 })
 
+
+test_that("TSC predict works without target", {
+  set.seed(30)
+  m = matrix(runif(400, -1, 1), nrow = 40, ncol = 10)
+  y = factor(apply(m, 1, mean) > 0, labels = c("a", "b"))
+  m[,1] = ifelse(y == "a", m[,1] + 2, m[,1] - 2)
+  dftrain = data.frame(m[1:20, ], "class" = m[10:20])
+  dftest = data.frame(m[21:40, ], "class" = y[21:40])
+  classifName = "weka.classifiers.trees.J48"
+  tsc = TSClassifier$new(classifName)
+  expect_class(tsc, "TSClassifier")
+  tsc$train(dftrain, target = "class")
+  expect_true(tsc$trained)
+  # dftest$class = NULL
+  # p = tsc$predict(dftest)
+  # expect_factor(p, len = 15L, levels = c("a", "b"))
+
+  # Predict single instances
+  p = tsc$predict(dftest[1,])
+  expect_factor(p, len = 1L, levels = "a")
+
+  # Predict single instances
+  p = tsc$predict(dftest[3,])
+  expect_factor(p, len = 1L, levels = "b")
+})
 

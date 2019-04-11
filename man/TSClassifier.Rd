@@ -13,7 +13,8 @@ TSClassifier
 Classifier to use, see `?tsc_classifiers` for a list of available classifiers.}
 
 \item{model_path}{[`character(1)`] \cr
-Path to store the resulting model to. Default `NULL` creates a temporary file.}
+Path to store the resulting model to. Default `NULL` creates and stores to
+a temporary file.}
 }
 \description{
 Allows training and predicting on time-series classification data.
@@ -30,8 +31,24 @@ data is saved to '.$model_path' and then read into the JVM from there.
 The target variable's name is assumed to be 'target'.
 
 Members:
-  - train(data, target, par_vals, data_path):   Delegates to [`train_tsc`]
-  - predict(newdata):        Delegates to [`predict_tsc`]
-  - cleanup():               Remove saved model files.
+  - train(data, target, par_vals, data_path):   Delegates to [`train_tsc`].
+  - predict(newdata):        Delegates to [`predict_tsc`].
+  - cleanup(): Remove saved model files.
+
+Class variables:
+  - classifier: Classifier
+  - model_path: Path to the model
+  - target: Target variable
+  - par_vals: Hyperparamter_values
+  - data_path: Save path for the data
+  - target_levels: Levels of the target variable, if a data.frame is supplied.
+  - trained: Is the model trained?
+}
+\examples{
+  data = data.frame(matrix(rnorm(300), nrow = 30))
+  data$class = factor(sample(letters[1:2], 10, replace = TRUE))
+  tsc = TSClassifier$new("timeseriesweka.classifiers.BOSS")
+  tsc$train(data[1:15,], target = "class", par_vals = list(setMaxEnsembleSize = 1))
+  p = tsc$predict(data[10:20,])
 }
 \keyword{datasets}

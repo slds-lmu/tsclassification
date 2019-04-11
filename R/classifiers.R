@@ -14,14 +14,30 @@
 #' The target variable's name is assumed to be 'target'.
 #'
 #' Members:
-#'   - train(data, target, par_vals, data_path):   Delegates to [`train_tsc`]
-#'   - predict(newdata):        Delegates to [`predict_tsc`]
-#'   - cleanup():               Remove saved model files.
+#'   - train(data, target, par_vals, data_path):   Delegates to [`train_tsc`].
+#'   - predict(newdata):        Delegates to [`predict_tsc`].
+#'   - cleanup(): Remove saved model files.
+#'
+#' Class variables:
+#'   - classifier: Classifier
+#'   - model_path: Path to the model
+#'   - target: Target variable
+#'   - par_vals: Hyperparamter_values
+#'   - data_path: Save path for the data
+#'   - target_levels: Levels of the target variable, if a data.frame is supplied.
+#'   - trained: Is the model trained?
+#'
 #' @param classifier [`character(1)`] \cr
 #'   Classifier to use, see `?tsc_classifiers` for a list of available classifiers.
 #' @param model_path [`character(1)`] \cr
-#'   Path to store the resulting model to. Default `NULL` creates a temporary file.
-#'
+#'   Path to store the resulting model to. Default `NULL` creates and stores to
+#'   a temporary file.
+#' @examples
+#'   data = data.frame(matrix(rnorm(300), nrow = 30))
+#'   data$class = factor(sample(letters[1:2], 10, replace = TRUE))
+#'   tsc = TSClassifier$new("timeseriesweka.classifiers.BOSS")
+#'   tsc$train(data[1:15,], target = "class", par_vals = list(setMaxEnsembleSize = 1))
+#'   p = tsc$predict(data[10:20,])
 #' @export
 TSClassifier = R6::R6Class("TSClassifier",
   public = list(
@@ -51,7 +67,7 @@ TSClassifier = R6::R6Class("TSClassifier",
       if (!self$trained)
         stop("Classifier has not been trained, please call 'train()'")
       p = predict_tsc(newdata, self$target, self$model_path)
-      if (!is.null(self$target_levels)) p = factor(p, labels = self$target_levels)
+      if (!is.null(self$target_levels)) p = factor(p, labels = self$target_levels[unique(p) + 1])
       return(factor(p))
     },
     print = function() {
@@ -120,7 +136,7 @@ train_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_pat
 predict_tsc = function(newdata, target = NULL, model_path, data_path = NULL, cleanup_data = FALSE) {
   assert_true(file.exists(model_path))
   # Save newdata in case
-  newdata = data_to_path(newdata, target, data_path)
+  newdata = data_to_path(newdata, target, data_path, step = "predict")
   trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   args_predict = c(model_path, newdata)
   # Predict
