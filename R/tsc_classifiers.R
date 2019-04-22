@@ -10,6 +10,10 @@
 #'    Combination of nearest neighbour (NN) classifiers that use elastic distance measures \cr
 #'    Hyperparameters: *None*
 #'
+#'   \item `timeseriesweka.classifiers.FlatCote` \cr
+#'    Collective of Transformation Ensembles (Bagnall et al.,2015) \cr
+#'    Hyperparameters: *None*
+#'
 #'   Baselearners of ElasticEnsemble: \cr
 #'
 #'     `timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN` \cr
@@ -17,21 +21,73 @@
 #'     Weighted Dynamic Time Warping 1 Neares Neighbour \cr
 #'     Hyperparameters: *None*
 #'
-#'   \item `timeseriesweka.classifiers.FlatCote` \cr
-#'    Collective of Transformation Ensembles (Bagnall et al.,2015) \cr
+#'    \item `timeseriesweka.classifiers.ensembles.elastic_ensemble.ED1NN` \cr
+#'    Euclidian distance with 1 nearest neighbor \cr
 #'    Hyperparameters: *None*
 #'
+#'    \item `timeseriesweka.classifiers.ensembles.elastic_ensemble.DTW1NN` \cr
+#'    Dynamic time warping with 1 nearest neighbor \cr
+#'    Hyperparameters: \cr
+#'    \itemize{
+#'    \item `setWindow`: `double` range: [1, Inf]
+#'    }
+#'
+#'    \item `timeseriesweka.classifiers.ensembles.elastic_ensemble.ERP1NN` \cr
+#'    edit distance with real penalty with 1 nearest neighbor \cr
+#'    Hyperparameters: *None*
+#'
+#'    \item `timeseriesweka.classifiers.ensembles.elastic_ensemble.LCSS1NN` \cr
+#'    longest common subsequence with 1 nearest neighbor \cr
+#'    Hyperparameters: *None*
+#'
+#'    \item `timeseriesweka.classifiers.ensembles.elastic_ensemble.TWE1NN` \cr
+#'    Time Warp Edit with 1 nearest neighbor \cr
+#'    Hyperparameters: *None*
+#'
+#'    \item `timeseriesweka.classifiers.ensembles.elastic_ensemble.MSM1NN` \cr
+#'    Move-Split-Merge with 1 nearest neighbor \cr
+#'    Hyperparameters: *None*
+#'
+#'
+#' }
+#'
+#' **Differential Distance Based Classifiers** \cr
+#' \itemize{
+#'
+#'    \item `timeseriesweka.classifiers.NN_CID` \cr
+#'    Complexity Invariant distance with k nearest neighbor \cr
+#'    Hyperparameters: *None*
+#'
+#'    \item `timeseriesweka.classifiers.DD_DTW` \cr
+#'    Derivative dynamic time warping \cr
+#'    Hyperparameters: *None*
+#'
+#'    \item `timeseriesweka.classifiers.DTD_C` \cr
+#'    Derivative transform distance \cr
+#'    Hyperparameters: *None*
 #'
 #' }
 #'
 #' **Dictionary based Classifiers** \cr
 #' \itemize{
 #'   \item `timeseriesweka.classifiers.BOSS` \cr
-#'   Bag of SFA Symbols
-#'   Hyperparameters:
+#'   Bag of SFA Symbols \cr
+#'   Hyperparameters: \cr
 #'   \itemize{
 #'     \item `setMaxEnsembleSize`: `integer(1)` range: [1, Inf]
 #'   }
+#'
+#'   \item `timeseriesweka.classifiers.BagOfPatterns` \cr
+#'   Bag of Patterns \cr
+#'   Hyperparameters: *None* \cr
+#'
+#'   \item `timeseriesweka.classifiers.SAX_1NN` \cr
+#'   Symbolic Aggregate Approximation \cr
+#'   Hyperparameters: *None* \cr
+#'
+#'   \item `timeseriesweka.classifiers.SAXVSM` \cr
+#'   Symbolic Aggregate Approximation - Vector Space Model \cr
+#'   Hyperparameters: *None* \cr
 #' }
 #'
 #' **Shapelet based Classifiers**
@@ -45,26 +101,62 @@
 #'       values: "univariate","uni","shapeletd","shapeleti"
 #'     \item `setNumberOfShapelets`: `integer(1)` range: [1, Inf]
 #'   }
+#'
+#'   \item `timeseriesweka.classifiers.FastShapelets` \cr
+#'   Fast Shapelets (FS) \cr
+#'   Hyperparameters: *None* \cr
+#'
+#'   \item `timeseriesweka.classifiers.LearnShapelets` \cr
+#'   Learned Shapelets (LS): \cr
+#'   Hyperparameters: *None* \cr
+#'
 #' }
 #'
-#' **Interval based Classifiers**
+#' **Interval based Classifiers** \cr
 #' \itemize{
 #'   \item `timeseriesweka.classifiers.TSF` \cr
 #'   Time Series Forest (Deng et al.,2013) \cr
-#'   Hyperparameters:
+#'   Hyperparameters: \cr
 #'   \itemize{
 #'     \item `setNumTrees`: `integer(1)` range: [1, Inf]
 #'   }
+#'
+#'   \item `timeseriesweka.classifiers.TSBF` \cr
+#'   Time Series Bag of Features (TSBF) \cr
+#'   Hyperparameters: \cr
+#'   \itemize{
+#'     \item `setZLevel`: `double(1)`
+#'   }
+#'
+#'   \item `timeseriesweka.classifiers.LPS` \cr
+#'   Learned Pattern Similarity (LPS) \cr
+#'   Hyperparameters: *None* \cr
 #' }
 #'
-#' **Time-Series Classifiers**
+#' **Time Series Classifier** \cr
 #' \itemize{
-#'   \item timeseriesweka.classifiers.LearnShapelets \cr
-#'     Learned Shapelets (Grabocka et al., 2014) \cr
-#'     Hyperparameters:
-#'   \item timeseriesweka.classifiers.NN_CID \cr
+#'   \item `timeseriesweka.classifiers.DTW_kNN` \cr
+#'   specialisation of kNN that can only be used with the efficient DTW distance \cr
+#'   Hyperparameters: \cr
+#'   \itemize{
+#'     \item `setMaxR`: `double(1)` range: [0, 1] set max window size
+#'   }
 #'
+#'   \item `timeseriesweka.classifiers.FastDTW_1NN` \cr
+#'   fast Dynamic time warping with 1 nearest neighbor \cr
+#'   Hyperparameters: \cr
+#'   \itemize{
+#'     \item `setR`: `double(1)`
+#'   }
+#'
+#'   \item `timeseriesweka.classifiers.SlowDTW_1NN` \cr
+#'   compare with FastDTW_1NN \cr
+#'   Hyperparameters: \cr
+#'   \itemize{
+#'     \item `setR`: `double(1)`
+#'   }
 #' }
+#'
 #'
 #' **Weka Classifiers** \cr
 #' Several WEKA classifiers have been implemented in the Time-Series Classification
@@ -90,28 +182,36 @@
 tsc_classifiers = function() {
     c(
       # Ensemble Classifiers
-      "timeseriesweka.classifiers.ElasticEnsemble",
-      "timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN",
-      "timeseriesweka.classifiers.ensembles.elastic_ensemble.DTW1NN",
       "timeseriesweka.classifiers.ensembles.elastic_ensemble.ED1NN",
+      "timeseriesweka.classifiers.ensembles.elastic_ensemble.DTW1NN",
+      "timeseriesweka.classifiers.ensembles.elastic_ensemble.ERP1NN",
+      "timeseriesweka.classifiers.ensembles.elastic_ensemble.LCSS1NN",
+      "timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN",
+      "timeseriesweka.classifiers.ensembles.elastic_ensemble.TWE1NN",
       "timeseriesweka.classifiers.ensembles.elastic_ensemble.MSM1NN",
-      "timeseriesweka.classifiers.HIVECote",
+      "timeseriesweka.classifiers.ElasticEnsemble",
       "timeseriesweka.classifiers.FlatCote",
 
-      # Single Classifiers
-      "timeseriesweka.classifiers.FastShapelets",
-      "timeseriesweka.classifiers.BOSS",
-      "timeseriesweka.classifiers.LearnShapelets",
+      #Differential Distance Based Classifiers
       "timeseriesweka.classifiers.NN_CID",
-      "timeseriesweka.classifiers.TSBF",
-      "timeseriesweka.classifiers.TSF",
-      "timeseriesweka.classifiers.DTD_C",
-      "timeseriesweka.classifiers.RISE",
-      "timeseriesweka.classifiers.LPS",
-      "timeseriesweka.classifiers.SAXVSM",
-      "timeseriesweka.classifiers.ShapeletTransformClassifier",
       "timeseriesweka.classifiers.DD_DTW",
+      "timeseriesweka.classifiers.DTD_C",
+
+      #Dictionary Based Classifiers
       "timeseriesweka.classifiers.BagOfPatterns",
+      "timeseriesweka.classifiers.SAX_1NN",
+      "timeseriesweka.classifiers.SAXVSM",
+      "timeseriesweka.classifiers.BOSS",
+
+      #Shapelet Based Classifiers
+      "timeseriesweka.classifiers.FastShapelets",
+      "timeseriesweka.classifiers.ShapeletTransformClassifier",
+      "timeseriesweka.classifiers.LearnShapelets",
+
+      #Interval Based Classifiers
+      "timeseriesweka.classifiers.TSF",
+      "timeseriesweka.classifiers.TSBF",
+      "timeseriesweka.classifiers.LPS",
 
       # Weka Classifiers
       "weka.classifiers.bayes.BayesNet",
@@ -121,6 +221,13 @@ tsc_classifiers = function() {
       "weka.classifiers.functions.SMO",
       "weka.classifiers.meta.RotationForest",
       "weka.classifiers.trees.J48",
-      "weka.classifiers.trees.RandomForest"
+      "weka.classifiers.trees.RandomForest",
+
+      # single classifier
+      "timeseriesweka.classifiers.DTW_kNN",
+      "timeseriesweka.classifiers.FastDTW_1NN",
+      "timeseriesweka.classifiers.RISE",
+      "timeseriesweka.classifiers.SlowDTW_1NN"
+
     )
 }
