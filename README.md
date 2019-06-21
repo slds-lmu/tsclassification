@@ -25,14 +25,14 @@ We showcase the usage for a simulated data set:
   tsc$predict(data[!train_set, ])
 ```
 
-## Contribute to the software
+### Contribute to the software
 
 Contributions and new ideas are welcome, feel free to open an issue or pull request on [GitHub](https://github.com/compstat-lmu/TSClassification)
 
-## Issues or Support with the software
+### Issues or Support with the software
 
 If you encounter errors with the software or require assistance, contact us on [GitHub](https://github.com/compstat-lmu/TSClassification).
 
-## Java refactoring
+### Java refactoring
 
 The code for the `.jar` file underlying `TSClassification` can be obtained from the [tsc4R repository](https://github.com/smilesun/tsc4R). We aim to track changes made by the authors of the TimeSeries Classification Bakeoff there.
