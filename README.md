@@ -33,6 +33,8 @@ We showcase the usage for a simulated data set:
   tsc$train(data[train_set, ])
   tsc$predict(data[!train_set, ])
 ```
+For a more in-depth example, please consult the 
+[vignette](https://github.com/compstat-lmu/TSClassification/blob/master/vignettes/tsc_vignette.Rmd).
 
 ### Contribute to the software
 
