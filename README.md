@@ -4,13 +4,23 @@
 # TSClassification
 
 A large number of time-series classifiers have been implemented in
-Java bei Bagnall et al. (2018) for a benchmark study "The Great Time Series Classification Bake Off".
-This package interfaces an adapted version of implementations provided by Bagnall et al., in order
-to make algorithms available to a wider audience.
+Java bei Bagnall et al. (2018) for the benchmark study **The Great Time Series Classification Bake Off**.
 
-We showcase this for a simulated data set.
-Note that we expect the `target` name to be 'target'.
+The R-package **TSClassification** interfaces an adapted version of implementations provided by Bagnall et al., 
+in order to make algorithms available to a wider audience.
 
+
+## Installation
+
+The package can be installed from Github via
+
+```r
+devtools::install_github("compstat-lmu/TSClassification")
+```
+
+## Usage
+
+We showcase the usage for a simulated data set:
 ```r
   data = data.frame(matrix(rnorm(500), nrow = 100))
   data$target = sample(c(1, 0), 100, replace = TRUE)
@@ -24,6 +34,17 @@ Note that we expect the `target` name to be 'target'.
   tsc$train(data[train_set, ])
   tsc$predict(data[!train_set, ])
 ```
+For a more in-depth example, please consult the 
+[vignette](https://github.com/compstat-lmu/TSClassification/blob/master/vignettes/tsc_vignette.Rmd).
 
-# Java refactoring
-https://github.com/smilesun/tsc4R
+### Contribute to the software
+
+Contributions and new ideas are welcome, feel free to open an issue or pull request on [GitHub](https://github.com/compstat-lmu/TSClassification)
+
+### Issues or Support with the software
+
+If you encounter errors with the software or require assistance, contact us on [GitHub](https://github.com/compstat-lmu/TSClassification).
+
+### Java refactoring
+
+The code for the `.jar` file underlying `TSClassification` can be obtained from the [tsc4R repository](https://github.com/smilesun/tsc4R). We aim to track changes made by the authors of the TimeSeries Classification Bakeoff there.
