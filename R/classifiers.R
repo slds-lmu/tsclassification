@@ -110,7 +110,7 @@ train_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_pat
   data_path = NULL, cleanup_data = FALSE) {
   data = data_to_path(data, target, data_path)
   # Initialize Java
-  trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
+  trainAndPredict = .jnew("timeseries_classification.MainEntrance")
   # Set up the call to the .jar
   par_vals = par_vals_to_string(par_vals)
   args_train = c(data, model_path, classifier, "0", par_vals)
@@ -137,7 +137,7 @@ predict_tsc = function(newdata, target = NULL, model_path, data_path = NULL, cle
   assert_true(file.exists(model_path))
   # Save newdata in case
   newdata = data_to_path(newdata, target, data_path, step = "predict")
-  trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
+  trainAndPredict = .jnew("timeseries_classification.MainEntrance")
   args_predict = c(model_path, newdata)
   # Predict
   preds = J(trainAndPredict, "predict", args_predict)

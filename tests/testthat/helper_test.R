@@ -15,3 +15,31 @@ test_classifier = function(classifName) {
   expect_output(print(tsc), "Trained", fixed = TRUE)
   invisible(TRUE)
 }
+
+
+train_test_on_dataset = function(classifName, train_data, test_data) {
+  tsc = TSClassifier$new(classifName)
+  expect_output(print(tsc), "Untrained")
+
+  tsc$train(train_data)
+  expect_true(tsc$trained)
+  expect_output(print(tsc), paste0("Classifier: ", classifName), fixed = TRUE)
+  expect_output(print(tsc), "Trained", fixed = TRUE)
+
+  p = tsc$predict(test_data)
+  expect_factor(p)
+  expect_true(length(p) == 150)
+  expect_output(print(tsc), "Trained", fixed = TRUE)
+  invisible(TRUE)
+}
+
+train_on_dataset = function(classifName, train_data) {
+  tsc = TSClassifier$new(classifName)
+  expect_output(print(tsc), "Untrained")
+
+  tsc$train(train_data)
+  expect_true(tsc$trained)
+  expect_output(print(tsc), paste0("Classifier: ", classifName), fixed = TRUE)
+  expect_output(print(tsc), "Trained", fixed = TRUE)
+  invisible(TRUE)
+}
