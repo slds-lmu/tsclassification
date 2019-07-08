@@ -37,39 +37,38 @@ We showcase the usage for a simulated data set:
 For a more in-depth example, please consult the 
 [vignette](https://github.com/compstat-lmu/TSClassification/blob/master/vignettes/tsc_vignette.Rmd).
 
-## classifiers
+## Currently available classifiers
 
-### Time Domain Distance Based Classifiers
-- timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN
-- timeseriesweka.classifiers.ensembles.elastic_ensemble.TWE1NN
-- timeseriesweka.classifiers.ensembles.elastic_ensemble.MSM1NN
+- **Time Domain Distance Based Classifiers**
+    - timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN
+    - timeseriesweka.classifiers.ensembles.elastic_ensemble.TWE1NN
+    - timeseriesweka.classifiers.ensembles.elastic_ensemble.MSM1NN
 
-### Differential Distance Based Classifiers
-- timeseriesweka.classifiers.NN_CID
-- timeseriesweka.classifiers.DD_DTW
-- timeseriesweka.classifiers.DTD_C
-### Dictionary Based Classifiers
-- timeseriesweka.classifiers.BagOfPatterns
-- timeseriesweka.classifiers.SAX_1NN
-- timeseriesweka.classifiers.SAXVSM
-- timeseriesweka.classifiers.BOSS
+- **Differential Distance Based Classifiers**
+    - timeseriesweka.classifiers.NN_CID
+    - timeseriesweka.classifiers.DD_DTW
+    - timeseriesweka.classifiers.DTD_C
 
-### Shapelet Based Classifiers
-- timeseriesweka.classifiers.FastShapelets
-- timeseriesweka.classifiers.ShapeletTransformClassifier
-- timeseriesweka.classifiers.LearnShapelets
+- **Dictionary Based Classifiers**
+    - timeseriesweka.classifiers.BagOfPatterns
+    - timeseriesweka.classifiers.SAX_1NN
+    - timeseriesweka.classifiers.SAXVSM
+    - timeseriesweka.classifiers.BOSS
 
-### Interval Based Classifiers
-- timeseriesweka.classifiers.TSF
-- timeseriesweka.classifiers.TSBF
-- timeseriesweka.classifiers.LPS
+- **Shapelet Based Classifiers**
+    - timeseriesweka.classifiers.FastShapelets
+    - timeseriesweka.classifiers.ShapeletTransformClassifier
+    - timeseriesweka.classifiers.LearnShapelets
+
+- **Interval Based Classifiers**
+    - timeseriesweka.classifiers.TSF
+    - timeseriesweka.classifiers.TSBF
+    - timeseriesweka.classifiers.LPS
 
 
 ### Ensemble Classifiers
-- timeseriesweka.classifiers.ElasticEnsemble
-- timeseriesweka.classifiers.FlatCote
-
-
+    - timeseriesweka.classifiers.ElasticEnsemble
+    - timeseriesweka.classifiers.FlatCote
 
 
 
