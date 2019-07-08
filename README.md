@@ -66,7 +66,7 @@ For a more in-depth example, please consult the
     - timeseriesweka.classifiers.LPS
 
 
-### Ensemble Classifiers
+- **Ensemble Classifiers**
     - timeseriesweka.classifiers.ElasticEnsemble
     - timeseriesweka.classifiers.FlatCote
 
