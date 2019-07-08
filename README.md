@@ -37,7 +37,7 @@ We showcase the usage for a simulated data set:
 For a more in-depth example, please consult the 
 [vignette](https://github.com/compstat-lmu/TSClassification/blob/master/vignettes/tsc_vignette.Rmd).
 
-## Currently available classifiers
+## Currently available classifiers:
 
 - **Time Domain Distance Based Classifiers**
     - timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN
