@@ -4,10 +4,10 @@
 # TSClassification
 
 A large number of time-series classifiers have been implemented in
-Java bei Bagnall et al. (2018) for the benchmark study **The Great Time Series Classification Bake Off**.
+Java for the benchmark study **The Great Time Series Classification Bake Off (Bagnall et al. (2018))**.
 
 The R-package **TSClassification** interfaces an adapted version of implementations provided by Bagnall et al. (2018), 
-in order to make algorithms available to a wider audience.
+in order to make implemented algorithms available for general machine learning purposes.
 
 
 ## Installation
@@ -38,6 +38,8 @@ For a more in-depth example, please consult the
 [vignette](https://github.com/compstat-lmu/TSClassification/blob/master/vignettes/tsc_vignette.Rmd).
 
 ## Currently available classifiers:
+The package currently supports most of the algorithms implemented in the Bakeoff.
+
 
 - **Time Domain Distance Based Classifiers**
     - timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN
@@ -74,7 +76,7 @@ For a more in-depth example, please consult the
 
 ### Contribute to the software
 
-Contributions and new ideas are welcome, feel free to open an issue or pull request on [GitHub](https://github.com/compstat-lmu/TSClassification)
+Contributions and new ideas are welcome, feel free to open an issue or pull request on [GitHub](https://github.com/compstat-lmu/TSClassification). It is advised to contact the Authors before (via Email or an Issue) in order to avoid duplicate work.
 
 ### Issues or Support with the software
 
