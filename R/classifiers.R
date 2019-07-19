@@ -54,6 +54,8 @@ TSClassifier = R6::R6Class("TSClassifier",
       if (is.null(model_path))
         model_path = tempfile(pattern = "tsc_model", fileext = ".txt")
       self$model_path = assert_path_for_output(model_path)
+      .jaddLibrary('TimeSeriesClassification', "inst/java/TimeSeriesClassification.jar")
+      .jaddClassPath("inst/java/TimeSeriesClassification.jar")
     },
     train = function(data, target = NULL, par_vals = NULL, data_path = NULL) {
       self$target = target
@@ -110,11 +112,12 @@ train_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_pat
   data_path = NULL, cleanup_data = FALSE) {
   data = data_to_path(data, target, data_path)
   # Initialize Java
-  trainAndPredict = .jnew("timeseries_classification.MainEntrance")
+  trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   # Set up the call to the .jar
   par_vals = par_vals_to_string(par_vals)
   args_train = c(data, model_path, classifier, "0", par_vals)
   J(trainAndPredict, "train", args_train)
+  if (!is.null(e<-.jgetEx())) stop("Error during training!")
   if (cleanup_data & !is.null(data_path)) file.remove(data)
   invisible(NULL)
 }
@@ -137,10 +140,11 @@ predict_tsc = function(newdata, target = NULL, model_path, data_path = NULL, cle
   assert_true(file.exists(model_path))
   # Save newdata in case
   newdata = data_to_path(newdata, target, data_path, step = "predict")
-  trainAndPredict = .jnew("timeseries_classification.MainEntrance")
+  trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   args_predict = c(model_path, newdata)
   # Predict
   preds = J(trainAndPredict, "predict", args_predict)
+  if (!is.null(e<-.jgetEx())) stop("Error during prediction!")
   if (cleanup_data & !is.null(data_path)) file.remove(newdata)
   return(preds)
 }
