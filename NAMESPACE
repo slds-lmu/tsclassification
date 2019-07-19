@@ -3,5 +3,6 @@
 export(TSClassifier)
 export(data_to_path)
 export(predict_tsc)
+export(resample_tsc)
 export(train_tsc)
 export(tsc_classifiers)

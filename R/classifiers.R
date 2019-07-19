@@ -157,10 +157,10 @@ predict_tsc = function(newdata, target = NULL, model_path, data_path = NULL, cle
   return(preds)
 }
 
-#' Resample a time-series classifier
+#' Resample a time-series classifier.
+#' Can be used to replicate the benchmark in the Time-Series Classification Bake-Off by Bagnall et al. 2017
+#' Currently prints out the resampling accuracy.
 #'
-#' Set the "java.options" option to use a higher memory
-#' if required (e.g. `"-Xmx2048m"`).
 #' @param data [`character(1)`|`data.frame`] \cr
 #'   Either a path to the dataset or a data.frame that should be saved to disk
 #'   for modeling. In case a `data.frame` is provided, the dataset is saved to disk

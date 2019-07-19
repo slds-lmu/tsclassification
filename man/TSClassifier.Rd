@@ -33,6 +33,7 @@ The target variable's name is assumed to be 'target'.
 Members:
   - train(data, target, par_vals, data_path):   Delegates to [`train_tsc`].
   - predict(newdata):        Delegates to [`predict_tsc`].
+  - resample(data, target, par_vals, data_path):   Delegates to [`resample_tsc`].
   - cleanup(): Remove saved model files.
 
 Class variables:
