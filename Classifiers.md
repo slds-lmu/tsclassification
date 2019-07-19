@@ -3,7 +3,7 @@
 
 |Classifier                                                    |Description                                                                                                        |
 |:-------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------|
-|**FIND NAME HERE**                                            |                                                                                                                   |
+|**Used in Ensembles**                                            |                                                                                                                   |
 |timeseriesweka.classifiers.ensembles.elastic_ensemble.ED1NN   |Euclidian distance with 1 nearest neighbor                                                                         |
 |timeseriesweka.classifiers.ensembles.elastic_ensemble.DTW1NN  |Dynamic time warping with 1 nearest neighbor                                                                       |
 |timeseriesweka.classifiers.ensembles.elastic_ensemble.ERP1NN  |edit distance with real penalty with 1 nearest neighbor                                                            |
