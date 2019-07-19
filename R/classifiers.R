@@ -187,7 +187,6 @@ resample_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_
   trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   # Set up the call to the .jar
   par_vals = par_vals_to_string(par_vals)
-  print(par_vals)
   args_train = c(data, model_path, classifier, "1", par_vals)
   J(trainAndPredict, "train", args_train)
   if (!is.null(e<-.jgetEx())) stop("Error during training!")
