@@ -14,9 +14,9 @@
 #' The target variable's name is assumed to be 'target'.
 #'
 #' Members:
-#'   - train(data, target, par_vals, data_path):   Delegates to [`train_tsc`].
-#'   - predict(newdata):        Delegates to [`predict_tsc`].
-#'   - resample(data, target, par_vals, data_path):   Delegates to [`resample_tsc`].
+#'   - train(data, target, par_vals, data_path): Delegates to [`train_tsc`].
+#'   - predict(newdata): Delegates to [`predict_tsc`].
+#'   - resample(data, target, par_vals, data_path): Delegates to [`resample_tsc`].
 #'   - cleanup(): Remove saved model files.
 #'
 #' Class variables:
@@ -123,7 +123,8 @@ train_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_pat
   trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   # Set up the call to the .jar
   par_vals = par_vals_to_string(par_vals)
-  args_train = c(data, model_path, classifier, "0", par_vals)
+  args_train = c(data, model_path, classifier, "0")
+  if(par_vals != "") args_train = c(args_train, par_vals)
   J(trainAndPredict, "train", args_train)
   if (!is.null(e<-.jgetEx())) stop("Error during training!")
   if (cleanup_data & !is.null(data_path)) file.remove(data)
@@ -187,7 +188,8 @@ resample_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_
   trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   # Set up the call to the .jar
   par_vals = par_vals_to_string(par_vals)
-  args_train = c(data, model_path, classifier, "1", par_vals)
+  args_train = c(data, model_path, classifier, "1")
+  if(par_vals != "") args_train = c(args_train, par_vals)
   J(trainAndPredict, "train", args_train)
   if (!is.null(e<-.jgetEx())) stop("Error during training!")
   if (cleanup_data & !is.null(data_path)) file.remove(data)

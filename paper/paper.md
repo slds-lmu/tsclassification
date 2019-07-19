@@ -19,30 +19,36 @@ affiliations:
  - name: TU Munich
    index: 2
 
-date:
+date: 31.07.2019
 bibliography: paper.bib
 ---
 
 # Summary
-Time series classification problems has extensively studied due to its wide range of applications.
-The release of the UCR [@chen2015ucr] time series archive stimulated the growth of publications proposing time series classification algorithms in this field.
-As a result many different algorithms for time-series data are available.
-Due to the discrepancy of the dataset and different framework where algorithms are implemented, it is difficult to compare different algorithms.
+Time series classification problems arise in many different domains, often as a byproduct of a process.
+As a result, algorithms for time-series classification have been widely studied.
+A prominent example for time-series data are ECG data, where the heart's electrical activity is measured over time.
+Being able to classify ECG curves for example, could help doctors improve their diagnosis.
+
+The release of the UCR time series archive [@chen2015ucr] is often used for the comparison of such algorithms.
+As a result many different well-tested algorithms for such time-series data are available.
+Due to the discrepancy of different framework where algorithms are implemented, it is difficult to compare different algorithms.
 To address these problems, 20 different TSC algorithms were implemented in a common Java framework integrated with the WEKA toolkit [@hallweka] by [@Bagnall2017].
 Based on a a common Java framework, comparison between different algorithms and against standard benchmark classifiers is made feasible.
-
 As [@Bagnall2017] implement many current state-of-the-art algorithms, such as *HIVE*, *HIVE-COTE*, *BOSS* and others, we aim to make these algorithms available to a wider audience, as these methods are currently not available in R, and the comparison between different algorithms is not feasible in R.
 Because of a focus on a reproducible benchmark, no real user-interface for training and testing on datasets is made available.
 We adapt the code base from [@Bagnall2017] in order to enable training and prediction on user-supplied datasets using user-supplied hyperparameters.
+Currently state-of-the art algorithms are only available in Java. The R ecosystem on the other hand already offers several implementations for
+pre-processing and smoothing of functional data, and users might often need the best of both worlds.
 
-The aim of this software is two fold: We aim to make the implementations algorithms available to scientists and users
-requiring access to state-of-the-art algorithms.
+With this software, we aim to make the algorithms available to scientists and users requiring access to state-of-the-art algorithms for time-series classification.
+The software currently focuses on 1-dimensional time-series measured on evenly spaced grids.
+We aim to extend the software, once implementations of multi-dimensional algorithms are made available.
 
-We then interface the Java methods using **rJava** [@urbanek2013rjava] in order to provide an easily accessible interface to the R [@team2013r] computing language. Our package provides train and prediction methods for over 30 time series classification methods including several weka classifiers.
-
+We interface the Java methods using **rJava** [@urbanek2013rjava] in order to provide an easily accessible interface to the R [@team2013r] computing language. Our package provides train and prediction methods for over 30 time series classification methods including several weka classifiers.
 Classifiers can be trained with different hyperparameters by writing datasets to disk and calling the corresponding Java methods.
 Additionally, we provide full documentation for the integrated methods which is not easily available from [@Bagnall2017].
 This enables seamless access from R, and allows users to combine many different methods implemented in R, e.g. for time-series preprocessing with several state-of-the art time-series classifiers.
+
 The software is available at https://github.com/compstat-lmu/TSClassification.
 
 # References
