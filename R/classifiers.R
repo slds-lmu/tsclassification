@@ -16,6 +16,7 @@
 #' Members:
 #'   - train(data, target, par_vals, data_path):   Delegates to [`train_tsc`].
 #'   - predict(newdata):        Delegates to [`predict_tsc`].
+#'   - resample(data, target, par_vals, data_path):   Delegates to [`resample_tsc`].
 #'   - cleanup(): Remove saved model files.
 #'
 #' Class variables:
@@ -71,6 +72,13 @@ TSClassifier = R6::R6Class("TSClassifier",
       p = predict_tsc(newdata, self$target, self$model_path)
       if (!is.null(self$target_levels)) p = factor(p, labels = self$target_levels[unique(p) + 1])
       return(factor(p))
+    },
+    resample = function(data, target = NULL, par_vals = NULL, data_path = NULL) {
+      self$target = target
+      self$par_vals = par_vals
+      if (is.data.frame(data)) self$target_levels = levels(factor(data[[target]]))
+      resample_tsc(data, self$target, self$classifier, self$par_vals, self$model_path)
+      self$trained = TRUE
     },
     print = function() {
       cat("TimeSeries Classifier Object\n")
@@ -147,4 +155,42 @@ predict_tsc = function(newdata, target = NULL, model_path, data_path = NULL, cle
   if (!is.null(e<-.jgetEx())) stop("Error during prediction!")
   if (cleanup_data & !is.null(data_path)) file.remove(newdata)
   return(preds)
+}
+
+#' Resample a time-series classifier
+#'
+#' Set the "java.options" option to use a higher memory
+#' if required (e.g. `"-Xmx2048m"`).
+#' @param data [`character(1)`|`data.frame`] \cr
+#'   Either a path to the dataset or a data.frame that should be saved to disk
+#'   for modeling. In case a `data.frame` is provided, the dataset is saved to disk
+#'   via `data_to_path`.
+#' @param target [`character(1)`] \cr
+#'   Name of the target variable.
+#' @param classifier [`character(1)`] \cr
+#'   Character describing the classifier. See `?tsc_classifiers`.
+#' @param par_vals [`list`] \cr
+#'   (Optional) Hyperparameters for the models. \cr
+#'   See `?tsc_classifiers` for hyperparameters.
+#' @param model_path [`character(1)`] \cr
+#'   Path where the resulting model should be saved to.
+#' @param data_path [`character(1)`] \cr
+#'   Path where train and test data should be saved to. Defaults to a temporary file.
+#' @param cleanup_data [`logical(1)`] \cr
+#'   Should the data be deleted from disk after training / prediction?
+#' @return NULL, Writes a Java instance of TrainAndPredict to `model_path`.
+#' @export
+resample_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_path = NULL,
+  data_path = NULL, cleanup_data = FALSE) {
+  data = data_to_path(data, target, data_path)
+  # Initialize Java
+  trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
+  # Set up the call to the .jar
+  par_vals = par_vals_to_string(par_vals)
+  print(par_vals)
+  args_train = c(data, model_path, classifier, "1", par_vals)
+  J(trainAndPredict, "train", args_train)
+  if (!is.null(e<-.jgetEx())) stop("Error during training!")
+  if (cleanup_data & !is.null(data_path)) file.remove(data)
+  invisible(NULL)
 }
