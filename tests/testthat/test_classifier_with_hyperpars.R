@@ -35,3 +35,15 @@ test_that("TSC can be predicted from file path", {
   p = tsc$predict(test_data)
   expect_factor(p, len = 150L)
 })
+
+# Test resampling
+test_that("TSC can be predicted from file path", {
+  train_data = file.path(system.file("arff", package="tsclassification"), "GunPoint_TRAIN.arff")
+  test_data  = file.path(system.file("arff", package="tsclassification"), "GunPoint_TEST.arff")
+  classifName = "weka.classifiers.trees.J48"
+  tsc = TSClassifier$new(classifName)
+  tsc$resample(train_data)
+  expect_true(tsc$trained)
+  p = tsc$predict(test_data)
+  expect_factor(p, len = 150L)
+})
