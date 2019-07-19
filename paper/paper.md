@@ -37,6 +37,9 @@ We then interface the java methods using **rJava** [4] in order to provide an ea
 Classifiers from [2] can be trained with different hyperparameters by writing datasets to disk and calling the corresponding java methods. Additionally, we provide full documentation for the integrated methods which is not easily available from [2].
 This enables seamless access from R, and allows users to combine many different methods implemented in R, e.g. for time-series preprocessing with several state-of-the art time-series classifiers.
 
+This software is avaliable at https://github.com/compstat-lmu/TSClassification. 
+
+
 
 
 # References
