@@ -19,7 +19,7 @@
 |**Dictionary Based Classifiers**                              |                                                                                                                   |
 |timeseriesweka.classifiers.BagOfPatterns                      |Bag of Patterns                                                                                                    |
 |timeseriesweka.classifiers.SAXVSM                             |Symbolic Aggregate Approximation - Vector Space Model                                                              |
-|timeseriesweka.classifiers.BOSS                               |Bag of SFA Symbols                                                                                                 |`setMaxEnsembleSize`: `integer(1)` range: [1, Inf]
+|timeseriesweka.classifiers.BOSS                               |Bag of SFA Symbols                                                                                                 |`setMaxEnsembleSize`: `integer(1)` range: [1, Inf];<br> `setEnsembleSize`: `integer(1)` range: [1, Inf]
 |Shapelet Based Classifiers                                    |                                                                                                                   |
 |timeseriesweka.classifiers.FastShapelets                      |Fast Shapelets (FS)                                                                                                |
 |timeseriesweka.classifiers.ShapeletTransformClassifier        |Shapelet Transform (ST)                                                                                            |`setTransformType`: character(1)<br>[values: "univariate","uni","shapeletd","shapeleti"];<br>`setNumberOfShapelets`: `integer(1)` range: [1, Inf]
