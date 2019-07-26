@@ -12,7 +12,7 @@ authors:
    affiliation: TU Munich
  - name: Xudong Sun
    orcid:
-   affiliation: TU Munich
+   affiliation: LMU Munich
 affiliations:
  - name: LMU Munich
    index: 1
