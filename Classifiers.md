@@ -3,7 +3,7 @@
 
 |Classifier                                                    |Description   |Hyperparams                                                                                                 |
 |:-------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------:|:-------------:|
-|**Used in Ensembles**                                            |                                                                                                                   |
+|**Used in Ensembles**                                         |                                                                                                                   |
 |timeseriesweka.classifiers.ensembles.elastic_ensemble.ED1NN   |Euclidian distance with 1 nearest neighbor                                                                         |
 |timeseriesweka.classifiers.ensembles.elastic_ensemble.DTW1NN  |Dynamic time warping with 1 nearest neighbor                                                                       |`setWindow`: `double` range: [1, Inf]
 |timeseriesweka.classifiers.ensembles.elastic_ensemble.ERP1NN  |edit distance with real penalty with 1 nearest neighbor                                                            |
@@ -48,11 +48,9 @@
 |**Time Series Classifiers**                                   |                                                                                                                   |
 |timeseriesweka.classifiers.DTW_kNN                            | Specialization of kNN that can only be used with the efficient DTW distance                                       |setMaxR`: `double(1)` range: [0, 1]
 |timeseriesweka.classifiers.FastDTW_1NN                        | This class has option of searching for the optimal window length                                                  | `setR`: `double(1)`
-|timeseriesweka.classifiers.HiveCote                           | The Hierarchical Vote Collective of Transformation-Based Ensembles, include:EE,ST, RISE, BOSS, TSF                                   |
-|timeseriesweka.classifiers.HiveCote23_7_18                          |                                                                                                                   |
 |timeseriesweka.classifiers.RISE                               |                                                                                                                   |
-|timeseriesweka.classifiers.SlowDTW_1NN                        |This classifier does the full 101 parameter searches for window.It is only here for comparison to faster methods                                                   | `setR`: `double(1)`
-                                              |
+|timeseriesweka.classifiers.SlowDTW_1NN                        |This classifier does the full 101 parameter searches for window.It is only here for comparison to faster methods   | `setR`: `double(1)`
+                                              
 
 
 
@@ -62,4 +60,6 @@
 |Classifier                                                    |Description                                                                                                        |
 |:-------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------|
 |timeseriesweka.classifiers.SAX_1NN                            |Symbolic Aggregate Approximation                                                                                   |
-|                                                              |DTW Features (DTWF )                                                                                               |
+|DTW Features (DTWF )                                          |                                                                                                                   |
+|timeseriesweka.classifiers.HiveCote                           |The Hierarchical Vote Collective of Transformation-Based Ensembles, include:EE,ST, RISE, BOSS, TSF                 |  
+||timeseriesweka.classifiers.HiveCote23_7_18                   |                                                                                                                   |
