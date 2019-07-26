@@ -3,10 +3,9 @@
 
 |Classifier                                                    |Description   |Hyperparams                                                                                                 |
 |:-------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------:|:-------------:|
-|**Used in Ensembles**                                         |                                                                                                                   |
+|**Used in Ensembles**                                            |                                                                                                                   |
 |timeseriesweka.classifiers.ensembles.elastic_ensemble.ED1NN   |Euclidian distance with 1 nearest neighbor                                                                         |
-|timeseriesweka.classifiers.ensembles.elastic_ensemble.DTW1NN  |Dynamic time warping with 1 nearest neighbor                                  
-|`setWindow`: `double` range: [1, Inf]                                                                
+|timeseriesweka.classifiers.ensembles.elastic_ensemble.DTW1NN  |Dynamic time warping with 1 nearest neighbor                                                                       |`setWindow`: `double` range: [1, Inf]
 |timeseriesweka.classifiers.ensembles.elastic_ensemble.ERP1NN  |edit distance with real penalty with 1 nearest neighbor                                                            |
 |timeseriesweka.classifiers.ensembles.elastic_ensemble.LCSS1NN |longest common subsequence with 1 nearest neighbour                                                                |
 |**Time Domain Distance Based Classifiers**                    |                                                                                                                   |
