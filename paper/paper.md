@@ -24,16 +24,17 @@ bibliography: paper.bib
 ---
 
 # Summary
-Time series classification problems arise in many different domains, often as a byproduct of a process.
+Time series classification problems arise in many different domains such as speech recognition, medical signal pattern extraction, gesture recognition,etc[@geurts2001pattern], often as a byproduct of a process.
 As a result, algorithms for time-series classification have been widely studied.
 A prominent example for time-series data are ECG data, where the heart's electrical activity is measured over time.
-Being able to classify ECG curves for example, could help doctors improve their diagnosis.
+Being able to classify ECG curves for example, could help doctors improve their diagnosis and certain disease could be early prevented. 
 
 The release of the UCR time series archive [@chen2015ucr] is often used for the comparison of such algorithms.
 As a result many different well-tested algorithms for such time-series data are available.
 Due to the discrepancy of different framework where algorithms are implemented, it is difficult to compare different algorithms.
 To address these problems, 20 different TSC algorithms were implemented in a common Java framework integrated with the WEKA toolkit [@hallweka] by [@Bagnall2017].
-Based on a a common Java framework, comparison between different algorithms and against standard benchmark classifiers is made feasible.
+Based on a common Java framework, comparison between different algorithms and against standard benchmark classifiers is made feasible.
+By comparision, Flat-COTE outperforms all other methods including deep learning method using convelutional neural network by ensemble individual classifiers into a flat hierarchy. Based on the experimental result, HIVE-COTE improved the Flat-COTE by add new components and arrange compunents in a modular hierarchical structure and introduced a probabilistic voting scheme to make the final prediction. Finnaly HIVE-COTE performs more acurate and became a new state-of-art algorithms for TSC[@HIVE-COTE].
 As [@Bagnall2017] implement many current state-of-the-art algorithms, such as *HIVE*, *HIVE-COTE*, *BOSS* and others, we aim to make these algorithms available to a wider audience, as these methods are currently not available in R, and the comparison between different algorithms is not feasible in R.
 Because of a focus on a reproducible benchmark, no real user-interface for training and testing on datasets is made available.
 We adapt the code base from [@Bagnall2017] in order to enable training and prediction on user-supplied datasets using user-supplied hyperparameters.
