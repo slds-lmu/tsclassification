@@ -23,25 +23,24 @@ date: 31.07.2019
 bibliography: paper.bib
 ---
 
+But only few are available for the programming
+language \textbf{R}.
+
 # Summary
-Time series classification problems arise in many different domains such as speech recognition, medical signal pattern extraction, gesture recognition,etc[@geurts2001pattern], often as a byproduct of a process.
-As a result, algorithms for time-series classification have been widely studied.
+Time series classification problems arise in many different domains such as speech recognition, medical signal pattern extraction, gesture recognition [@geurts2001pattern], or in industry often as a byproduct of measuring production processes.
 A prominent example for time-series data are ECG data, where the heart's electrical activity is measured over time.
-Being able to classify ECG curves for example, could help doctors improve their diagnosis and certain disease could be early prevented. 
 
-The release of the UCR time series archive [@chen2015ucr] is often used for the comparison of such algorithms.
-As a result many different well-tested algorithms for such time-series data are available.
-Due to the discrepancy of different framework where algorithms are implemented, it is difficult to compare different algorithms.
-To address these problems, 20 different TSC algorithms were implemented in a common Java framework integrated with the WEKA toolkit [@hallweka] by [@Bagnall2017].
-Based on a common Java framework, comparison between different algorithms and against standard benchmark classifiers is made feasible.
-By comparison, Flat-COTE outperformed all other methods including deep learning method that use the convolutional neural network by ensemble individual classifiers into a flat hierarchy. Based on the experimental result, HIVE-COTE improved the Flat-COTE by adding new components and arranging components in a modular hierarchical structure and introduced a probabilistic voting scheme to make the final prediction. Finally, HIVE-COTE performed more accurate and became a new state-of-art algorithm for TSC[@hivecote].
-As [@Bagnall2017] implement many current state-of-the-art algorithms, such as *HIVE*, *HIVE-COTE*, *BOSS* and others, we aim to make these algorithms available to a wider audience, as these methods are currently not available in R, and the comparison between different algorithms is not feasible in R.
+Due to the widespread application domains, algorithms for time-series classification have been widely studied.
+In order to compare different algorithms, 20 different TSC algorithms were implemented in a common Java framework integrated with the WEKA toolkit [@hallweka] by [@Bagnall2017].
+This makes a comparison between different algorithms feasible.
+In their benchmark [@Bagnall2017] find that several methods, such as *HIVE-COTE* [@hivecote] outperform many other methods including convolutional neural networks.
+
+[@Bagnall2017] implement many current state-of-the-art algorithms, such as *HIVE*, *HIVE-COTE*, *BOSS* and others.
 Because of a focus on a reproducible benchmark, no real user-interface for training and testing on datasets is made available.
-We adapt the code base from [@Bagnall2017] in order to enable training and prediction on user-supplied datasets using user-supplied hyperparameters.
-Currently state-of-the art algorithms are only available in Java. The R ecosystem on the other hand already offers several implementations for
-pre-processing and smoothing of functional data, and users might often need the best of both worlds.
+We aim to make these algorithms available to a wider audience. We adapt the code base from [@Bagnall2017] in order to enable training and prediction on user-supplied datasets using user-supplied hyperparameters.
+Currently state-of-the art algorithms are only available in Java. The R ecosystem on the other hand already offers several implementations for pre-processing, smoothing and imputation of time-series data, and users might often need the best of both worlds.
 
-With this software, we aim to make the algorithms available to scientists and users requiring access to state-of-the-art algorithms for time-series classification.
+With this software, we aim to make algorithms available to scientists and users requiring access to state-of-the-art algorithms for time-series classification.
 The software currently focuses on 1-dimensional time-series measured on evenly spaced grids.
 We aim to extend the software, once implementations of multi-dimensional algorithms are made available.
 
