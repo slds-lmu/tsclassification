@@ -31,9 +31,6 @@ test_that("TSC can be predicted from file path", {
   classifName = "timeseriesweka.classifiers.BOSS"
   tsc = TSClassifier$new(classifName)
   expect_error(tsc$train(train_data, par_vals = list("setMaxEnsembleSize" = "A")), class = "NumberFormatException")
-  expect_true(tsc$trained)
-  p = tsc$predict(test_data)
-  expect_factor(p, len = 150L)
 })
 
 # Test resampling
@@ -43,7 +40,4 @@ test_that("TSC can be predicted from file path", {
   classifName = "weka.classifiers.trees.J48"
   tsc = TSClassifier$new(classifName)
   tsc$resample(train_data)
-  expect_true(tsc$trained)
-  p = tsc$predict(test_data)
-  expect_factor(p, len = 150L)
 })
