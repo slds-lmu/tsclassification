@@ -47,4 +47,11 @@ This enables seamless access from R, and allows users to combine many different 
 
 The software is available at https://github.com/compstat-lmu/TSClassification.
 
+---
+nocite: tsclassif
+---
+
 # References
+
+
+

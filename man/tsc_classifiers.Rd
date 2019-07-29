@@ -85,7 +85,6 @@ Baselearners of ElasticEnsemble: \cr
   Hyperparameters: \cr
   \itemize{
     \item `setMaxEnsembleSize`: `integer(1)` range: [1, Inf]
-    \item `setEnsembleSize`: `integer(1)` range: [1, Inf]
   }
 
 \item `timeseriesweka.classifiers.BagOfPatterns` \cr

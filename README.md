@@ -6,7 +6,7 @@
 A large number of time-series classifiers have been implemented in
 Java for the benchmark study **The Great Time Series Classification Bake Off (Bagnall et al. (2018))**.
 
-The R-package **TSClassification** interfaces an adapted version of implementations provided by Bagnall et al. (2018), 
+The R-package **TSClassification** interfaces an adapted version of implementations provided by Bagnall et al. (2018),
 in order to make implemented algorithms available for general machine learning purposes.
 
 
@@ -34,7 +34,7 @@ We showcase the usage for a simulated data set:
   tsc$train(data[train_set, ])
   tsc$predict(data[!train_set, ])
 ```
-For a more in-depth example, please consult the 
+For a more in-depth example, please consult the
 [vignette](https://github.com/compstat-lmu/TSClassification/blob/master/vignettes/tsc_vignette.Rmd).
 
 ## Currently available classifiers:
@@ -73,6 +73,8 @@ The package currently supports most of the algorithms implemented in the Bakeoff
     - timeseriesweka.classifiers.FlatCote
 
 
+
+## Contribute & Support
 
 ### Contribute to the software
 
