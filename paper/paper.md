@@ -23,9 +23,6 @@ date: 31.07.2019
 bibliography: paper.bib
 ---
 
-But only few are available for the programming
-language \textbf{R}.
-
 # Summary
 Time series classification problems arise in many different domains such as speech recognition, medical signal pattern extraction, gesture recognition [@geurts2001pattern], or in industry often as a byproduct of measuring production processes.
 A prominent example for time-series data are ECG data, where the heart's electrical activity is measured over time.
