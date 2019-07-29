@@ -32,20 +32,19 @@ A prominent example for time-series data are ECG data, where the heart's electri
 
 Due to the widespread application domains, algorithms for time-series classification have been widely studied.
 In order to compare different algorithms, 20 different TSC algorithms were implemented in a common Java framework integrated with the WEKA toolkit [@hallweka] by [@Bagnall2017].
-This makes a comparison between different algorithms feasible.
-In their benchmark [@Bagnall2017] find that several methods, such as *HIVE-COTE* [@hivecote] outperform many other methods including convolutional neural networks.
+This made a benchmark comparison between different algorithms feasible.
+[@Bagnall2017] find that several methods, such as *HIVE-COTE* [@hivecote] outperform many other methods including convolutional neural networks.
 
 [@Bagnall2017] implement many current state-of-the-art algorithms, such as *HIVE*, *HIVE-COTE*, *BOSS* and others.
 Because of a focus on a reproducible benchmark, no real user-interface for training and testing on datasets is made available.
-We aim to make these algorithms available to a wider audience. We adapt the code base from [@Bagnall2017] in order to enable training and prediction on user-supplied datasets using user-supplied hyperparameters.
+We aim to make these algorithms available to a wider audience. We adapt the code base from [@Bagnall2017] in order to enable training and prediction on user-supplied and hyperparameters.
 Currently state-of-the art algorithms are only available in Java. The R ecosystem on the other hand already offers several implementations for pre-processing, smoothing and imputation of time-series data, and users might often need the best of both worlds.
 
-With this software, we aim to make algorithms available to scientists and users requiring access to state-of-the-art algorithms for time-series classification.
+With this software, we aim to make algorithms available to scientists and users requiring access to state-of-the-art algorithms for time-series classification. Users can train over 30 time-series classification methods with specified hyper-parameters and use the learned models to predict on future data. Training is models is available from *data.frames* and *arff* files.
 The software currently focuses on 1-dimensional time-series measured on evenly spaced grids.
 We aim to extend the software, once implementations of multi-dimensional algorithms are made available.
 
-We interface the Java methods using **rJava** [@urbanek2013rjava] in order to provide an easily accessible interface to the R [@team2013r] computing language. Our package provides train and prediction methods for over 30 time series classification methods including several weka classifiers.
-Classifiers can be trained with different hyperparameters by writing datasets to disk and calling the corresponding Java methods.
+We interface the Java methods using **rJava** [@urbanek2013rjava] in order to provide an easily accessible interface to the R [@team2013r] computing language.
 Additionally, we provide full documentation for the integrated methods which is not easily available from [@Bagnall2017].
 This enables seamless access from R, and allows users to combine many different methods implemented in R, e.g. for time-series preprocessing with several state-of-the art time-series classifiers.
 
