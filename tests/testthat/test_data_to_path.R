@@ -30,7 +30,4 @@ test_that("data_to_path", {
   expect_warning(data_to_path(train_data, "target", data_path = file))
   df = farff::readARFF(data_path)
   expect_equal(train_data, df)
-  expect_file_exists(tsc$model_path)
-  tsc$cleanup()
-  expect_true(!file.exists(tsc$model_path))
 })

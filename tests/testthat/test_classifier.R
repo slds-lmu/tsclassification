@@ -213,4 +213,7 @@ test_that("resample works from data.frame", {
   expect_class(tsc, "TSClassifier")
   tsc$resample(dftrain, target = "class")
   expect_true(tsc$trained)
+  expect_file_exists(tsc$model_path)
+  tsc$cleanup()
+  expect_true(!file.exists(tsc$model_path))
 })
