@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/compstat-lmu/TSClassification.svg?branch=master)](https://travis-ci.org/compstat-lmu/TSClassification)
-[![Coverage status](https://codecov.io/gh/compstat-lmu/TSClassification/branch/master/graph/badge.svg)](https://codecov.io/github/compstat-lmu/TSClassification?branch=master)
+[![codecov](https://codecov.io/gh/compstat-lmu/TSClassification/branch/master/graph/badge.svg)](https://codecov.io/gh/compstat-lmu/TSClassification)
 
 # TSClassification
 
