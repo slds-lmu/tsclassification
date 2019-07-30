@@ -131,7 +131,8 @@ TSClassifier = R6::R6Class("TSClassifier",
 #'   data = data.frame(matrix(rnorm(300), nrow = 30))
 #'   data$class = factor(sample(letters[1:2], 10, replace = TRUE))
 #'   model_path = tempfile()
-#'   train_tsc(data, target = "class", classifier = "weka.classifiers.trees.J48", model_path = model_path)
+#'   train_tsc(data, target = "class", classifier = "weka.classifiers.trees.J48",
+#'     model_path = model_path)
 #' @export
 train_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_path = NULL,
   data_path = NULL, cleanup_data = FALSE) {
@@ -172,7 +173,8 @@ train_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_pat
 #'   data = data.frame(matrix(rnorm(300), nrow = 30))
 #'   data$class = factor(sample(letters[1:2], 10, replace = TRUE))
 #'   model_path = tempfile()
-#'   train_tsc(data, target = "class", classifier = "weka.classifiers.trees.J48", model_path = model_path)
+#'   train_tsc(data, target = "class", classifier = "weka.classifiers.trees.J48",
+#'     model_path = model_path)
 #'   predict_tsc(data, target = "class", model_path = model_path)
 #' @export
 predict_tsc = function(newdata, target = NULL, model_path, data_path = NULL, cleanup_data = FALSE) {
