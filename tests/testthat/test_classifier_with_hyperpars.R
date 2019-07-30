@@ -40,4 +40,6 @@ test_that("TSC can be predicted from file path", {
   classifName = "weka.classifiers.trees.J48"
   tsc = TSClassifier$new(classifName)
   tsc$resample(train_data)
+  p = tsc$predict(test_data)
+  expect_factor(p, len = 150L)
 })

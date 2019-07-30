@@ -15,8 +15,12 @@ In the latter case, nothing happens and the file path is only checked for consis
 \item{target}{[`character`] \cr
 Target variable.}
 
-\item{data_path}{[`character`] Path to save data to. If null, a
-temporary file is created.}
+\item{data_path}{[`character`] \cr
+Path to save data to. If NULL, a temporary file is created.}
+
+\item{step}{[`character`] \cr
+Step in the procedure, either "train or "test".
+Some additional steps are performed in case "train".}
 }
 \value{
 The file path

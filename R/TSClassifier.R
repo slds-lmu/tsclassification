@@ -13,26 +13,36 @@
 #' data is saved to '.$model_path' and then read into the JVM from there.
 #' The target variable's name is assumed to be 'target'.
 #'
-#' Members:
-#'   - train(data, target, par_vals, data_path): Delegates to [`train_tsc`].
-#'   - predict(newdata): Delegates to [`predict_tsc`].
-#'   - resample(data, target, par_vals, data_path): Delegates to [`resample_tsc`].
-#'   - cleanup(): Remove saved model files.
+#' @section Methods:
+#'   * new(classifier, model_path): Initialize the class.
+#'   * train(data, target, par_vals, data_path): Delegates to [`train_tsc`].
+#'   * predict(newdata): Delegates to [`predict_tsc`].
+#'   * resample(data, target, par_vals, data_path): Delegates to [`resample_tsc`].
+#'   * cleanup(): Remove saved model files.
 #'
-#' Class variables:
-#'   - classifier: Classifier
-#'   - model_path: Path to the model
-#'   - target: Target variable
-#'   - par_vals: Hyperparamter_values
-#'   - data_path: Save path for the data
-#'   - target_levels: Levels of the target variable, if a data.frame is supplied.
-#'   - trained: Is the model trained?
+#' @section Fields:
+#'   * classifier: [`character(1)`] \cr
+#'     Classifier to use, see `?tsc_classifiers` for a list of available classifiers.
+#'   * target: [`character(1)`] \cr
+#'     Target variable.
+#'   * data: [`character(1)`|`data.frame`] \cr
+#'     Either a path to the dataset or a data.frame that should be saved to disk
+#'     for modeling. In case a `data.frame` is provided, the dataset is saved to disk
+#'     via `data_to_path`.
+#'   * newdata: [`character(1)`|`data.frame`] \cr
+#'     See `data`.
+#'   * par_vals: [`list(1)`] \cr
+#'     Named list of hyperparamter_values.
+#'   * data_path: [`character(1)`] \cr
+#'     Save path for the data.
+#'   * target_levels: [`character(n)`] \cr
+#'     Levels of the target variable, if a data.frame is supplied.
+#'   * model_path: [`character(1)`] \cr
+#'     Path to store the resulting model to. Default `NULL` creates and stores to
+#'     a temporary file.
+#'   * trained: [`logical(1)`] \cr
+#'     Was the model trained?
 #'
-#' @param classifier [`character(1)`] \cr
-#'   Classifier to use, see `?tsc_classifiers` for a list of available classifiers.
-#' @param model_path [`character(1)`] \cr
-#'   Path to store the resulting model to. Default `NULL` creates and stores to
-#'   a temporary file.
 #' @examples
 #'   data = data.frame(matrix(rnorm(300), nrow = 30))
 #'   data$class = factor(sample(letters[1:2], 10, replace = TRUE))
@@ -65,6 +75,7 @@ TSClassifier = R6::R6Class("TSClassifier",
 
       train_tsc(data, self$target, self$classifier, self$par_vals, self$model_path)
       self$trained = TRUE
+      invisible(self)
     },
     predict = function(newdata) {
       if (!self$trained)
@@ -79,6 +90,7 @@ TSClassifier = R6::R6Class("TSClassifier",
       if (is.data.frame(data)) self$target_levels = levels(factor(data[[target]]))
       resample_tsc(data, self$target, self$classifier, self$par_vals, self$model_path)
       self$trained = TRUE
+      invisible(self)
     },
     print = function() {
       cat("TimeSeries Classifier Object\n")
@@ -138,12 +150,15 @@ train_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_pat
 #' @param newdata [`data.frame` | `character`] \cr
 #'   Either a `data.frame` containing
 #'   the data, or a file path to data used for prediction.
+#' @param target [`character(1)`] \cr
+#'   Name of the target variable. Can be `NULL`.
 #' @param model_path [`character(1)`] \cr
 #'   Path where the prediction model should be obtained from.
+#' @param data_path [`character(1)`] \cr
+#'   Path where train and test data should be saved to. Defaults to a temporary file.
 #' @param cleanup_data [`logical(1)`] \cr
 #'   Should newdata be deleted from disk after training?
-#' @return [`factor`] \cr
-#'   Vector of predictions.
+#' @return [`factor`] Vector of predictions.
 #' @export
 predict_tsc = function(newdata, target = NULL, model_path, data_path = NULL, cleanup_data = FALSE) {
   assert_true(file.exists(model_path))

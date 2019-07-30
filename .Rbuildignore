@@ -3,3 +3,5 @@
 ^codecov\.yml$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^doc$
+^Meta$

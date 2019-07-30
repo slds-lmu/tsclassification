@@ -2,19 +2,26 @@
 #'
 #' Saves a data.frame to an arff, so it can be used for the time-series
 #' classifier.
+#'
 #' @param data [`data.frame` | `character`] \cr
 #'   Either a `data.frame` containing the data, or the file path.
 #'   In the latter case, nothing happens and the file path is only checked for consistency.
 #' @param target [`character`] \cr
 #'   Target variable.
-#' @param data_path [`character`] Path to save data to. If null, a
-#'   temporary file is created.
+#' @param data_path [`character`] \cr
+#'  Path to save data to. If NULL, a temporary file is created.
+#' @param step [`character`] \cr
+#'   Step in the procedure, either "train or "test".
+#'   Some additional steps are performed in case "train".
 #' @return The file path
 #' @export
 data_to_path = function(data, target = "target", data_path = NULL, step = "train") {
-  # Data is either a path that poins to the data or a data.frame
+  # Data is either a path that points to the data or a data.frame
   # containing the data.
   assert(check_string(data), check_data_frame(data), combine = "or")
+  assert_choice(step, c("train", "predict"))
+  assert_string(target, null.ok = TRUE)
+  assert_string(data_path, null.ok = TRUE)
 
   if (is.character(data)) {
     data_path = assert_file_exists(data)
@@ -80,6 +87,6 @@ check_classifier = function(classifier) {
   # Allow for substrings
   clf = avail[grepl(tolower(classifier), tolower(avail), fixed = TRUE)]
   if (length(clf) == 0) stop(sprintf("Classifier %s not available!", classifier))
-  if (length(clf) >  2) stop(sprintf("Classifier %s is ambigous! Please supply an unambigous identifier!", classifier))
+  if (length(clf) >= 2) stop(sprintf("Classifier %s is ambigous! Please supply an unambigous identifier!", classifier))
   return(clf)
 }
