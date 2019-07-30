@@ -1,4 +1,4 @@
-[![Travis build status](https://travis-ci.org/compstat-lmu/TSClassification.svg?branch=master)](https://travis-ci.org/compstat-lmu/TSClassification)
+[![Build Status](https://travis-ci.org/compstat-lmu/TSClassification.svg?branch=master)](https://travis-ci.org/compstat-lmu/TSClassification)
 [![Coverage status](https://codecov.io/gh/compstat-lmu/TSClassification/branch/master/graph/badge.svg)](https://codecov.io/github/compstat-lmu/TSClassification?branch=master)
 
 # TSClassification
@@ -35,7 +35,7 @@ We showcase the usage for a simulated data set:
   tsc$predict(data[!train_set, ])
 ```
 For a more in-depth example, please consult the
-[vignette](https://github.com/compstat-lmu/TSClassification/blob/master/vignettes/tsc_vignette.Rmd).
+[vignette](https://github.com/compstat-lmu/TSClassification/blob/master/vignettes/TimeSeriesClassification.Rmd).
 
 ## Currently available classifiers:
 The package currently supports most of the algorithms implemented in the Bakeoff.
