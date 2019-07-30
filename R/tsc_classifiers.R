@@ -51,7 +51,7 @@
 #'
 #' }
 #'
-#' **Differential Distance Based Classifiers** \cr
+#' \textbf{Differential Distance Based Classifiers} \cr
 #' \itemize{
 #'
 #'    \item `timeseriesweka.classifiers.NN_CID` \cr
@@ -68,7 +68,7 @@
 #'
 #' }
 #'
-#' **Dictionary based Classifiers** \cr
+#' \textbf{Dictionary based Classifiers} \cr
 #' \itemize{
 #'   \item `timeseriesweka.classifiers.BOSS` \cr
 #'   Bag of SFA Symbols \cr
@@ -90,7 +90,7 @@
 #'   Hyperparameters: *None* \cr
 #' }
 #'
-#' **Shapelet based Classifiers**
+#' \textbf{Shapelet based Classifiers} \cr
 #' \itemize{
 #'   \item `timeseriesweka.classifiers.ShapeletTransformClassifier` \cr
 #'   Shapelet transformation that separates the shapelet discovery from the classifier by
@@ -112,7 +112,7 @@
 #'
 #' }
 #'
-#' **Interval based Classifiers** \cr
+#' \textbf{Interval based Classifiers} \cr
 #' \itemize{
 #'   \item `timeseriesweka.classifiers.TSF` \cr
 #'   Time Series Forest (Deng et al.,2013) \cr
@@ -133,7 +133,7 @@
 #'   Hyperparameters: *None* \cr
 #' }
 #'
-#' **Time Series Classifier** \cr
+#' \textbf{Time Series Classifier} \cr
 #' \itemize{
 #'   \item `timeseriesweka.classifiers.DTW_kNN` \cr
 #'   specialisation of kNN that can only be used with the efficient DTW distance \cr
@@ -158,7 +158,7 @@
 #' }
 #'
 #'
-#' **Weka Classifiers** \cr
+#' \textbf{Weka Classifiers} \cr
 #' Several WEKA classifiers have been implemented in the Time-Series Classification
 #' Bake-off. \cr
 #' The use of those classifiers is discouraged from within TSClassification,
