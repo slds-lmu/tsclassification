@@ -35,7 +35,7 @@ We showcase the usage for a simulated data set:
   tsc$predict(data[!train_set, ])
 ```
 For a more in-depth example, please consult the
-[vignette](https://github.com/compstat-lmu/TSClassification/blob/master/vignettes/tsc_vignette.Rmd).
+[vignette](https://github.com/compstat-lmu/TSClassification/blob/master/vignettes/TimeSeriesClassification.Rmd).
 
 ## Currently available classifiers:
 The package currently supports most of the algorithms implemented in the Bakeoff.
