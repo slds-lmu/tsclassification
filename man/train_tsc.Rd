@@ -39,3 +39,9 @@ NULL, Writes a Java instance of TrainAndPredict to `model_path`.
 Set the "java.options" option to use a higher memory
 if required (e.g. `"-Xmx2048m"`).
 }
+\examples{
+  data = data.frame(matrix(rnorm(300), nrow = 30))
+  data$class = factor(sample(letters[1:2], 10, replace = TRUE))
+  model_path = tempfile()
+  train_tsc(data, target = "class", classifier = "weka.classifiers.trees.J48", model_path = model_path)
+}

@@ -36,6 +36,9 @@ Should the data be deleted from disk after training / prediction?}
 }
 \value{
 NULL, Writes a Java instance of TrainAndPredict to `model_path`.
+  data = data.frame(matrix(rnorm(300), nrow = 30))
+  data$class = factor(sample(letters[1:2], 10, replace = TRUE))
+  resample_tsc(data, target = "class", classifier = "weka.classifiers.trees.J48")
 }
 \description{
 Resample a time-series classifier.

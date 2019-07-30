@@ -29,3 +29,8 @@ The file path
 Saves a data.frame to an arff, so it can be used for the time-series
 classifier.
 }
+\examples{
+  data = data.frame(matrix(rnorm(300), nrow = 30))
+  data$class = factor(sample(letters[1:2], 10, replace = TRUE))
+  data_to_path(data, target = "class", data_path = tempfile(), step = "train")
+}

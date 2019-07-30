@@ -127,10 +127,18 @@ TSClassifier = R6::R6Class("TSClassifier",
 #' @param cleanup_data [`logical(1)`] \cr
 #'   Should the data be deleted from disk after training / prediction?
 #' @return NULL, Writes a Java instance of TrainAndPredict to `model_path`.
+#' @examples
+#'   data = data.frame(matrix(rnorm(300), nrow = 30))
+#'   data$class = factor(sample(letters[1:2], 10, replace = TRUE))
+#'   model_path = tempfile()
+#'   train_tsc(data, target = "class", classifier = "weka.classifiers.trees.J48", model_path = model_path)
 #' @export
 train_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_path = NULL,
   data_path = NULL, cleanup_data = FALSE) {
   data = data_to_path(data, target, data_path)
+  classifier = check_classifier(classifier)
+  assert_string(model_path)
+  assert_flag(cleanup_data)
   # Initialize Java
   trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   # Set up the call to the .jar
@@ -138,6 +146,7 @@ train_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_pat
   args_train = c(data, model_path, classifier, "0")
   if(par_vals != "") args_train = c(args_train, par_vals)
   J(trainAndPredict, "train", args_train)
+  # Handle errors and clean up
   if (!is.null(e<-.jgetEx())) stop("Error during training!")
   if (cleanup_data & !is.null(data_path)) file.remove(data)
   invisible(NULL)
@@ -159,11 +168,18 @@ train_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_pat
 #' @param cleanup_data [`logical(1)`] \cr
 #'   Should newdata be deleted from disk after training?
 #' @return [`factor`] Vector of predictions.
+#' @examples
+#'   data = data.frame(matrix(rnorm(300), nrow = 30))
+#'   data$class = factor(sample(letters[1:2], 10, replace = TRUE))
+#'   model_path = tempfile()
+#'   train_tsc(data, target = "class", classifier = "weka.classifiers.trees.J48", model_path = model_path)
+#'   predict_tsc(data, target = "class", model_path = model_path)
 #' @export
 predict_tsc = function(newdata, target = NULL, model_path, data_path = NULL, cleanup_data = FALSE) {
-  assert_true(file.exists(model_path))
   # Save newdata in case
   newdata = data_to_path(newdata, target, data_path, step = "predict")
+  assert_file_exists(model_path)
+  assert_flag(cleanup_data)
   trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   args_predict = c(model_path, newdata)
   # Predict
@@ -195,10 +211,14 @@ predict_tsc = function(newdata, target = NULL, model_path, data_path = NULL, cle
 #' @param cleanup_data [`logical(1)`] \cr
 #'   Should the data be deleted from disk after training / prediction?
 #' @return NULL, Writes a Java instance of TrainAndPredict to `model_path`.
+#'   data = data.frame(matrix(rnorm(300), nrow = 30))
+#'   data$class = factor(sample(letters[1:2], 10, replace = TRUE))
+#'   resample_tsc(data, target = "class", classifier = "weka.classifiers.trees.J48")
 #' @export
 resample_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_path = NULL,
   data_path = NULL, cleanup_data = FALSE) {
   data = data_to_path(data, target, data_path)
+  classifier = check_classifier(classifier)
   # Initialize Java
   trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   # Set up the call to the .jar

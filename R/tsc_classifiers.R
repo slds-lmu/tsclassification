@@ -1,36 +1,36 @@
 #' Return available classifiers
 #'
 #' Run `tsc_classifiers()` to obtain available classifiers.
-#'
 #' The following classifiers are available: \cr
-#' **Ensemble Classifiers**
+#'
+#' @section Ensemble Classifiers
 #' \itemize{
 #'
 #'   \item `timeseriesweka.classifiers.ElasticEnsemble` \cr
-#'    Combination of nearest neighbour (NN) classifiers that use elastic distance measures \cr
+#'    Combination of nearest Neighbour (NN) classifiers that use elastic distance measures \cr
 #'    Hyperparameters: *None*
 #'
 #'   \item `timeseriesweka.classifiers.FlatCote` \cr
 #'    Collective of Transformation Ensembles (Bagnall et al.,2015) \cr
 #'    Hyperparameters: *None*
 #'
-#'   Baselearners of ElasticEnsemble: \cr
+#'   Base-learners of ElasticEnsemble: \cr
 #'
-#'     `timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN` \cr
+#'    \item `timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN` \cr
 #'     Elastic Ensemble of Nearest Neighbour Algorithms: \cr
-#'     Weighted Dynamic Time Warping 1 Neares Neighbour \cr
+#'     Weighted Dynamic Time Warping 1 Nearest Neighbour \cr
 #'     Hyperparameters: *None*
 #'
 #'    \item `timeseriesweka.classifiers.ensembles.elastic_ensemble.ED1NN` \cr
-#'    Euclidian distance with 1 nearest neighbor \cr
+#'    Euclidean distance with 1 nearest neighbor \cr
 #'    Hyperparameters: *None*
 #'
 #'    \item `timeseriesweka.classifiers.ensembles.elastic_ensemble.DTW1NN` \cr
 #'    Dynamic time warping with 1 nearest neighbor \cr
 #'    Hyperparameters: \cr
-#'    \itemize{
-#'    \item `setWindow`: `double` range: [1, Inf]
-#'    }
+#'          \itemize{
+#'          \item `setWindow`: `double` range: [1, Inf]
+#'          }
 #'
 #'    \item `timeseriesweka.classifiers.ensembles.elastic_ensemble.ERP1NN` \cr
 #'    edit distance with real penalty with 1 nearest neighbor \cr
@@ -51,7 +51,7 @@
 #'
 #' }
 #'
-#' \textbf{Differential Distance Based Classifiers} \cr
+#' @section Differential Distance Based Classifiers
 #' \itemize{
 #'
 #'    \item `timeseriesweka.classifiers.NN_CID` \cr
@@ -68,7 +68,7 @@
 #'
 #' }
 #'
-#' \textbf{Dictionary based Classifiers} \cr
+#' @section Dictionary based Classifiers
 #' \itemize{
 #'   \item `timeseriesweka.classifiers.BOSS` \cr
 #'   Bag of SFA Symbols \cr
@@ -90,11 +90,11 @@
 #'   Hyperparameters: *None* \cr
 #' }
 #'
-#' \textbf{Shapelet based Classifiers} \cr
+#' @section Shapelet based Classifiers
 #' \itemize{
 #'   \item `timeseriesweka.classifiers.ShapeletTransformClassifier` \cr
-#'   Shapelet transformation that separates the shapelet discovery from the classifier by
-#'   finding the top k shapelets in a single run \cr
+#'   Shapelet transformation that separates the Shapelet discovery from the classifier by
+#'   finding the top k Shapelets in a single run \cr
 #'   Hyperparameters:
 #'   \itemize{
 #'     \item `setTransformType`: character(1) \cr
@@ -112,7 +112,7 @@
 #'
 #' }
 #'
-#' \textbf{Interval based Classifiers} \cr
+#' @section Interval based Classifiers
 #' \itemize{
 #'   \item `timeseriesweka.classifiers.TSF` \cr
 #'   Time Series Forest (Deng et al.,2013) \cr
@@ -133,10 +133,10 @@
 #'   Hyperparameters: *None* \cr
 #' }
 #'
-#' \textbf{Time Series Classifier} \cr
+#' @section Time Series Classifier
 #' \itemize{
 #'   \item `timeseriesweka.classifiers.DTW_kNN` \cr
-#'   specialisation of kNN that can only be used with the efficient DTW distance \cr
+#'   specialization of kNN that can only be used with the efficient DTW distance \cr
 #'   Hyperparameters: \cr
 #'   \itemize{
 #'     \item `setMaxR`: `double(1)` range: [0, 1] set max window size
@@ -158,7 +158,7 @@
 #' }
 #'
 #'
-#' \textbf{Weka Classifiers} \cr
+#' @section Weka Classifiers
 #' Several WEKA classifiers have been implemented in the Time-Series Classification
 #' Bake-off. \cr
 #' The use of those classifiers is discouraged from within TSClassification,
@@ -177,7 +177,8 @@
 #'   \item weka.classifiers.trees.RandomForest
 #' }
 #'
-#' @return [`character`]
+#' @return [`character`] Names of available classifiers.
+#' @example tsc_classifiers()
 #' @export
 tsc_classifiers = function() {
     c(

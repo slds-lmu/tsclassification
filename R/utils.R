@@ -14,6 +14,10 @@
 #'   Step in the procedure, either "train or "test".
 #'   Some additional steps are performed in case "train".
 #' @return The file path
+#' @examples
+#'   data = data.frame(matrix(rnorm(300), nrow = 30))
+#'   data$class = factor(sample(letters[1:2], 10, replace = TRUE))
+#'   data_to_path(data, target = "class", data_path = tempfile(), step = "train")
 #' @export
 data_to_path = function(data, target = "target", data_path = NULL, step = "train") {
   # Data is either a path that points to the data or a data.frame
