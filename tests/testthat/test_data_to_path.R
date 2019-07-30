@@ -19,3 +19,18 @@ test_that("Training on data.frame's works ", {
   expect_silent(tsc$train(train_data, target = "target"))
   expect_factor(tsc$predict(train_data))
 })
+
+
+test_that("data_to_path", {
+  train_data = data.frame(matrix(rnorm(100), nrow = 10))
+  train_data$target = as.factor(sample(c(1, 0), 10, replace = TRUE))
+  file = tempfile()
+  data_path = data_to_path(train_data, "target", data_path = file)
+  expect_file_exists(data_path)
+  expect_warning(data_to_path(train_data, "target", data_path = file))
+  df = farff::readARFF(data_path)
+  expect_equal(train_data, df)
+  expect_file_exists(tsc$model_path)
+  tsc$cleanup()
+  expect_true(!file.exists(tsc$model_path))
+})

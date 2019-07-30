@@ -20,6 +20,7 @@ test_that("TSC can be predicted from file path", {
   test_data  = file.path(system.file("arff", package="tsclassification"), "GunPoint_TEST.arff")
   classifName = "weka.classifiers.trees.J48"
   tsc = TSClassifier$new(classifName)
+  expect_error(tsc$predict(test_data))
   tsc$train(train_data)
   expect_true(tsc$trained)
   p = tsc$predict(test_data)
@@ -199,3 +200,17 @@ test_that("TSC predict works in several arcane cases", {
 })
 
 
+
+
+test_that("resample works from data.frame", {
+  set.seed(3)
+  m = matrix(rnorm(300), nrow = 30, ncol = 10)
+  y = as.integer(apply(m, 1, mean) > 0)
+  dftrain = data.frame(m[1:15, ], "class" = y[1:15])
+  dftest = data.frame(m[16:30, ], "class" = y[16:30])
+  classifName = "ElasticEnsemble"
+  tsc = TSClassifier$new(classifName)
+  expect_class(tsc, "TSClassifier")
+  tsc$resample(dftrain, target = "class")
+  expect_true(tsc$trained)
+})
