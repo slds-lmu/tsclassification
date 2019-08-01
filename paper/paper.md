@@ -5,7 +5,7 @@ tags:
   - Functional Data
 authors:
  - name: Florian Pfisterer
-   orcid:
+   orcid: 0000-0001-8867-762X
    affiliation: LMU Munich
  - name: Yu Wang
    orcid:

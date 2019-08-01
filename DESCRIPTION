@@ -1,7 +1,7 @@
 Package: tsclassification
 Type: Package
 Title: Interface to various time series classifiers from the "The Great Time Series Classification Bake Off"
-Version: 0.1.0
+Version: 0.1.1
 Authors@R:
     c(
         person(
