@@ -1,26 +1,28 @@
 ---
 title: 'Time Series Classification in R'
-tags:
-  - Time Series Classification
-  - Functional Data
+
 authors:
  - name: Florian Pfisterer
    orcid: 0000-0001-8867-762X
-   affiliation: LMU Munich
+   affiliation: 1
  - name: Yu Wang
    orcid:
-   affiliation: TU Munich
+   affiliation: 2
  - name: Xudong Sun
    orcid:
-   affiliation: LMU Munich
+   affiliation: 1
 affiliations:
- - name: LMU Munich
+ - name: Department of Statistics, LMU Munich
    index: 1
  - name: TU Munich
    index: 2
-
 date: 31.07.2019
 bibliography: paper.bib
+output: pdf_document
+tags:
+- R
+- Time Series Classification
+- Functional Data
 ---
 
 # Summary
@@ -40,6 +42,7 @@ Currently state-of-the art algorithms are only available in Java.
 The R ecosystem on the other hand already offers several implementations for pre-processing, smoothing and imputation of time-series data, and users might often need the best of both worlds.
 
 With this software, we aim to make algorithms available to scientists and users requiring access to state-of-the-art algorithms for time-series classification.
+A benchmark of the software can be obtained from the [Time Series Classification Repository](http://timeseriesclassification.com/).
 Users can train over 30 time-series classification methods with specified hyper-parameters and use the learned models to predict on future data.
 Training models is made possible from *data.frames* and *arff* files.
 The software currently focuses on 1-dimensional time-series measured on evenly spaced grids.
