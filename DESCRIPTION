@@ -18,7 +18,7 @@ Authors@R:
         person(given = "Xudong",
             family = "Sun",
             role = "aut",
-            email = "xudong@sun.com"))
+            email = "smilesun.east@gmail.com"))
 Description:
     A package that exposes many state-of-the-art classifiers for time-series classification.
     A large number of time-series classifiers have been implemented in
