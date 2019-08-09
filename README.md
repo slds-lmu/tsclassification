@@ -86,4 +86,4 @@ If you encounter errors with the software or require assistance, contact us on [
 
 ### Java refactoring
 
-The code for the `.jar` file underlying `TSClassification` can be obtained from the [tsc4R repository](https://github.com/smilesun/tsc4R). We aim to track changes made by the authors of the TimeSeries Classification Bakeoff there.
+The code for the `.jar` file underlying `TSClassification` can be obtained from the [jTSC4R repository](https://github.com/compstat-lmu/jTSC4R). We aim to track changes made by the authors of the TimeSeries Classification Bakeoff there.
