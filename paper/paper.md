@@ -41,18 +41,17 @@ In order to achieve this, we adapt the code base from [@Bagnall2017] in order to
 Currently state-of-the art algorithms are only available in Java.
 The R ecosystem on the other hand already offers several implementations for pre-processing, smoothing and imputation of time-series data, and users might often need the best of both worlds.
 
-With this software, we aim to make algorithms available to scientists and users requiring access to state-of-the-art algorithms for time-series classification.
-A benchmark of the software can be obtained from the [Time Series Classification Repository](http://timeseriesclassification.com/).
+With this software, we aim to make state-of-the-art algorithms for time-series classification available to scientists and users. A benchmark of the software can be obtained from the [Time Series Classification Repository](http://timeseriesclassification.com/).
 Users can train over 30 time-series classification methods with specified hyper-parameters and use the learned models to predict on future data.
-Training models is made possible from *data.frames* and *arff* files.
+Training models is made possible from *data.frames* as well as *arff* files.
 The software currently focuses on 1-dimensional time-series measured on evenly spaced grids.
 We aim to extend the software, once implementations of multi-dimensional algorithms are available.
 
 We interface the Java methods using **rJava** [@urbanek2013rjava] in order to provide an easily accessible interface to the R computing language.
 Additionally, we provide documentation for the integrated methods which is not easily available from [@Bagnall2017].
-This enables seamless access from R, and allows users to combine many different methods implemented in R, e.g. for time-series preprocessing with several state-of-the art time-series classifiers.
+Our software enables seamless access to the Time Series Classificaiton algroithms implemented in Java from R, and allows users to combine many different methods implemented in R, e.g. for time-series preprocessing with several state-of-the art time-series classifiers.
 
-The software is available at [](https://github.com/compstat-lmu/TSClassification).
+The software is available at [TSClassification](https://github.com/compstat-lmu/TSClassification).
 
 ---
 nocite: tsclassif
