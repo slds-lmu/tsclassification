@@ -34,6 +34,7 @@ Predicts `newdata` using the model obtained during training.
   data = data.frame(matrix(rnorm(300), nrow = 30))
   data$class = factor(sample(letters[1:2], 10, replace = TRUE))
   model_path = tempfile()
-  train_tsc(data, target = "class", classifier = "weka.classifiers.trees.J48", model_path = model_path)
+  train_tsc(data, target = "class", classifier = "weka.classifiers.trees.J48",
+    model_path = model_path)
   predict_tsc(data, target = "class", model_path = model_path)
 }

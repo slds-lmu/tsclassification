@@ -63,7 +63,7 @@ TSClassifier = R6::R6Class("TSClassifier",
     initialize = function(classifier, model_path = NULL) {
       self$classifier = check_classifier(classifier)
       if (is.null(model_path))
-        model_path = tempfile(pattern = "tsc_model", fileext = ".txt")
+        model_path = tempfile(pattern = "tsc_model_", fileext = ".txt")
       self$model_path = assert_path_for_output(model_path)
       .jaddLibrary('TimeSeriesClassification', "inst/java/TimeSeriesClassification.jar")
       .jaddClassPath("inst/java/TimeSeriesClassification.jar")
@@ -215,12 +215,13 @@ predict_tsc = function(newdata, target = NULL, model_path, data_path = NULL, cle
 #' @return NULL, Writes a Java instance of TrainAndPredict to `model_path`.
 #'   data = data.frame(matrix(rnorm(300), nrow = 30))
 #'   data$class = factor(sample(letters[1:2], 10, replace = TRUE))
-#'   resample_tsc(data, target = "class", classifier = "weka.classifiers.trees.J48")
+#'   resample_tsc(data, target = "class", classifier = "weka.classifiers.trees.J48", model_path = tempfile())
 #' @export
 resample_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_path = NULL,
   data_path = NULL, cleanup_data = FALSE) {
   data = data_to_path(data, target, data_path)
   classifier = check_classifier(classifier)
+  assert_path_for_output(model_path)
   # Initialize Java
   trainAndPredict = .jnew("timeseries_classification.TrainAndPredict")
   # Set up the call to the .jar
