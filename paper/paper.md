@@ -6,7 +6,7 @@ authors:
    orcid: 0000-0001-8867-762X
    affiliation: 1
  - name: Yu Wang
-   orcid:
+   orcid: 0000-0002-8319-2997
    affiliation: 2
  - name: Xudong Sun
    orcid:
