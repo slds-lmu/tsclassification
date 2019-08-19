@@ -43,3 +43,14 @@ test_that("TSC can be predicted from file path", {
   p = tsc$predict(test_data)
   expect_factor(p, len = 150L)
 })
+
+
+#' Resample BOSS
+#' timeseriesweka.classifiers.BOSS with setMaxEnsembleSize
+test_that("TSC can be predicted from file path", {
+  train_data = file.path(system.file("arff", package="tsclassification"), "GunPoint_TRAIN.arff")
+  classifName = "timeseriesweka.classifiers.BOSS"
+  tsc = TSClassifier$new(classifName)
+  tsc$resample(train_data, par_vals = list("setMaxEnsembleSize" = 1))
+  expect_true(tsc$trained)
+})
