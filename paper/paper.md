@@ -38,7 +38,7 @@ They find that several methods, such as *HIVE-COTE* [@hivecote] outperform many 
 Because of a focus on a reproducible benchmark, no real user-interface for training and testing on datasets is made available.
 We aim to make these algorithms available to a wider audience.
 In order to achieve this, we adapt the code base from [@Bagnall2017] in order to enable training and prediction on user-supplied data and hyperparameters.
-Currently state-of-the art algorithms are only available in Java.
+Currently, state-of-the art algorithms are only available in Java.
 The R ecosystem on the other hand already offers several implementations for pre-processing, smoothing and imputation of time-series data, and users might often need the best of both worlds.
 
 With this software, we aim to make state-of-the-art algorithms for time-series classification available to scientists and users. A benchmark of the software can be obtained from the [Time Series Classification Repository](http://timeseriesclassification.com/).
