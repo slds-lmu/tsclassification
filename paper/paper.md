@@ -9,7 +9,7 @@ authors:
    orcid: 0000-0002-8319-2997
    affiliation: 2
  - name: Xudong Sun
-   orcid:
+   orcid: 0000-0001-9234-4932
    affiliation: 1
 affiliations:
  - name: Department of Statistics, LMU Munich
