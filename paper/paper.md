@@ -52,7 +52,7 @@ We interface the Java methods using **rJava** [@urbanek2013rjava] in order to pr
 Additionally, we provide documentation for the integrated methods which is not easily available from [@Bagnall2017].
 Our software enables seamless access to the Time Series Classification algorithms implemented in Java from R, and allows users to combine many different methods implemented in R, e.g. for time-series preprocessing with several state-of-the-art time-series classifiers.
 
-The software is available at [TSClassification](https://github.com/compstat-lmu/TSClassification).
+The software is available at [TSClassification](https://github.com/compstat-lmu/TSClassification), with its Java source code at [jTSC4R repository](https://github.com/compstat-lmu/jTSC4R).
 
 ---
 nocite: tsclassif
