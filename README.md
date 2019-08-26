@@ -6,7 +6,7 @@
 A large number of time-series classifiers have been implemented in
 Java for the benchmark study **The Great Time Series Classification Bake Off (Bagnall et al. (2018))**.
 
-The R-package **TSClassification** interfaces an adapted version of implementations provided by Bagnall et al. (2018),
+The R-package **tsclassification** interfaces an adapted version of implementations provided by Bagnall et al. (2018),
 in order to make implemented algorithms available for general machine learning purposes.
 
 
@@ -19,6 +19,10 @@ devtools::install_github("compstat-lmu/TSClassification")
 ```
 
 ## Usage
+Note that our package name is in lowercase letters.
+```r
+library(tsclassification)
+```
 
 We showcase the usage for a simulated data set:
 ```r
