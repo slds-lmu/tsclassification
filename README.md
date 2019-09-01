@@ -35,7 +35,7 @@ We showcase the usage for a simulated data set:
   # Instantiate the model
   tsc = TSClassifier$new("weka.classifiers.meta.RotationForest")
   # Call train and predict function on the different data splits
-  tsc$train(data[train_set, ])
+  tsc$train(data[train_set, ],target = "target")
   tsc$predict(data[!train_set, ])
 ```
 For a more in-depth example, please consult the
