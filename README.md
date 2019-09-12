@@ -15,7 +15,7 @@ in order to make implemented algorithms available for general machine learning p
 The package can be installed from Github via
 
 ```r
-devtools::install_github("compstat-lmu/TSClassification")
+devtools::install_github("compstat-lmu/tsclassification")
 ```
 
 ## Usage
