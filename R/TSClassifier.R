@@ -31,7 +31,7 @@
 #'     via `data_to_path`.
 #'   * newdata: [`character(1)`] | [`data.frame`] \cr
 #'     Data to predict on. See `data`.
-#'   * par_vals: [`list(1)`] \cr
+#'   * par_vals: [`list`] \cr
 #'     Named list of hyperparamter_values.
 #'   * data_path: [`character(1)`] \cr
 #'     Save path for the data.
@@ -213,6 +213,7 @@ predict_tsc = function(newdata, target = NULL, model_path, data_path = NULL, cle
 #' @param cleanup_data [`logical(1)`] \cr
 #'   Should the data be deleted from disk after training / prediction?
 #' @return NULL, Writes a Java instance of TrainAndPredict to `model_path`.
+#' @examples
 #'   data = data.frame(matrix(rnorm(300), nrow = 30))
 #'   data$class = factor(sample(letters[1:2], 10, replace = TRUE))
 #'   resample_tsc(data, target = "class", classifier = "weka.classifiers.trees.J48", model_path = tempfile())

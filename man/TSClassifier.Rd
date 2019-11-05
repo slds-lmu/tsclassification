@@ -46,7 +46,7 @@ for modeling. In case a \code{data.frame} is provided, the dataset is saved to d
 via \code{data_to_path}.
 \item newdata: \code{\link{character(1)}} | \code{\link{data.frame}} \cr
 Data to predict on. See \code{data}.
-\item par_vals: \code{\link{list(1)}} \cr
+\item par_vals: \code{\link{list}} \cr
 Named list of hyperparamter_values.
 \item data_path: \code{\link{character(1)}} \cr
 Save path for the data.

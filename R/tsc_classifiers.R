@@ -31,7 +31,7 @@
 #'    Dynamic time warping with 1 nearest neighbor \cr
 #'    Hyperparameters: \cr
 #'          \itemize{
-#'          \item `setWindow`: `double` range: [1, Inf]
+#'          \item `setWindow`: `double` range: \[1, Inf\]
 #'          }
 #'
 #'    \item `timeseriesweka.classifiers.ensembles.elastic_ensemble.ERP1NN` \cr
@@ -101,7 +101,7 @@
 #'   \itemize{
 #'     \item `setTransformType`: character(1) \cr
 #'       values: "univariate","uni","shapeletd","shapeleti"
-#'     \item `setNumberOfShapelets`: `integer(1)` range: [1, Inf]
+#'     \item `setNumberOfShapelets`: `integer(1)` range: \[1, Inf\]
 #'   }
 #'
 #'   \item `timeseriesweka.classifiers.FastShapelets` \cr
@@ -120,7 +120,7 @@
 #'   Time Series Forest (Deng et al.,2013) \cr
 #'   Hyperparameters: \cr
 #'   \itemize{
-#'     \item `setNumTrees`: `integer(1)` range: [1, Inf]
+#'     \item `setNumTrees`: `integer(1)` range: \[1, Inf\]
 #'   }
 #'
 #'   \item `timeseriesweka.classifiers.TSBF` \cr
@@ -141,7 +141,7 @@
 #'   specialization of kNN that can only be used with the efficient DTW distance \cr
 #'   Hyperparameters: \cr
 #'   \itemize{
-#'     \item `setMaxR`: `double(1)` range: [0, 1] set max window size
+#'     \item `setMaxR`: `double(1)` range: \[0, 1\] set max window size
 #'   }
 #'
 #'   \item `timeseriesweka.classifiers.FastDTW_1NN` \cr
