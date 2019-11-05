@@ -4,7 +4,7 @@
 # TSClassification
 
 A large number of time-series classifiers have been implemented in
-Java for the benchmark study **The Great Time Series Classification Bake Off (Bagnall et al. (2018))**.
+Java for the benchmark study [**The Great Time Series Classification Bake Off (Bagnall et al. (2018))**](http://timeseriesclassification.com/).
 
 The R-package **TSClassification** interfaces an adapted version of implementations provided by Bagnall et al. (2018),
 in order to make implemented algorithms available for general machine learning purposes.
@@ -20,12 +20,21 @@ devtools::install_github("compstat-lmu/TSClassification")
 
 ## Usage
 
-We showcase the usage for a simulated data set:
+We showcase the usage for a simulated data set.
+
+First we generate some artificial data:
+
 ```r
   data = data.frame(matrix(rnorm(500), nrow = 100))
   data$target = sample(c(1, 0), 100, replace = TRUE)
   train_set = sample(c(TRUE, FALSE), 100, replace = TRUE)
 ```
+
+**Training a model:**
+Then we train a `RotationForest` model.
+The API is similar to python's `scikit-learn` API.
+It offers a `train()` method, that trains a model, and a `predict()` method that uses the trained
+model in order to predict future, unseen data.
 
 ```r
   # Instantiate the model
@@ -37,8 +46,10 @@ We showcase the usage for a simulated data set:
 For a more in-depth example, please consult the
 [vignette](https://github.com/compstat-lmu/TSClassification/blob/master/vignettes/TimeSeriesClassification.Rmd).
 
+---
+
 ## Currently available classifiers:
-The package currently supports most of the algorithms implemented in the Bakeoff.
+The package currently supports most of the algorithms implemented in the Bake-Off.
 
 
 - **Time Domain Distance Based Classifiers**
@@ -73,8 +84,11 @@ The package currently supports most of the algorithms implemented in the Bakeoff
     - timeseriesweka.classifiers.FlatCote
 
 
+---
 
 ## Contribute & Support
+
+We appreciate bug-reports and contributions! Feel free to contact us if any questions arise!
 
 ### Contribute to the software
 

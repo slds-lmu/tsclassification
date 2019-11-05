@@ -8,27 +8,27 @@ predict_tsc(newdata, target = NULL, model_path, data_path = NULL,
   cleanup_data = FALSE)
 }
 \arguments{
-\item{newdata}{[`data.frame` | `character`] \cr
-Either a `data.frame` containing
+\item{newdata}{\link[=`data.frame` | `character`]{data.frame | character} \cr
+Either a \code{data.frame} containing
 the data, or a file path to data used for prediction.}
 
-\item{target}{[`character(1)`] \cr
-Name of the target variable. Can be `NULL`.}
+\item{target}{\code{\link{character(1)}} \cr
+Name of the target variable. Can be \code{NULL}.}
 
-\item{model_path}{[`character(1)`] \cr
+\item{model_path}{\code{\link{character(1)}} \cr
 Path where the prediction model should be obtained from.}
 
-\item{data_path}{[`character(1)`] \cr
+\item{data_path}{\code{\link{character(1)}} \cr
 Path where train and test data should be saved to. Defaults to a temporary file.}
 
-\item{cleanup_data}{[`logical(1)`] \cr
+\item{cleanup_data}{\code{\link{logical(1)}} \cr
 Should newdata be deleted from disk after training?}
 }
 \value{
-[`factor`] Vector of predictions.
+\code{\link{factor}} Vector of predictions.
 }
 \description{
-Predicts `newdata` using the model obtained during training.
+Predicts \code{newdata} using the model obtained during training.
 }
 \examples{
   data = data.frame(matrix(rnorm(300), nrow = 30))

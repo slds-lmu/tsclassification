@@ -9,11 +9,11 @@ of the classifier.}
 check_classifier(classifier)
 }
 \arguments{
-\item{classifier}{[`character`] \cr
+\item{classifier}{\code{\link{character}} \cr
 Classifier from tsc_classifiers() or short identifier (substring).}
 }
 \value{
-[`character`]
+\code{\link{character}}
 }
 \description{
 Check whether classifier name is valid. (Case-insensitive)

@@ -8,17 +8,17 @@ data_to_path(data, target = "target", data_path = NULL,
   step = "train")
 }
 \arguments{
-\item{data}{[`data.frame` | `character`] \cr
-Either a `data.frame` containing the data, or the file path.
+\item{data}{\link[=`data.frame` | `character`]{data.frame | character} \cr
+Either a \code{data.frame} containing the data, or the file path.
 In the latter case, nothing happens and the file path is only checked for consistency.}
 
-\item{target}{[`character`] \cr
+\item{target}{\code{\link{character}} \cr
 Target variable.}
 
-\item{data_path}{[`character`] \cr
+\item{data_path}{\code{\link{character}} \cr
 Path to save data to. If NULL, a temporary file is created.}
 
-\item{step}{[`character`] \cr
+\item{step}{\code{\link{character}} \cr
 Step in the procedure, either "train or "test".
 Some additional steps are performed in case "train".}
 }

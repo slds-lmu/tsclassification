@@ -53,21 +53,21 @@ data_to_path = function(data, target = "target", data_path = NULL, step = "train
   return(data_path)
 }
 
-#' Delete a file.
-#'
-#' @param data_path [`character`] Path to save data to. If null, a
-#'   temporary file is created.
-#' @return NULL
+# Delete a file.
+#
+# @param data_path [`character`] Path to save data to. If null, a
+#   temporary file is created.
+# @return NULL
 delete_data_from_path = function(data_path) {
   file.remove(data_path)
 }
 
-#' Flatten a list of parameter values to a single string
-#'
-#' Transforms e.g. `list(a = "5")` to a string "a = 5".
-#' Multiple elements are concatenated using a ','.
-#' @param par_vals [`list`] Parameter values.
-#' @return [`character`]
+# Flatten a list of parameter values to a single string
+#
+# Transforms e.g. `list(a = "5")` to a string "a = 5".
+# Multiple elements are concatenated using a ','.
+# @param par_vals [`list`] Parameter values.
+# @return [`character`]
 par_vals_to_string = function(par_vals) {
   assert_list(par_vals, null.ok = TRUE, names = "named")
   if (length(par_vals) == 0) {
@@ -86,6 +86,8 @@ par_vals_to_string = function(par_vals) {
 #' @param classifier [`character`] \cr
 #'   Classifier from tsc_classifiers() or short identifier (substring).
 #' @return [`character`]
+#' @example
+#' check_classifier("J48")
 check_classifier = function(classifier) {
   avail = tsc_classifiers()
   # Allow for substrings

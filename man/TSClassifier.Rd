@@ -10,50 +10,54 @@ TSClassifier
 }
 \description{
 Allows training and predicting on time-series classification data.
-Internally writes the data to an `.arff` file and reads it from
+Internally writes the data to an \code{.arff} file and reads it from
 the command line in the Java Virtual Machine.
 In some cases, the memory of the JVM is not sufficient.
 In this case, the memory for the JVM can be set e.g. to 2 GB by setting
-`options(java.options = "-Xmx2048m")` before loading the package.
+\code{options(java.options = "-Xmx2048m")} before loading the package.
 }
 \details{
-Expects the data to either be a `data.frame` or a `character` path to a
+Expects the data to either be a \code{data.frame} or a \code{character} path to a
 data set in the '.arff' format. In case a 'data.frame' is provided, the
 data is saved to '.$model_path' and then read into the JVM from there.
 The target variable's name is assumed to be 'target'.
 }
 \section{Methods}{
 
-  * new(classifier, model_path): Initialize the class.
-  * train(data, target, par_vals, data_path): Delegates to [`train_tsc`].
-  * predict(newdata): Delegates to [`predict_tsc`].
-  * resample(data, target, par_vals, data_path): Delegates to [`resample_tsc`].
-  * cleanup(): Remove saved model files.
+\itemize{
+\item new(classifier, model_path): Initialize the class.
+\item train(data, target, par_vals, data_path): Delegates to \code{\link{train_tsc}}.
+\item predict(newdata): Delegates to \code{\link{predict_tsc}}.
+\item resample(data, target, par_vals, data_path): Delegates to \code{\link{resample_tsc}}.
+\item cleanup(): Remove saved model files.
+}
 }
 
 \section{Fields}{
 
-  * classifier: [`character(1)`] \cr
-    Classifier to use, see `?tsc_classifiers` for a list of available classifiers.
-  * target: [`character(1)`] \cr
-    Target variable.
-  * data: [`character(1)`|`data.frame`] \cr
-    Either a path to the dataset or a data.frame that should be saved to disk
-    for modeling. In case a `data.frame` is provided, the dataset is saved to disk
-    via `data_to_path`.
-  * newdata: [`character(1)`|`data.frame`] \cr
-    See `data`.
-  * par_vals: [`list(1)`] \cr
-    Named list of hyperparamter_values.
-  * data_path: [`character(1)`] \cr
-    Save path for the data.
-  * target_levels: [`character(n)`] \cr
-    Levels of the target variable, if a data.frame is supplied.
-  * model_path: [`character(1)`] \cr
-    Path to store the resulting model to. Default `NULL` creates and stores to
-    a temporary file.
-  * trained: [`logical(1)`] \cr
-    Was the model trained?
+\itemize{
+\item classifier: \code{\link{character(1)}} \cr
+Classifier to use, see \code{?tsc_classifiers} for a list of available classifiers.
+\item target: \code{\link{character(1)}} \cr
+Target variable.
+\item data: \link[=`character(1)`|`data.frame`]{character(1)|data.frame} \cr
+Either a path to the dataset or a data.frame that should be saved to disk
+for modeling. In case a \code{data.frame} is provided, the dataset is saved to disk
+via \code{data_to_path}.
+\item newdata: \link[=`character(1)`|`data.frame`]{character(1)|data.frame} \cr
+See \code{data}.
+\item par_vals: \code{\link{list(1)}} \cr
+Named list of hyperparamter_values.
+\item data_path: \code{\link{character(1)}} \cr
+Save path for the data.
+\item target_levels: \code{\link{character(n)}} \cr
+Levels of the target variable, if a data.frame is supplied.
+\item model_path: \code{\link{character(1)}} \cr
+Path to store the resulting model to. Default \code{NULL} creates and stores to
+a temporary file.
+\item trained: \code{\link{logical(1)}} \cr
+Was the model trained?
+}
 }
 
 \examples{

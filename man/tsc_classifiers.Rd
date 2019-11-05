@@ -7,9 +7,9 @@
 tsc_classifiers()
 }
 \value{
-[`character`] Names of available classifiers.
+\code{\link{character}} Names of available classifiers.
 }
 \description{
-Run `tsc_classifiers()` to obtain available classifiers.
+Run \code{tsc_classifiers()} to obtain available classifiers.
 The following classifiers are available: \cr
 }

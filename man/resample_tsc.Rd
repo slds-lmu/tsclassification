@@ -10,35 +10,35 @@ resample_tsc(data, target = NULL, classifier, par_vals = NULL,
   model_path = NULL, data_path = NULL, cleanup_data = FALSE)
 }
 \arguments{
-\item{data}{[`character(1)`|`data.frame`] \cr
+\item{data}{\link[=`character(1)`|`data.frame`]{character(1)|data.frame} \cr
 Either a path to the dataset or a data.frame that should be saved to disk
-for modeling. In case a `data.frame` is provided, the dataset is saved to disk
-via `data_to_path`.}
+for modeling. In case a \code{data.frame} is provided, the dataset is saved to disk
+via \code{data_to_path}.}
 
-\item{target}{[`character(1)`] \cr
+\item{target}{\code{\link{character(1)}} \cr
 Name of the target variable.}
 
-\item{classifier}{[`character(1)`] \cr
-Character describing the classifier. See `?tsc_classifiers`.}
+\item{classifier}{\code{\link{character(1)}} \cr
+Character describing the classifier. See \code{?tsc_classifiers}.}
 
-\item{par_vals}{[`list`] \cr
+\item{par_vals}{\code{\link{list}} \cr
 (Optional) Hyperparameters for the models. \cr
-See `?tsc_classifiers` for hyperparameters.}
+See \code{?tsc_classifiers} for hyperparameters.}
 
-\item{model_path}{[`character(1)`] \cr
+\item{model_path}{\code{\link{character(1)}} \cr
 Path where the resulting model should be saved to.}
 
-\item{data_path}{[`character(1)`] \cr
+\item{data_path}{\code{\link{character(1)}} \cr
 Path where train and test data should be saved to. Defaults to a temporary file.}
 
-\item{cleanup_data}{[`logical(1)`] \cr
+\item{cleanup_data}{\code{\link{logical(1)}} \cr
 Should the data be deleted from disk after training / prediction?}
 }
 \value{
-NULL, Writes a Java instance of TrainAndPredict to `model_path`.
-  data = data.frame(matrix(rnorm(300), nrow = 30))
-  data$class = factor(sample(letters[1:2], 10, replace = TRUE))
-  resample_tsc(data, target = "class", classifier = "weka.classifiers.trees.J48", model_path = tempfile())
+NULL, Writes a Java instance of TrainAndPredict to \code{model_path}.
+data = data.frame(matrix(rnorm(300), nrow = 30))
+data$class = factor(sample(letters\link{1:2}, 10, replace = TRUE))
+resample_tsc(data, target = "class", classifier = "weka.classifiers.trees.J48", model_path = tempfile())
 }
 \description{
 Resample a time-series classifier.
