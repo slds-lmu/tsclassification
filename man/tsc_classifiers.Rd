@@ -10,6 +10,198 @@ tsc_classifiers()
 \code{\link{character}} Names of available classifiers.
 }
 \description{
-Run \code{tsc_classifiers()} to obtain available classifiers.
-The following classifiers are available: \cr
+Run \code{tsc_classifiers()} to obtain available .
+}
+\details{
+The following classifiers are available
+}
+\section{Ensemble Classifiers}{
+
+
+\itemize{
+
+\item \code{timeseriesweka.classifiers.ElasticEnsemble} \cr
+Combination of nearest Neighbour (NN) classifiers that use elastic distance measures \cr
+Hyperparameters: \emph{None}
+
+\item \code{timeseriesweka.classifiers.FlatCote} \cr
+Collective of Transformation Ensembles (Bagnall et al.,2015) \cr
+Hyperparameters: \emph{None}
+
+Base-learners of ElasticEnsemble: \cr
+
+\item \code{timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN} \cr
+Elastic Ensemble of Nearest Neighbour Algorithms: \cr
+Weighted Dynamic Time Warping 1 Nearest Neighbour \cr
+Hyperparameters: \emph{None}
+
+\item \code{timeseriesweka.classifiers.ensembles.elastic_ensemble.ED1NN} \cr
+Euclidean distance with 1 nearest neighbor \cr
+Hyperparameters: \emph{None}
+
+\item \code{timeseriesweka.classifiers.ensembles.elastic_ensemble.DTW1NN} \cr
+Dynamic time warping with 1 nearest neighbor \cr
+Hyperparameters: \cr
+\itemize{
+\item \code{setWindow}: \code{double} range: \link{1, Inf}
+}
+
+\item \code{timeseriesweka.classifiers.ensembles.elastic_ensemble.ERP1NN} \cr
+edit distance with real penalty with 1 nearest neighbor \cr
+Hyperparameters: \emph{None}
+
+\item \code{timeseriesweka.classifiers.ensembles.elastic_ensemble.LCSS1NN} \cr
+longest common subsequence with 1 nearest neighbor \cr
+Hyperparameters: \emph{None}
+
+\item \code{timeseriesweka.classifiers.ensembles.elastic_ensemble.TWE1NN} \cr
+Time Warp Edit with 1 nearest neighbor \cr
+Hyperparameters: \emph{None}
+
+\item \code{timeseriesweka.classifiers.ensembles.elastic_ensemble.MSM1NN} \cr
+Move-Split-Merge with 1 nearest neighbor \cr
+Hyperparameters: \emph{None}
+
+}
+}
+
+\section{Differential Distance Based Classifiers}{
+
+\itemize{
+
+\item \code{timeseriesweka.classifiers.NN_CID} \cr
+Complexity Invariant distance with k nearest neighbor \cr
+Hyperparameters: \emph{None}
+
+\item \code{timeseriesweka.classifiers.DD_DTW} \cr
+Derivative dynamic time warping \cr
+Hyperparameters: \emph{None}
+
+\item \code{timeseriesweka.classifiers.DTD_C} \cr
+Derivative transform distance \cr
+Hyperparameters: \emph{None}
+
+}
+}
+
+\section{Dictionary based Classifiers}{
+
+\itemize{
+\item \code{timeseriesweka.classifiers.BOSS} \cr
+Bag of SFA Symbols \cr
+Hyperparameters: \cr
+\itemize{
+\item \code{setMaxEnsembleSize}: \code{integer(1)} range: \link{1, Inf}
+}
+
+\item \code{timeseriesweka.classifiers.BagOfPatterns} \cr
+Bag of Patterns \cr
+Hyperparameters: \emph{None} \cr
+
+\item \code{timeseriesweka.classifiers.SAX_1NN} \cr
+Symbolic Aggregate Approximation \cr
+Hyperparameters: \emph{None} \cr
+
+\item \code{timeseriesweka.classifiers.SAXVSM} \cr
+Symbolic Aggregate Approximation - Vector Space Model \cr
+Hyperparameters: \emph{None} \cr
+}
+}
+
+\section{Shapelet based Classifiers}{
+
+\itemize{
+\item \code{timeseriesweka.classifiers.ShapeletTransformClassifier} \cr
+Shapelet transformation that separates the Shapelet discovery from the classifier by
+finding the top k Shapelets in a single run \cr
+Hyperparameters:
+\itemize{
+\item \code{setTransformType}: character(1) \cr
+values: "univariate","uni","shapeletd","shapeleti"
+\item \code{setNumberOfShapelets}: \code{integer(1)} range: \link{1, Inf}
+}
+
+\item \code{timeseriesweka.classifiers.FastShapelets} \cr
+Fast Shapelets (FS) \cr
+Hyperparameters: \emph{None} \cr
+
+\item \code{timeseriesweka.classifiers.LearnShapelets} \cr
+Learned Shapelets (LS): \cr
+Hyperparameters: \emph{None} \cr
+
+}
+}
+
+\section{Interval based Classifiers}{
+
+\itemize{
+\item \code{timeseriesweka.classifiers.TSF} \cr
+Time Series Forest (Deng et al.,2013) \cr
+Hyperparameters: \cr
+\itemize{
+\item \code{setNumTrees}: \code{integer(1)} range: \link{1, Inf}
+}
+
+\item \code{timeseriesweka.classifiers.TSBF} \cr
+Time Series Bag of Features (TSBF) \cr
+Hyperparameters: \cr
+\itemize{
+\item \code{setZLevel}: \code{double(1)}
+}
+
+\item \code{timeseriesweka.classifiers.LPS} \cr
+Learned Pattern Similarity (LPS) \cr
+Hyperparameters: \emph{None} \cr
+}
+}
+
+\section{Time Series Classifier}{
+
+\itemize{
+\item \code{timeseriesweka.classifiers.DTW_kNN} \cr
+specialization of kNN that can only be used with the efficient DTW distance \cr
+Hyperparameters: \cr
+\itemize{
+\item \code{setMaxR}: \code{double(1)} range: \link{0, 1} set max window size
+}
+
+\item \code{timeseriesweka.classifiers.FastDTW_1NN} \cr
+fast Dynamic time warping with 1 nearest neighbor \cr
+Hyperparameters: \cr
+\itemize{
+\item \code{setR}: \code{double(1)}
+}
+
+\item \code{timeseriesweka.classifiers.SlowDTW_1NN} \cr
+compare with FastDTW_1NN \cr
+Hyperparameters: \cr
+\itemize{
+\item \code{setR}: \code{double(1)}
+}
+}
+}
+
+\section{Weka Classifiers}{
+
+Several WEKA classifiers have been implemented in the Time-Series Classification
+Bake-off. \cr
+The use of those classifiers is discouraged from within TSClassification,
+but nonetheless implemented for completeness. \cr
+We advise to use the official implementations from package \link{RWeka} for greater
+flexibility and improved support for setting hyperparameters. \cr
+\itemize{
+\item weka.classifiers.functions.Logistic
+\item weka.classifiers.bayes.BayesNet
+\item weka.classifiers.bayes.NaiveBayes
+\item weka.classifiers.functions.Logistic
+\item weka.classifiers.functions.MultilayerPerceptron
+\item weka.classifiers.functions.SMO
+\item weka.classifiers.meta.RotationForest
+\item weka.classifiers.trees.J48
+\item weka.classifiers.trees.RandomForest
+}
+}
+
+\examples{
+tsc_classifiers()
 }

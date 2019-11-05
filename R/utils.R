@@ -3,7 +3,7 @@
 #' Saves a data.frame to an arff, so it can be used for the time-series
 #' classifier.
 #'
-#' @param data [`data.frame` | `character`] \cr
+#' @param data [`data.frame`] | [`character`] \cr
 #'   Either a `data.frame` containing the data, or the file path.
 #'   In the latter case, nothing happens and the file path is only checked for consistency.
 #' @param target [`character`] \cr
@@ -79,15 +79,13 @@ par_vals_to_string = function(par_vals) {
   return(pv)
 }
 
-#' Check whether classifier name is valid. (Case-insensitive)
-#' In case only a substring is given, returns the full name
-#' of the classifier.
-#'
-#' @param classifier [`character`] \cr
-#'   Classifier from tsc_classifiers() or short identifier (substring).
-#' @return [`character`]
-#' @example
-#' check_classifier("J48")
+# Check whether classifier name is valid. (Case-insensitive)
+# In case only a substring is given, returns the full name
+# of the classifier.
+#
+# @param classifier [`character`] \cr
+#   Classifier from tsc_classifiers() or short identifier (substring).
+# @return [`character`]
 check_classifier = function(classifier) {
   avail = tsc_classifiers()
   # Allow for substrings

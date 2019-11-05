@@ -8,7 +8,7 @@ data_to_path(data, target = "target", data_path = NULL,
   step = "train")
 }
 \arguments{
-\item{data}{\link[=`data.frame` | `character`]{data.frame | character} \cr
+\item{data}{\code{\link{data.frame}} | \code{\link{character}} \cr
 Either a \code{data.frame} containing the data, or the file path.
 In the latter case, nothing happens and the file path is only checked for consistency.}
 

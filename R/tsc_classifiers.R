@@ -1,9 +1,11 @@
 #' Return available classifiers
 #'
-#' Run `tsc_classifiers()` to obtain available classifiers.
-#' The following classifiers are available: \cr
+#' Run `tsc_classifiers()` to obtain available .
 #'
-#' @section Ensemble Classifiers
+#' The following classifiers are available
+#'
+#' @section Ensemble Classifiers:
+#'
 #' \itemize{
 #'
 #'   \item `timeseriesweka.classifiers.ElasticEnsemble` \cr
@@ -51,7 +53,7 @@
 #'
 #' }
 #'
-#' @section Differential Distance Based Classifiers
+#' @section Differential Distance Based Classifiers:
 #' \itemize{
 #'
 #'    \item `timeseriesweka.classifiers.NN_CID` \cr
@@ -68,7 +70,7 @@
 #'
 #' }
 #'
-#' @section Dictionary based Classifiers
+#' @section Dictionary based Classifiers:
 #' \itemize{
 #'   \item `timeseriesweka.classifiers.BOSS` \cr
 #'   Bag of SFA Symbols \cr
@@ -90,7 +92,7 @@
 #'   Hyperparameters: *None* \cr
 #' }
 #'
-#' @section Shapelet based Classifiers
+#' @section Shapelet based Classifiers:
 #' \itemize{
 #'   \item `timeseriesweka.classifiers.ShapeletTransformClassifier` \cr
 #'   Shapelet transformation that separates the Shapelet discovery from the classifier by
@@ -112,7 +114,7 @@
 #'
 #' }
 #'
-#' @section Interval based Classifiers
+#' @section Interval based Classifiers:
 #' \itemize{
 #'   \item `timeseriesweka.classifiers.TSF` \cr
 #'   Time Series Forest (Deng et al.,2013) \cr
@@ -133,7 +135,7 @@
 #'   Hyperparameters: *None* \cr
 #' }
 #'
-#' @section Time Series Classifier
+#' @section Time Series Classifier:
 #' \itemize{
 #'   \item `timeseriesweka.classifiers.DTW_kNN` \cr
 #'   specialization of kNN that can only be used with the efficient DTW distance \cr
@@ -158,7 +160,7 @@
 #' }
 #'
 #'
-#' @section Weka Classifiers
+#' @section Weka Classifiers:
 #' Several WEKA classifiers have been implemented in the Time-Series Classification
 #' Bake-off. \cr
 #' The use of those classifiers is discouraged from within TSClassification,
@@ -178,7 +180,8 @@
 #' }
 #'
 #' @return [`character`] Names of available classifiers.
-#' @example tsc_classifiers()
+#' @examples
+#' tsc_classifiers()
 #' @export
 tsc_classifiers = function() {
     c(
