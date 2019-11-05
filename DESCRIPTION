@@ -25,6 +25,7 @@ Description:
     Java by Bagnall et al. (2018) for a benchmark study "The Great Time Series Classification Bake Off".
     This package interfaces an adapted version of implementations provided by Bagnall et al., in order
     to make algorithms available to a wider audience.
+URL: https://github.com/compstat-lmu/tsclassification
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
