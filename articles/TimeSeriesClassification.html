@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Time-Series Classification • tsclassification</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
@@ -59,7 +59,14 @@
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/compstat-lmu/tsclassification">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -75,7 +82,7 @@
       <h1>Time-Series Classification</h1>
             
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/compstat-lmu/tsclassification/blob/master/vignettes/TimeSeriesClassification.Rmd"><code>vignettes/TimeSeriesClassification.Rmd</code></a></small>
       <div class="hidden name"><code>TimeSeriesClassification.Rmd</code></div>
 
     </div>
@@ -121,7 +128,7 @@
 <a class="sourceLine" id="cb6-2" data-line-number="2">train_set =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/farff/man/readARFF.html">readARFF</a></span>(train_data)</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; Parse with reader=readr : /home/travis/R/Library/tsclassification/arff/GunPoint_TRAIN.arff</span></a>
 <a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; Loading required package: readr</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; header: 0.031000; preproc: 0.000000; data: 0.029000; postproc: 0.001000; total: 0.061000</span></a></code></pre></div>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; header: 0.031000; preproc: 0.000000; data: 0.029000; postproc: 0.002000; total: 0.062000</span></a></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(train_set)</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co">#&gt; [1]  50 151</span></a></code></pre></div>
 <p>Our data has 50 rows and 151 columns. The first 150 columns correspond to a time-series, while the last column is the class-label (target).</p>
@@ -133,7 +140,7 @@
 <p>and we can get predictions for the test data using</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">test_set =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/farff/man/readARFF.html">readARFF</a></span>(test_data)</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co">#&gt; Parse with reader=readr : /home/travis/R/Library/tsclassification/arff/GunPoint_TEST.arff</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; header: 0.030000; preproc: 0.001000; data: 0.011000; postproc: 0.000000; total: 0.042000</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; header: 0.031000; preproc: 0.001000; data: 0.011000; postproc: 0.000000; total: 0.043000</span></a>
 <a class="sourceLine" id="cb9-4" data-line-number="4">tsc<span class="op">$</span><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(test_set)</a>
 <a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#&gt;   [1] 1 2 2 1 1 2 1 2 2 1 1 1 2 1 1 1 1 2 2 2 1 2 1 1 1 2 1 1 2 1 1 2 2 1 1</span></a>
 <a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">#&gt;  [36] 1 1 1 1 2 1 2 1 1 2 1 2 2 1 2 2 2 1 2 1 1 2 2 1 2 1 2 1 1 2 1 1 2 2 2</span></a>
@@ -143,7 +150,7 @@
 <a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co">#&gt; Levels: 1 2</span></a></code></pre></div>
 <p>The underlying model is saved to the <strong>model_path</strong>:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">tsc<span class="op">$</span>model_path</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; [1] "/tmp/RtmpbcmrGY/tsc_model_352644053c58.txt"</span></a></code></pre></div>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; [1] "/tmp/Rtmpez4tfi/tsc_model_352c4d6b067d.txt"</span></a></code></pre></div>
 <p>Afterwards we can also clean-up the intermediate saved files using</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">tsc<span class="op">$</span><span class="kw">cleanup</span>()</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
@@ -177,7 +184,7 @@
 <a href="#writing-a--arff-file" class="anchor"></a>Writing a .arff file</h3>
 <p><code>data_to_path</code> saves a given dataset to disk in the correct format:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="../reference/data_to_path.html">data_to_path</a></span>(train_set, <span class="dt">target =</span> <span class="st">"target"</span>, <span class="dt">data_path =</span> <span class="ot">NULL</span>)</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="co">#&gt; [1] "/tmp/RtmpbcmrGY/tsclassif_data35263c3485f9.arff"</span></a></code></pre></div>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="co">#&gt; [1] "/tmp/Rtmpez4tfi/tsclassif_data352c732c2a24.arff"</span></a></code></pre></div>
 </div>
 <div id="functional-interface" class="section level3">
 <h3 class="hasAnchor">
