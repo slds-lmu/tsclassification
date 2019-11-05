@@ -5,8 +5,9 @@
 
 A large number of time-series classifiers have been implemented in
 Java for the benchmark study [**The Great Time Series Classification Bake Off (Bagnall et al. (2018))**](http://timeseriesclassification.com/).
+**[Paper](https://arxiv.org/abs/1602.01711)**
 
-The R-package **TSClassification** interfaces an adapted version of implementations provided by Bagnall et al. (2018),
+The R-package **tsclassification** interfaces an adapted version of implementations provided by Bagnall et al. (2018),
 in order to make implemented algorithms available for general machine learning purposes.
 
 
@@ -15,10 +16,14 @@ in order to make implemented algorithms available for general machine learning p
 The package can be installed from Github via
 
 ```r
-devtools::install_github("compstat-lmu/TSClassification")
+devtools::install_github("compstat-lmu/tsclassification")
 ```
 
 ## Usage
+Note that our package name is in lowercase letters.
+```r
+library(tsclassification)
+```
 
 We showcase the usage for a simulated data set.
 
@@ -40,7 +45,7 @@ model in order to predict future, unseen data.
   # Instantiate the model
   tsc = TSClassifier$new("weka.classifiers.meta.RotationForest")
   # Call train and predict function on the different data splits
-  tsc$train(data[train_set, ])
+  tsc$train(data[train_set, ],target = "target")
   tsc$predict(data[!train_set, ])
 ```
 For a more in-depth example, please consult the
