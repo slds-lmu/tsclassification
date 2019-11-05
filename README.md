@@ -11,7 +11,7 @@ The R-package **tsclassification** interfaces an adapted version of implementati
 in order to make implemented algorithms available for general machine learning purposes.
 
 
-(Package Website)[https://compstat-lmu.github.io/tsclassification/.]
+[Package Website](https://compstat-lmu.github.io/tsclassification)
 
 ## Installation
 
