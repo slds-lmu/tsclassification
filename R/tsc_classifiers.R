@@ -76,7 +76,7 @@
 #'   Bag of SFA Symbols \cr
 #'   Hyperparameters: \cr
 #'   \itemize{
-#'     \item `setMaxEnsembleSize`: `integer(1)` range: [1, Inf]
+#'     \item `setMaxEnsembleSize`: `integer(1)` range: \[1, Inf\]
 #'   }
 #'
 #'   \item `timeseriesweka.classifiers.BagOfPatterns` \cr
@@ -141,7 +141,7 @@
 #'   specialization of kNN that can only be used with the efficient DTW distance \cr
 #'   Hyperparameters: \cr
 #'   \itemize{
-#'     \item `setMaxR`: `double(1)` range: \[0, 1\] set max window size
+#'     \item `setMaxR`: `double(1)` range: \\[0, 1\] set max window size
 #'   }
 #'
 #'   \item `timeseriesweka.classifiers.FastDTW_1NN` \cr
@@ -165,7 +165,8 @@
 #' Bake-off. \cr
 #' The use of those classifiers is discouraged from within TSClassification,
 #' but nonetheless implemented for completeness. \cr
-#' We advise to use the official implementations from package [RWeka] for greater
+#' We advise to use the official implementations from package RWeka
+#' (\url{https://cran.r-project.org/web/packages/RWeka/index.html}) for greater
 #' flexibility and improved support for setting hyperparameters. \cr
 #' \itemize{
 #'   \item weka.classifiers.functions.Logistic

@@ -21,26 +21,26 @@
 #'   * cleanup(): Remove saved model files.
 #'
 #' @section Fields:
-#'   * classifier: [`character(1)`] \cr
+#'   * classifier: `character(1)` \cr
 #'     Classifier to use, see `?tsc_classifiers` for a list of available classifiers.
-#'   * target: [`character(1)`] \cr
+#'   * target: `character(1)` \cr
 #'     Target variable.
-#'   * data: [`character(1)`] | [`data.frame`] \cr
+#'   * data: `character(1)` | [`data.frame`] \cr
 #'     Either a path to the dataset or a data.frame that should be saved to disk
 #'     for modeling. In case a `data.frame` is provided, the dataset is saved to disk
 #'     via `data_to_path`.
-#'   * newdata: [`character(1)`] | [`data.frame`] \cr
+#'   * newdata: `character(1)` | [`data.frame`] \cr
 #'     Data to predict on. See `data`.
 #'   * par_vals: [`list`] \cr
 #'     Named list of hyperparamter_values.
-#'   * data_path: [`character(1)`] \cr
+#'   * data_path: `character(1)` \cr
 #'     Save path for the data.
-#'   * target_levels: [`character(n)`] \cr
+#'   * target_levels: [`character`] \cr
 #'     Levels of the target variable, if a data.frame is supplied.
-#'   * model_path: [`character(1)`] \cr
+#'   * model_path: `character(1)` \cr
 #'     Path to store the resulting model to. Default `NULL` creates and stores to
 #'     a temporary file.
-#'   * trained: [`logical(1)`] \cr
+#'   * trained: `logical(1)` \cr
 #'     Was the model trained?
 #'
 #' @examples
@@ -109,22 +109,22 @@ TSClassifier = R6::R6Class("TSClassifier",
 #'
 #' Set the "java.options" option to use a higher memory
 #' if required (e.g. `"-Xmx2048m"`).
-#' @param data [`character(1)`] | [`data.frame`] \cr
+#' @param data `character(1)` | [`data.frame`] \cr
 #'   Either a path to the dataset or a data.frame that should be saved to disk
 #'   for modeling. In case a `data.frame` is provided, the dataset is saved to disk
 #'   via `data_to_path`.
-#' @param target [`character(1)`] \cr
+#' @param target `character(1)` \cr
 #'   Name of the target variable.
-#' @param classifier [`character(1)`] \cr
+#' @param classifier `character(1)` \cr
 #'   Character describing the classifier. See `?tsc_classifiers`.
 #' @param par_vals [`list`] \cr
 #'   (Optional) Hyperparameters for the models. \cr
 #'   See `?tsc_classifiers` for hyperparameters.
-#' @param model_path [`character(1)`] \cr
+#' @param model_path `character(1)` \cr
 #'   Path where the resulting model should be saved to.
-#' @param data_path [`character(1)`] \cr
+#' @param data_path `character(1)` \cr
 #'   Path where train and test data should be saved to. Defaults to a temporary file.
-#' @param cleanup_data [`logical(1)`] \cr
+#' @param cleanup_data `logical(1)` \cr
 #'   Should the data be deleted from disk after training / prediction?
 #' @return NULL, Writes a Java instance of TrainAndPredict to `model_path`.
 #' @examples
@@ -157,16 +157,16 @@ train_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_pat
 #'
 #' Predicts `newdata` using the model obtained during training.
 #'
-#' @param newdata [`character(1)`] | [`data.frame`] \cr
+#' @param newdata `character(1)` | [`data.frame`] \cr
 #'   Either a `data.frame` containing
 #'   the data, or a file path to data used for prediction.
-#' @param target [`character(1)`] \cr
+#' @param target `character(1)` \cr
 #'   Name of the target variable. Can be `NULL`.
-#' @param model_path [`character(1)`] \cr
+#' @param model_path `character(1)` \cr
 #'   Path where the prediction model should be obtained from.
-#' @param data_path [`character(1)`] \cr
+#' @param data_path `character(1)` \cr
 #'   Path where train and test data should be saved to. Defaults to a temporary file.
-#' @param cleanup_data [`logical(1)`] \cr
+#' @param cleanup_data `logical(1)` \cr
 #'   Should newdata be deleted from disk after training?
 #' @return [`factor`] Vector of predictions.
 #' @examples
@@ -195,28 +195,30 @@ predict_tsc = function(newdata, target = NULL, model_path, data_path = NULL, cle
 #' Can be used to replicate the benchmark in the Time-Series Classification Bake-Off by Bagnall et al. 2017
 #' Currently prints out the resampling accuracy.
 #'
-#' @param data [`character(1)`] | [`data.frame`] \cr
+#' @param data `character(1)` | [`data.frame`] \cr
 #'   Either a path to the dataset or a data.frame that should be saved to disk
 #'   for modeling. In case a `data.frame` is provided, the dataset is saved to disk
 #'   via `data_to_path`.
-#' @param target [`character(1)`] \cr
+#' @param target `character(1)` \cr
 #'   Name of the target variable.
-#' @param classifier [`character(1)`] \cr
+#' @param classifier `character(1)` \cr
 #'   Character describing the classifier. See `?tsc_classifiers`.
 #' @param par_vals [`list`] \cr
 #'   (Optional) Hyperparameters for the models. \cr
 #'   See `?tsc_classifiers` for hyperparameters.
-#' @param model_path [`character(1)`] \cr
+#' @param model_path `character(1)` \cr
 #'   Path where the resulting model should be saved to.
-#' @param data_path [`character(1)`] \cr
+#' @param data_path `character(1)` \cr
 #'   Path where train and test data should be saved to. Defaults to a temporary file.
-#' @param cleanup_data [`logical(1)`] \cr
+#' @param cleanup_data `logical(1)` \cr
 #'   Should the data be deleted from disk after training / prediction?
 #' @return NULL, Writes a Java instance of TrainAndPredict to `model_path`.
 #' @examples
+#' \dontrun{
 #'   data = data.frame(matrix(rnorm(300), nrow = 30))
 #'   data$class = factor(sample(letters[1:2], 10, replace = TRUE))
 #'   resample_tsc(data, target = "class", classifier = "weka.classifiers.trees.J48", model_path = tempfile())
+#' }
 #' @export
 resample_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_path = NULL,
   data_path = NULL, cleanup_data = FALSE) {

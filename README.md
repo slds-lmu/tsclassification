@@ -4,7 +4,7 @@
 # TSClassification
 
 A large number of time-series classifiers have been implemented in
-Java for the benchmark study [**The Great Time Series Classification Bake Off (Bagnall et al. (2018))**](http://timeseriesclassification.com/).
+Java for the benchmark study [**The Great Time Series Classification Bake Off (Bagnall et al., 2018)**](http://timeseriesclassification.com/).
 **[Paper](https://arxiv.org/abs/1602.01711)**
 
 The R-package **tsclassification** interfaces an adapted version of implementations provided by Bagnall et al. (2018),

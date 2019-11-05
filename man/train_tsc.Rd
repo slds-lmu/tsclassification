@@ -8,28 +8,28 @@ train_tsc(data, target = NULL, classifier, par_vals = NULL,
   model_path = NULL, data_path = NULL, cleanup_data = FALSE)
 }
 \arguments{
-\item{data}{\code{\link{character(1)}} | \code{\link{data.frame}} \cr
+\item{data}{\code{character(1)} | \code{\link{data.frame}} \cr
 Either a path to the dataset or a data.frame that should be saved to disk
 for modeling. In case a \code{data.frame} is provided, the dataset is saved to disk
 via \code{data_to_path}.}
 
-\item{target}{\code{\link{character(1)}} \cr
+\item{target}{\code{character(1)} \cr
 Name of the target variable.}
 
-\item{classifier}{\code{\link{character(1)}} \cr
+\item{classifier}{\code{character(1)} \cr
 Character describing the classifier. See \code{?tsc_classifiers}.}
 
 \item{par_vals}{\code{\link{list}} \cr
 (Optional) Hyperparameters for the models. \cr
 See \code{?tsc_classifiers} for hyperparameters.}
 
-\item{model_path}{\code{\link{character(1)}} \cr
+\item{model_path}{\code{character(1)} \cr
 Path where the resulting model should be saved to.}
 
-\item{data_path}{\code{\link{character(1)}} \cr
+\item{data_path}{\code{character(1)} \cr
 Path where train and test data should be saved to. Defaults to a temporary file.}
 
-\item{cleanup_data}{\code{\link{logical(1)}} \cr
+\item{cleanup_data}{\code{logical(1)} \cr
 Should the data be deleted from disk after training / prediction?}
 }
 \value{

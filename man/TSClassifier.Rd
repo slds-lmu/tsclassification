@@ -36,26 +36,26 @@ The target variable's name is assumed to be 'target'.
 \section{Fields}{
 
 \itemize{
-\item classifier: \code{\link{character(1)}} \cr
+\item classifier: \code{character(1)} \cr
 Classifier to use, see \code{?tsc_classifiers} for a list of available classifiers.
-\item target: \code{\link{character(1)}} \cr
+\item target: \code{character(1)} \cr
 Target variable.
-\item data: \code{\link{character(1)}} | \code{\link{data.frame}} \cr
+\item data: \code{character(1)} | \code{\link{data.frame}} \cr
 Either a path to the dataset or a data.frame that should be saved to disk
 for modeling. In case a \code{data.frame} is provided, the dataset is saved to disk
 via \code{data_to_path}.
-\item newdata: \code{\link{character(1)}} | \code{\link{data.frame}} \cr
+\item newdata: \code{character(1)} | \code{\link{data.frame}} \cr
 Data to predict on. See \code{data}.
 \item par_vals: \code{\link{list}} \cr
 Named list of hyperparamter_values.
-\item data_path: \code{\link{character(1)}} \cr
+\item data_path: \code{character(1)} \cr
 Save path for the data.
-\item target_levels: \code{\link{character(n)}} \cr
+\item target_levels: \code{\link{character}} \cr
 Levels of the target variable, if a data.frame is supplied.
-\item model_path: \code{\link{character(1)}} \cr
+\item model_path: \code{character(1)} \cr
 Path to store the resulting model to. Default \code{NULL} creates and stores to
 a temporary file.
-\item trained: \code{\link{logical(1)}} \cr
+\item trained: \code{logical(1)} \cr
 Was the model trained?
 }
 }
