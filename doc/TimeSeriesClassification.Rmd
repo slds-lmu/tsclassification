@@ -1,0 +1,255 @@
+---
+title: "Time-Series Classification"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{TimeSeriesClassification}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## General Overview:
+
+The aim of this package is to provide a unified interface to several algorithms available
+in the **Great Time-Series Classification Bake-off** by Bagnall et al, 2017.
+An overview over the available classifiers can be found at the end of this vignette.
+
+The main aim of this library is to expose **train** and **predict** functions for all
+classifiers including their hyperparameters through a unified interface.
+We allow this either from a `data.frame` or a **.arff** file.
+The current state of the underlying Java Code expects a file in the **.arff** format and
+writes the resulting model to disk.
+
+Note, that the current implementation focuses on a single 1-Dimensional time-series / functional.
+We aim to extend this in the future, when algorithms for such problems become available.
+
+# Using tsclassification
+In order to showcase this package's functionality, we go through two simple examples.
+
+```{r setup}
+# Load tsclassification
+library(tsclassification)
+```
+
+**tsclassification** is implemented using **R6** classes. This allows us to stay close to
+python's *scikit-learn* API.
+
+##  Working with files on disk
+
+For this example, we assume that our data is available in the **.arff** format.
+We have two files, *GunPoint_TRAIN.arff* and *GunPoint_TEST.arff*, which contain the
+training and test-data respectively. Those data sets are contained in this package.
+We first save the file-paths to both datasets:
+
+```{r}
+train_data = file.path(system.file("arff", package="tsclassification"), "GunPoint_TRAIN.arff")
+test_data  = file.path(system.file("arff", package="tsclassification"), "GunPoint_TEST.arff")
+```
+
+Afterwards, we choose a classification algorithm we want to train using our data.
+In this case we choose DTW1NN (Dynamic Time-Warping with 1 Nearest-Neighbor).
+This is a simple yet often very successful baseline. The names for different implementations
+can be obtained from the Table of Implemented Classifiers below.
+We use the name to construct a `TSClassifier` object.
+
+```{r}
+classif_name = "ensemble.DTW1NN"
+tsc = TSClassifier$new(classif_name)
+```
+
+Using this object, we can now call the `$train` method, supplying the file-path to the
+training data. Note that this always expects that the **target column** in the data is
+called **target**.
+
+```{r}
+tsc$train(train_data)
+```
+
+The `$train` method then internally trains a model and stores it's path.
+Afterwards, we can use the `$predict` method in order to predict on the held-out test data.
+
+```{r}
+p = tsc$predict(test_data)
+```
+
+##  Working with a data.frame
+
+The same methodology can be used in order to train from a `data.frame`.
+First we read the data, and quickly visualize it:
+
+```{r}
+library(farff)
+train_set = readARFF(train_data)
+```
+
+```{r}
+dim(train_set)
+```
+
+Our data has 50 rows and 151 columns. The first 150 columns correspond to a time-series,
+while the last column is the class-label (target).
+
+The plot below visualizes two exemplary time-series for two classes (in red and blue):
+The x-axis corresponds to the continuum (in our cast the time), while the y-axis
+is the measured signal.
+
+```{r, echo = FALSE}
+plot(as.numeric(train_set[1, -151]), col = "red", type = "l")
+lines(as.numeric(train_set[2, -151]), col = "red")
+lines(as.numeric(train_set[3, -151]), col = "blue")
+lines(as.numeric(train_set[4, -151]), col = "blue")
+```
+
+Afterwards, we again fit a classifier. This time we choose the **BOSS** (Bag of SFA Symbols) classifiers.
+
+```{r}
+tsc = TSClassifier$new("timeseriesweka.classifiers.BOSS")
+tsc$train(train_set, target = "target")
+```
+
+and we can get predictions for the test data using
+
+```{r}
+test_set = readARFF(test_data)
+tsc$predict(test_set)
+```
+
+The underlying model is saved to the **model_path**:
+
+```{r}
+tsc$model_path
+```
+
+Afterwards we can also clean-up the intermediate saved files using
+
+```{r}
+tsc$cleanup()
+```
+
+## Working with hyperparameters:
+
+In this example, we want to additionally set a hyperparameter for the **BOSS** algorithm:
+`?tsc_classifiers` contains a list of available hyperparameters and valid ranges for a given method.
+
+```{r, eval = FALSE}
+tsc = TSClassifier$new("timeseriesweka.classifiers.BOSS")
+tsc$train(train_data, par_vals = list(setMaxEnsembleSize = 1))
+tsc$predict(test_data)
+```
+
+In another example, we train a Time-Series Bag of Features:
+
+```{r, eval = FALSE}
+tsc = TSClassifier$new("timeseriesweka.classifiers.TSBF")
+tsc$train(train_data, par_vals = list(setZLevel = 0.5))
+tsc$predict(test_data)
+```
+
+Please consult the original papers for the respective algorithms for more information
+on how to optimally choose the respective hyperparameters.
+
+
+## Additional functionality
+
+We implement some additional functionality besides providing a train/test interface for
+multiple algorithms. This includes resampling and some additional helper functions for
+working with our interface.
+
+### Resampling
+
+In addition to **train** and **test**, we also allow 5-fold Cross-Validation:
+
+```{r}
+tsc = TSClassifier$new("weka.classifiers.trees.J48")
+tsc$resample(train_data)
+```
+
+### Writing a .arff file
+
+We can automatically save a given train set to disk in the correct format:
+
+```{r}
+data_to_path(train_set, target = "target", data_path = NULL)
+```
+
+### Functional interface
+
+For users who do prefer a function interface, we also allow *training*, *prediction* and *resampling* using
+a traditional interface:
+
+```{r}
+model_path = tempfile()
+mod = train_tsc(train_data, classifier = "weka.classifiers.trees.J48", model_path = model_path)
+predict_tsc(test_data, model_path = model_path)
+```
+
+The API for `resample_tsc` works analogously.
+
+
+## Table of Implemented Classifiers
+
+|Classifier                                                    |Description                                                                                                        | Hyperparams   |
+|:-------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------:|:-------------:|
+|**Used in Ensembles**                                         |                                                                                                                   |               |
+|timeseriesweka.classifiers.ensembles.elastic_ensemble.ED1NN   |Euclidean distance with 1 nearest neighbor                                                                         |               |
+|timeseriesweka.classifiers.ensembles.elastic_ensemble.DTW1NN  |Dynamic time warping with 1 nearest neighbor                                                                       |`setWindow`: `double` range: [1, Inf]               |
+|timeseriesweka.classifiers.ensembles.elastic_ensemble.ERP1NN  |edit distance with real penalty with 1 nearest neighbor                                                            |               |
+|timeseriesweka.classifiers.ensembles.elastic_ensemble.LCSS1NN |longest common subsequence with 1 nearest neighbor                                                                 |               |
+|**Time Domain Distance Based Classifiers**                    |                                                                                                                   |               |
+|timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN |Weighted dynamic time warping with 1 nearest neighbor                                                              |               |
+|timeseriesweka.classifiers.ensembles.elastic_ensemble.TWE1NN  |Time Warp Edit with 1 nearest neighbor                                                                             |               |
+|timeseriesweka.classifiers.ensembles.elastic_ensemble.MSM1NN  |Move-Split-Merge with 1 nearest neighbor                                                                           |               |
+|**Differential Distance Based Classifiers**                   |                                                                                                                   |               |
+|timeseriesweka.classifiers.NN_CID                             |Complexity Invariant distance with k nearest neighbor                                                              |               |
+|timeseriesweka.classifiers.DD_DTW                             |Derivative dynamic time warping                                                                                    |               |
+|timeseriesweka.classifiers.DTD_C                              |Derivative transform distance                                                                                      |               |
+|**Dictionary Based Classifiers**                              |                                                                                                                   |               |
+|timeseriesweka.classifiers.BagOfPatterns                      |Bag of Patterns                                                                                                    |               |
+|timeseriesweka.classifiers.SAXVSM                             |Symbolic Aggregate Approximation - Vector Space Model                                                              |               |
+|timeseriesweka.classifiers.BOSS                               |Bag of SFA Symbols                                                                                                 |`setMaxEnsembleSize`: `integer(1)` range: [1, Inf];<br> `setEnsembleSize`: `integer(1)` range: [1, Inf] |
+|Shapelet Based Classifiers                                    |                                                                                                                   |               |
+|timeseriesweka.classifiers.FastShapelets                      |Fast Shapelets (FS)                                                                                                |               |
+|timeseriesweka.classifiers.ShapeletTransformClassifier        |Shapelet Transform (ST)                                                                                            |`setTransformType`: character(1)<br>[values: "univariate","uni","shapeletd","shapeleti"];<br>`setNumberOfShapelets`: `integer(1)` range: [1, Inf]  |
+|timeseriesweka.classifiers.LearnShapelets                     |Learned Shapelets (LS)                                                                                             |               |
+|**Interval Based Classifiers**                                |                                                                                                                   |               |
+|timeseriesweka.classifiers.TSBF                               |Time Series Bag of Features (TSBF)                                                                                 |`setZLevel`: `double(1)`               |
+|timeseriesweka.classifiers.LPS                                |Learned Pattern Similarity (LPS)                                                                                   |               |
+|Ensemble Classifiers                                          |                                                                                                                   |               |
+|timeseriesweka.classifiers.ElasticEnsemble                    |Elastic Ensemble (EE)                                                                                              |               |
+|timeseriesweka.classifiers.FlatCote                           |Collective of Transformation Ensembles (COTE)                                                                      |               |
+|                                                              |                                                                                                                   |               |
+|**Benchmark**                                                 |                                                                                                                   |               |
+|weka.classifiers.functions.Logistic                           |logistic Regression                                                                                                |               |
+|weka.classifiers.trees.J48                                    |C4.5 (C45)                                                                                                         |               |
+|weka.classifiers.bayes.NaiveBayes                             |naive Bayes (NB)                                                                                                   |               |
+|weka.classifiers.bayes.BayesNet                               |Bayes net (BN)                                                                                                     |               |
+|weka.classifiers.functions.SMO                                |support vector machine with linear (SVML)                                                                          |               |
+|weka.classifiers.functions.SMO                                |quadratic kernel (SVMQ)                                                                                            |               |
+|weka.classifiers.functions.MultilayerPerceptron               |multilayer perceptron (MLP)                                                                                        |               |
+|timeseriesweka.classifiers.ensembles.elastic_ensemble.ED1NN   |1-NN with Euclidean distance (ED)                                                                                  |               |
+|timeseriesweka.classifiers.ensembles.elastic_ensemble.DTW1NN  |Dynamic time warping (DTW)                                                                                         |               |
+|weka.classifiers.trees.RandomForest                           |Random forest (with 500 trees) (RandF)                                                                             |               |
+|weka.classifiers.meta.RotationForest                          |rotation forest (with 50 trees) (RotF)                                                                             |               |
+|                                                              |                                                                                                                   |               |
+|**Time Series Classifiers**                                   |                                                                                                                   |               |
+|timeseriesweka.classifiers.DTW_kNN                            | Specialization of kNN that can only be used with the efficient DTW distance                                       | `setMaxR`: `double(1)` range: [0, 1]                |
+|timeseriesweka.classifiers.FastDTW_1NN                        | This class has option of searching for the optimal window length                                                  | `setR`: `double(1)`               |
+|timeseriesweka.classifiers.RISE                               |                                                                                                                   |               |
+|timeseriesweka.classifiers.SlowDTW_1NN                        |This classifier does the full 101 parameter searches for window.It is only here for comparison to faster methods   | `setR`: `double(1)`                |
+
+##  Currently broken or not implemented
+
+|Classifier                                                    |Description                                                                                                        |
+|:-------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------|
+|timeseriesweka.classifiers.SAX_1NN                            |Symbolic Aggregate Approximation                                                                                   |
+|DTW Features (DTWF)                                           |                                                                                                                   |
+|timeseriesweka.classifiers.HiveCote                           |The Hierarchical Vote Collective of Transformation-Based Ensembles, include:EE,ST, RISE, BOSS, TSF                 |
+||timeseriesweka.classifiers.HiveCote23_7_18                   |                                                                                                                   |
+|timeseriesweka.classifiers.TSF                                |Time Series Forest (TSF)  (`setNumTrees`: `integer(1)` range: [1, Inf])                                            |                                                                                      |
