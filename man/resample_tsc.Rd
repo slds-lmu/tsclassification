@@ -46,6 +46,6 @@ Currently prints out the resampling accuracy.
 \dontrun{
   data = data.frame(matrix(rnorm(300), nrow = 30))
   data$class = factor(sample(letters[1:2], 10, replace = TRUE))
-  resample_tsc(data, target = "class", classifier = "weka.classifiers.trees.J48", model_path = tempfile())
+  resample_tsc(data, target = "class", classifier = "J48", model_path = tempfile())
 }
 }
