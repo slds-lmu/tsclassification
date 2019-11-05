@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://compstat-lmu.github.io/tsclassification/index.html</loc>
+  </url>
+  <url>
+    <loc>http://compstat-lmu.github.io/tsclassification/reference/TSClassifier.html</loc>
+  </url>
+  <url>
+    <loc>http://compstat-lmu.github.io/tsclassification/reference/data_to_path.html</loc>
+  </url>
+  <url>
+    <loc>http://compstat-lmu.github.io/tsclassification/reference/predict_tsc.html</loc>
+  </url>
+  <url>
+    <loc>http://compstat-lmu.github.io/tsclassification/reference/resample_tsc.html</loc>
+  </url>
+  <url>
+    <loc>http://compstat-lmu.github.io/tsclassification/reference/train_tsc.html</loc>
+  </url>
+  <url>
+    <loc>http://compstat-lmu.github.io/tsclassification/reference/tsc_classifiers.html</loc>
+  </url>
+  <url>
+    <loc>http://compstat-lmu.github.io/tsclassification/articles/TimeSeriesClassification.html</loc>
+  </url>
+</urlset>
