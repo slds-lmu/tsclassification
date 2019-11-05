@@ -8,16 +8,16 @@
 #' `options(java.options = "-Xmx2048m")` before loading the package.
 #'
 #' @details
-#' Expects the data to either be a `data.frame` or a `character` path to a
-#' data set in the '.arff' format. In case a 'data.frame' is provided, the
+#' Expects the data to either be a [`data.frame`] or a [`character`] path to a
+#' data set in the **'.arff'** format. In case a `data.frame` is provided, the
 #' data is saved to '.$model_path' and then read into the JVM from there.
 #' The target variable's name is assumed to be 'target'.
 #'
 #' @section Methods:
 #'   * new(classifier, model_path): Initialize the class.
-#'   * train(data, target, par_vals, data_path): Delegates to [`train_tsc`].
-#'   * predict(newdata): Delegates to [`predict_tsc`].
-#'   * resample(data, target, par_vals, data_path): Delegates to [`resample_tsc`].
+#'   * train(data, target, par_vals, data_path): Delegates to \code{\link{train_tsc}}.
+#'   * predict(newdata): Delegates to \code{\link{predict_tsc}}.
+#'   * resample(data, target, par_vals, data_path): Delegates to \code{\link{resample_tsc}}.
 #'   * cleanup(): Remove saved model files.
 #'
 #' @section Fields:
@@ -25,12 +25,12 @@
 #'     Classifier to use, see `?tsc_classifiers` for a list of available classifiers.
 #'   * target: [`character(1)`] \cr
 #'     Target variable.
-#'   * data: [`character(1)`|`data.frame`] \cr
+#'   * data: [`character(1)`] | [`data.frame`] \cr
 #'     Either a path to the dataset or a data.frame that should be saved to disk
 #'     for modeling. In case a `data.frame` is provided, the dataset is saved to disk
 #'     via `data_to_path`.
-#'   * newdata: [`character(1)`|`data.frame`] \cr
-#'     See `data`.
+#'   * newdata: [`character(1)`] | [`data.frame`] \cr
+#'     Data to predict on. See `data`.
 #'   * par_vals: [`list(1)`] \cr
 #'     Named list of hyperparamter_values.
 #'   * data_path: [`character(1)`] \cr
@@ -109,7 +109,7 @@ TSClassifier = R6::R6Class("TSClassifier",
 #'
 #' Set the "java.options" option to use a higher memory
 #' if required (e.g. `"-Xmx2048m"`).
-#' @param data [`character(1)`|`data.frame`] \cr
+#' @param data [`character(1)`] | [`data.frame`] \cr
 #'   Either a path to the dataset or a data.frame that should be saved to disk
 #'   for modeling. In case a `data.frame` is provided, the dataset is saved to disk
 #'   via `data_to_path`.
@@ -157,7 +157,7 @@ train_tsc = function(data, target = NULL, classifier, par_vals = NULL, model_pat
 #'
 #' Predicts `newdata` using the model obtained during training.
 #'
-#' @param newdata [`data.frame` | `character`] \cr
+#' @param newdata [`character(1)`] | [`data.frame`] \cr
 #'   Either a `data.frame` containing
 #'   the data, or a file path to data used for prediction.
 #' @param target [`character(1)`] \cr
@@ -195,7 +195,7 @@ predict_tsc = function(newdata, target = NULL, model_path, data_path = NULL, cle
 #' Can be used to replicate the benchmark in the Time-Series Classification Bake-Off by Bagnall et al. 2017
 #' Currently prints out the resampling accuracy.
 #'
-#' @param data [`character(1)`|`data.frame`] \cr
+#' @param data [`character(1)`] | [`data.frame`] \cr
 #'   Either a path to the dataset or a data.frame that should be saved to disk
 #'   for modeling. In case a `data.frame` is provided, the dataset is saved to disk
 #'   via `data_to_path`.

@@ -10,7 +10,7 @@ resample_tsc(data, target = NULL, classifier, par_vals = NULL,
   model_path = NULL, data_path = NULL, cleanup_data = FALSE)
 }
 \arguments{
-\item{data}{\link[=`character(1)`|`data.frame`]{character(1)|data.frame} \cr
+\item{data}{\code{\link{character(1)}} | \code{\link{data.frame}} \cr
 Either a path to the dataset or a data.frame that should be saved to disk
 for modeling. In case a \code{data.frame} is provided, the dataset is saved to disk
 via \code{data_to_path}.}

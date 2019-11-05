@@ -8,7 +8,7 @@ predict_tsc(newdata, target = NULL, model_path, data_path = NULL,
   cleanup_data = FALSE)
 }
 \arguments{
-\item{newdata}{\link[=`data.frame` | `character`]{data.frame | character} \cr
+\item{newdata}{\code{\link{character(1)}} | \code{\link{data.frame}} \cr
 Either a \code{data.frame} containing
 the data, or a file path to data used for prediction.}
 

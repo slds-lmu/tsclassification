@@ -1,8 +1,8 @@
 #' Return available classifiers
 #'
-#' Run `tsc_classifiers()` to obtain available .
+#' Run `tsc_classifiers()` to obtain available classifiers
 #'
-#' The following classifiers are available
+#' The following classifiers are available:
 #'
 #' @section Ensemble Classifiers:
 #'

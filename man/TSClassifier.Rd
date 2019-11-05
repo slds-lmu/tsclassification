@@ -17,8 +17,8 @@ In this case, the memory for the JVM can be set e.g. to 2 GB by setting
 \code{options(java.options = "-Xmx2048m")} before loading the package.
 }
 \details{
-Expects the data to either be a \code{data.frame} or a \code{character} path to a
-data set in the '.arff' format. In case a 'data.frame' is provided, the
+Expects the data to either be a \code{\link{data.frame}} or a \code{\link{character}} path to a
+data set in the \strong{'.arff'} format. In case a \code{data.frame} is provided, the
 data is saved to '.$model_path' and then read into the JVM from there.
 The target variable's name is assumed to be 'target'.
 }
@@ -40,12 +40,12 @@ The target variable's name is assumed to be 'target'.
 Classifier to use, see \code{?tsc_classifiers} for a list of available classifiers.
 \item target: \code{\link{character(1)}} \cr
 Target variable.
-\item data: \link[=`character(1)`|`data.frame`]{character(1)|data.frame} \cr
+\item data: \code{\link{character(1)}} | \code{\link{data.frame}} \cr
 Either a path to the dataset or a data.frame that should be saved to disk
 for modeling. In case a \code{data.frame} is provided, the dataset is saved to disk
 via \code{data_to_path}.
-\item newdata: \link[=`character(1)`|`data.frame`]{character(1)|data.frame} \cr
-See \code{data}.
+\item newdata: \code{\link{character(1)}} | \code{\link{data.frame}} \cr
+Data to predict on. See \code{data}.
 \item par_vals: \code{\link{list(1)}} \cr
 Named list of hyperparamter_values.
 \item data_path: \code{\link{character(1)}} \cr

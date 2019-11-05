@@ -10,10 +10,10 @@ tsc_classifiers()
 \code{\link{character}} Names of available classifiers.
 }
 \description{
-Run \code{tsc_classifiers()} to obtain available .
+Run \code{tsc_classifiers()} to obtain available classifiers
 }
 \details{
-The following classifiers are available
+The following classifiers are available:
 }
 \section{Ensemble Classifiers}{
 
