@@ -167,6 +167,28 @@ We implement some additional functionality besides providing a train/test interf
 multiple algorithms. This includes resampling and some additional helper functions for
 working with our interface.
 
+
+### mlr3 connector
+
+The package offers a connector to the machine learning toolbox `mlr3`.
+Learners contained in the package can directly be used in conjunction 
+with the powerful functionalities of `mlr3` like **resampling**, **tuning** and so on.
+
+An example of doing this for the popular *iris* dataset (considering the features as "functional")
+is shown below: 
+
+```{r}
+  library(mlr3)
+  tsk = mlr_tasks$get("iris")
+  lrn = LearnerClassifTSClassification$new()
+
+  # Train the classifier
+  lrn$train(tsk)
+
+  # Predict
+  prds = lrn$predict(tsk)
+```
+
 ### Resampling
 
 In addition to **train** and **test**, we also allow 5-fold Cross-Validation:
