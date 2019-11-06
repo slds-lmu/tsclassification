@@ -93,6 +93,11 @@ The package currently supports most of the algorithms implemented in the Bake-Of
 
 ---
 
+## Troubleshooting
+
+On some systems, installing `rJava` does not work out of the box.
+Various topics regarding this are available on [stackoverflow](https://stackoverflow.com/questions/3311940/r-rjava-package-install-failing).
+
 ## Contribute & Support
 
 We appreciate bug-reports and contributions! Feel free to contact us if any questions arise!
