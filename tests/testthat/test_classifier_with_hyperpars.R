@@ -30,7 +30,7 @@ test_that("TSC can be predicted from file path", {
   test_data  = file.path(system.file("arff", package="tsclassification"), "GunPoint_TEST.arff")
   classifName = "timeseriesweka.classifiers.BOSS"
   tsc = TSClassifier$new(classifName)
-  expect_error(tsc$train(train_data, par_vals = list("setMaxEnsembleSize" = "A")), class = "NumberFormatException")
+  expect_error(tsc$train(train_data, par_vals = list("setMaxEnsembleSize" = "A")))
 })
 
 # Test resampling
