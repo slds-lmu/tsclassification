@@ -22,6 +22,7 @@
 data_to_path = function(data, target = "target", data_path = NULL, step = "train") {
   # Data is either a path that points to the data or a data.frame
   # containing the data.
+  requireNamespace("farff")
   assert(check_string(data), check_data_frame(data), combine = "or")
   assert_choice(step, c("train", "predict"))
   assert_string(target, null.ok = TRUE)
