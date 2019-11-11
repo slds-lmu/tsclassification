@@ -35,7 +35,7 @@ Imports:
     checkmate
 Suggests:
     farff,
-    testthat,
+    testthat (<=2.2.0),
     covr,
     knitr,
     rmarkdown
