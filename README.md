@@ -64,7 +64,7 @@ with the powerful functionalities of `mlr3` like **resampling**, **tuning** and 
 An example of doing this for the popular *iris* dataset (considering the features as "functional")
 is shown below:
 
-```{r}
+```r
   library(mlr3)
   tsk = mlr_tasks$get("iris")
   lrn = LearnerClassifTSClassification$new()
