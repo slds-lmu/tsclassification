@@ -206,7 +206,7 @@ The `tuner` splits the data into internal train and validation data and fits eac
 the training data. Afterwards, it measures the performance on the validation data.
 The `result` is then the best classifier along with it's performance on the validation data.
 
-```{r}
+```{r, eval = FALSE}
   lrn = LearnerClassifTSClassification$new()
   library(mlr3tuning)
   library(paradox)
@@ -220,7 +220,6 @@ The `result` is then the best classifier along with it's performance on the vali
   )
   tuner = TunerGridSearch$new()
   tuner$tune(instance)
-  instance$result
 ```
 
 For more info, consider the chapter on [model optimization](https://mlr3book.mlr-org.com/model-optim.html) in the mlr3book.

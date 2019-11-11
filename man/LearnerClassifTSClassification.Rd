@@ -26,7 +26,7 @@ mlr3::lrn("classif.tsclassification")
   # Train the classifier
   lrn$train(tsk)
   # Predict again
-  lrn$predict(tsk) 
+  lrn$predict(tsk)
 }
 
 }
