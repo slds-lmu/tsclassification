@@ -31,3 +31,14 @@ test_that("data_to_path", {
   df = farff::readARFF(data_path)
   expect_equal(train_data, df)
 })
+
+
+test_that("iris works", {
+  train_data = iris
+  file = tempfile()
+  data_path = data_to_path(train_data, "Species", data_path = file)
+  expect_file_exists(data_path)
+  expect_warning(data_to_path(train_data, "Species", data_path = file))
+  df = farff::readARFF(data_path)
+  expect_true(all(colnames(df) == c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width", "target")))
+})

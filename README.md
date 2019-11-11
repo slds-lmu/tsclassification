@@ -11,6 +11,8 @@ The R-package **tsclassification** interfaces an adapted version of implementati
 in order to make implemented algorithms available for general machine learning purposes.
 
 
+[Package Website](https://compstat-lmu.github.io/tsclassification)
+
 ## Installation
 
 The package can be installed from Github via
@@ -90,6 +92,11 @@ The package currently supports most of the algorithms implemented in the Bake-Of
 
 
 ---
+
+## Troubleshooting
+
+On some systems, installing `rJava` does not work out of the box.
+Various topics regarding this are available on [stackoverflow](https://stackoverflow.com/questions/3311940/r-rjava-package-install-failing).
 
 ## Contribute & Support
 

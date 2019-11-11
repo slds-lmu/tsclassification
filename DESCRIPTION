@@ -35,6 +35,8 @@ Imports:
     checkmate
 Suggests:
     farff,
+    mlr3,
+    mlr3misc,
     testthat (<=2.2.0),
     covr,
     knitr,

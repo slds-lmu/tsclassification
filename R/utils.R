@@ -22,6 +22,7 @@
 data_to_path = function(data, target = "target", data_path = NULL, step = "train") {
   # Data is either a path that points to the data or a data.frame
   # containing the data.
+  requireNamespace("farff")
   assert(check_string(data), check_data_frame(data), combine = "or")
   assert_choice(step, c("train", "predict"))
   assert_string(target, null.ok = TRUE)
@@ -37,8 +38,9 @@ data_to_path = function(data, target = "target", data_path = NULL, step = "train
     cn = colnames(data)
     if (step == "train") {
       assert_choice(target, cn)
-      data = data[, c(setdiff(cn, target), target)]
-      data[[target]] = as.factor(data[[target]])
+      data = data[, c(setdiff(cn, target), target)] # target is last column
+      colnames(data)[length(cn)] = "target" # target name is target
+      data$target = as.factor(data$target) 
     }
 
     # Create a filepath.
