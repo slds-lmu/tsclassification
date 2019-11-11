@@ -1,6 +1,8 @@
 context("test-all-classifiers")
 
 test_that("Test a basic set of classifiers", {
+  # Note: We rarely want to run all classifiers.
+  #       Instead we run only a subset of fast classifiers.
   if (FALSE) {
     classifiers = c(
       "timeseriesweka.classifiers.ensembles.elastic_ensemble.WDTW1NN",

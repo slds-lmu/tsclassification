@@ -28,16 +28,18 @@
 #'   # Train the classifier
 #'   lrn$train(tsk)
 #'   # Predict again
-#'   lrn$predict(tsk) 
+#'   lrn$predict(tsk)
 #' }
-#' 
+#'
 LearnerClassifTSClassification = R6Class("LearnerClassifTSClassification", inherit = mlr3::LearnerClassif,
   public = list(
     initialize = function() {
       ps = paradox::ParamSet$new(list(
-        paradox::ParamFct$new("classifier", default = "timeseriesweka.classifiers.FastDTW_1NN", levels = tsc_classifiers(), tags = "train")
+        paradox::ParamFct$new("classifier", default = "timeseriesweka.classifiers.FastDTW_1NN", levels = tsc_classifiers(), tags = "train"),
+        paradox::ParamDbl$new("setR", default = 0.1, lower = 0, upper = 1, tags = "train")
       ))
       ps$values = list(classifier = "timeseriesweka.classifiers.FastDTW_1NN")
+      ps$add_dep("setR", "classifier", paradox::CondAnyOf$new(c("timeseriesweka.classifiers.FastDTW_1NN", "timeseriesweka.classifiers.SlowDTW_1NN")))
 
       super$initialize(
         id = "classif.tsclassification",

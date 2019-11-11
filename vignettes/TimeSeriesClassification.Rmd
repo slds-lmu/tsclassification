@@ -171,15 +171,16 @@ working with our interface.
 ### mlr3 connector
 
 The package offers a connector to the machine learning toolbox `mlr3`.
-Learners contained in the package can directly be used in conjunction 
+Learners contained in the package can directly be used in conjunction
 with the powerful functionalities of `mlr3` like **resampling**, **tuning** and so on.
 
 An example of doing this for the popular *iris* dataset (considering the features as "functional")
-is shown below: 
+is shown below:
 
 ```{r}
   library(mlr3)
-  tsk = mlr_tasks$get("iris")
+  library(data.table)
+  tsk = TaskClassif$new(id = "gp", data.table(train_set), target = "target")
   lrn = LearnerClassifTSClassification$new()
 
   # Train the classifier
@@ -188,6 +189,41 @@ is shown below:
   # Predict
   prds = lrn$predict(tsk)
 ```
+
+**Tuning**
+
+It is often not clear, which `classifier` should be used on a particular data set.
+`mlr3tuning` offers several `Tuner`'s, that can be used to evaluate several different
+options in order to select the best `classifier`.
+
+In the example below, we compare between three classifiers:
+
+- timeseriesweka.classifiers.BagOfPatterns
+- weka.classifiers.trees.J48
+- timeseriesweka.classifiers.FastDTW_1NN
+
+The `tuner` splits the data into internal train and validation data and fits each classifier on
+the training data. Afterwards, it measures the performance on the validation data.
+The `result` is then the best classifier along with it's performance on the validation data.
+
+```{r}
+  lrn = LearnerClassifTSClassification$new()
+  library(mlr3tuning)
+  library(paradox)
+  instance = TuningInstance$new(
+    task = tsk,
+    learner = lrn,
+    resampling = rsmp("holdout"),
+    measures = msr("classif.ce"),
+    param_set = ParamSet$new(list(ParamFct$new("classifier", levels = tsc_classifiers()[c(13, 29, 32)]))),
+    terminator = term("evals", n_evals = 3)
+  )
+  tuner = TunerGridSearch$new()
+  tuner$tune(instance)
+  instance$result
+```
+
+For more info, consider the chapter on [model optimization](https://mlr3book.mlr-org.com/model-optim.html) in the mlr3book.
 
 ### Resampling
 
@@ -283,7 +319,7 @@ tsc = TSClassifier$new("weka.classifiers.trees.J48")
 |timeseriesweka.classifiers.DTW_kNN                            | Specialization of kNN that can only be used with the efficient DTW distance                                       | `setMaxR`: `numeric(1)` range: [0, 1]                |
 |timeseriesweka.classifiers.FastDTW_1NN                        | This class has option of searching for the optimal window length                                                  | `setR`: `numeric(1)`               |
 |timeseriesweka.classifiers.RISE                               |                                                                                                                   |               |
-|timeseriesweka.classifiers.SlowDTW_1NN                        | This classifier does the full 101 parameter searches for window. It is only here for comparison to faster methods   | `setR`: `numeric(1)`                |
+|timeseriesweka.classifiers.SlowDTW_1NN                        | This classifier does the full 101 parameter searches for window. It is only here for comparison to faster methods   | `setR`: `numeric(1)` range: [0, 1]         |
 
 ##  Currently broken or not implemented
 
