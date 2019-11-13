@@ -1,28 +1,31 @@
 ---
 title: 'Time Series Classification in R'
-
+tags:
+  - R
+  - Time Series Classification
+  - Functional Data
 authors:
- - name: Florian Pfisterer
-   orcid: 0000-0001-8867-762X
-   affiliation: 1
- - name: Yu Wang
-   orcid: 0000-0002-8319-2997
-   affiliation: 2
- - name: Xudong Sun
-   orcid: 0000-0001-9234-4932
-   affiliation: 1
+  - name: Florian Pfisterer
+    orcid: 0000-0001-8867-762X
+    affiliation: 1
+  - name: Yu Wang
+    orcid: 0000-0002-8319-2997
+    affiliation: 2
+  - name: Xudong Sun
+    orcid: 0000-0001-9234-4932
+    affiliation: 1
+  - name: Bernd Bischl
+    orcid: 0000-0001-6002-6980
+    affiliation: 1
 affiliations:
- - name: Department of Statistics, LMU Munich
+ - name: LMU Munich
    index: 1
  - name: TU Munich
    index: 2
-date: 31.07.2019
+date: 31.10.2019
 bibliography: paper.bib
 output: pdf_document
-tags:
-- R
-- Time Series Classification
-- Functional Data
+
 ---
 
 # Summary
